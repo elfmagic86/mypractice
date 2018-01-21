@@ -1,0 +1,80 @@
+
+기본사항
+===============================================
+# 기본환경
+  - Ubuntu 14.04 LTS
+  - Vim 8.0
+    - vim-gnome: for multiple clipboard
+
+# vim기본 설정 확인하기
+  - 버전, 설치된기본확장기능, 환경변수 등 확인
+  : :version  |  vim --version
+    어떤 순서로 vimrc(설정파일)을 찾는지 알수있다.
+    :echo $VIM 등의 방법으로 런타임관련 정보알수있음.
+
+  - 현재 사용하고있는 vimrc위치 
+  : :echo $MYVIMRC
+
+# 필수? 기초설정
+  - multiple clipboard copy/paste
+  : http://vimcasts.org/episodes/accessing-the-system-clipboard-from-vim/
+
+    - clipboard feature추가를 위해 vim-gnome 설치  
+    : sudo apt-get install vim-gnome
+      재실행 후 :version 하면 +clipboard확인가능.
+      단일버퍼로사용하려면 set clipboard=unnamed // 그러나 유용하지않음.
+
+  - CAPSLOCK to ESC
+  : http://askubuntu.com/questions/363346/how-to-permanently-switch-caps-lock-and-esc#comment523848_365701
+    ubuntu, im입력기용.
+    dconf-editor -> ..... ->  xkboptions: ['caps:escape', 'compose:ralt']
+
+  - plugin manager
+    - plug: https://github.com/junegunn/vim-plug
+
+  - vimrc
+  : 여러곳에서 참조를함..
+
+# 기본사용법
+: 터미널에서 vimtutor 프로그램실행
+
+
+
+불편해서 필요한것
+===============================================
+# 기본적인것
+- FileExplorer
+  - Ctrlp
+  - CtrlSF: 파일을 내용으로 찾기(like sublimetext)
+  - NerdTree
+    - sharing 불가능? 탭마다하나씩있네.. -> 'jistr/vim-nerdtree-tabs'
+    - TODO 파일제거시. 나중에 복구하기위해 trash를사용할수없을까?
+- StatusBar: powerline
+
+# EDITING
+- vim-multiple-cursor
+- YouCompleteMe
+- nerd-commenter: 좀불편함.
+- insert모드에서 esc시 커서 왼쪽으로 이동하는것막기: ./config/mine/20default.vim
+- 어떤짝(quote같은)처리를 손쉽게.하고싶다. 
+: https://github.com/tpope/vim-surround
+
+
+
+당장중요하지는않아서 미룬것
+===============================================
+- 커서모양(input|normal mode)
+- backup과연관된...recover 에러......좀 쉽게처리하는방법은?
+  - .?.swp 같은 파일.
+  : 바르게 종료하지않을시 생성되는데.. 지우기
+현재, 크게중요하지않지만, 단일폴더로 ~백업파일이름 형태로저장되기에...같은이름이면 백업이안만들어짐.
+
+
+
+아마 안할것
+===============================================
+- esc누르면 영어키보드로 강제할수잇을까?
+  - 시도1
+  : 20escape_ibus.vim만들었지만, 정확히동작하지않아서 그만둠.
+
+- cTags? 필요할까?

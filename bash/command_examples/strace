@@ -1,0 +1,10 @@
+
+strace
+===
+
+#strace
+: trace system calls and signals
+  실제 실행되는 프로그램과, 인자, 기능사용흐름을 볼수있다.
+```
+strace bash -c 'echo hi'
+```

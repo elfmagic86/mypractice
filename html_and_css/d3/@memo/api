@@ -1,0 +1,88 @@
+api_list
+: 무엇을 사용하면 될지, 기록용
+===
+
+# 선택
+  ```
+  d3.select("#chart")
+  .selectAll("div")
+  ```
+
+# 칼라
+  - 둘사이의 rgb
+    ```
+    var colorMap = d3.interpolateRgb(d3.rgb('#d6e685'), d3.rgb('#1e6823'));
+    colorMap(0~1.0);
+    ```
+
+
+D3 사용을 위한 기본요소들
+---
+
+# 1. selection
+  - select는 jQuery처럼 배열을 반환
+
+## Joining-data를 알아야함
+: data()를 이용한 원소의 추가,갱신,삭제 작업,
+  ``` 
+  # 바인딩되는 위치
+  element.__data__ 
+  ```
+
+  - data에 대해 원소추가 이해(select로 반환된 요소가없다)
+  : http://www.jeromecukier.net/blog/2011/08/09/d3-adding-stuff-and-oh-understanding-selections/
+    링크의 그림참고
+
+  - data에 대해 원소 추가, 갱신, 삭제 이해(select로 반환된 요소가 있다)
+  : http://blog.zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding/
+    링크의 마지막 예제는 종합예제
+
+  - NOTE: 각 operation(추가, 갱신, 삭제)은, 대상 요소가 모두 다름.
+    - operation 두 배열(하단참조)의 범위를 비교하여 해당하는 범위의 원소를 대상으로 사용함.
+        두 배열: 1. data()의 인자인 배열, 2. select로 반환된 요소의 배열
+
+    - 만약, 동작이 대상을 찾지못한다면 그 동작은 무시됨
+
+  - 그외
+    - 일반적사용례참고
+    : https://github.com/d3/d3-selection
+
+    - 내부 데이터가 어떻게 흘러가는지, 테스트코드 
+    : https://github.com/d3/d3-selection/tree/master/test/selection
+
+# 2. 만들 수 있는 요소
+: HTML5면 다되는듯한데, SVG 다루는 것이 주된 역할인듯함
+
+  - Normal html element
+  - SVG Path
+  - TODO canvas?
+
+# 3. D3 Scales
+: Encodings that map abstract data to visual representation.
+
+  - 어떤 용도일까?
+  : 통계그래프의 표현은, 하나의 요소와, 규모변환된 나머지 요소로 생각할수있음
+    scales는 그것(좌표, 크기, 색상등의 데이터 변환)을 도와주는 용도로 나온듯함
+
+  - linear, domain, range의 기초부분만 확인(오래된 포스팅이지만 그림 덕분에 이해에 도움됨
+  : http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/
+
+# 4. group, trasform
+: https://www.dashingd3js.com/svg-group-element-and-d3js
+  도형들을 묶어서 그룹단위로 어떤 변형(좌표이동등)을 줄 수 있음
+
+# 5. D3 axis
+: 그래프의 좌표계 표현용도
+: https://github.com/d3/d3-axis
+
+  - 기타
+    - axis: 1. (사물의) (중심) 축, 축선
+    - x-axis: x축
+
+
+그외 기초중, 알아둘만한것
+---
+# text요소
+: SVG 요소임, 같은 좌표계사용
+
+TODO text의 크기와, 그에 대한 위치는 어떻게 계산하는걸까?

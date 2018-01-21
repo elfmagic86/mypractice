@@ -1,0 +1,60 @@
+
+기초
+---
+# 주의
+: 깊이주의, 기본이 leaf까지감. maxdepth옵션으로 조정가능
+```
+find ~/.cache -maxdepth 1 -type d -exec du -hs {} \; | sort -hr | column -t | column
+```
+
+# 찾은 대상에 대해, 추가 작업필요시
+## xargs 사용하기
+: 여러개의 대상에 명령을 적용하고싶을경우
+  (find의)버퍼안에 모든인수넣을수없다는 에러날수도있음.
+
+```
+# TODO -print0, -0은 개행문자의 변환과 연관있음. 필요할때추가..
+find . -name '*.gif' -print | xargs file
+find . -name '*.gif' -print0 | xargs -0 file
+
+find ~/.cache -maxdepth 1 -print0 |
+    xargs -0i sh -c 'if test -d "{}"; then echo "$( du -hs "{}" )"; fi' |
+    sort -hr | column -t  | column
+
+find -name 'Packages*' -printf '%P\n' | xargs -I FILE \
+         sh -c 'echo $(md5sum -b "FILE" | awk '\''{print $1}'\'') \
+                  $(stat -c %s "FILE") "FILE" | paste - - -'
+```
+
+## exec 사용하기
+  - exec 구조
+    - {}
+    : find가 찾은 파일명으로 치환되는 **위치**
+    - () ;
+    : 쉘 메타문자로 해석되지 않게 escape해줘야함
+
+```
+find . -name '*.gif' -exec file {} \;
+find . -name "*.java" -exec grep -n -H "new .*Db.*" {} \;
+find -name "*.java" -not -regex ".*Db\.java" -exec grep -H -n "new .*Db.*" {} \;
+
+find ~/.cache -maxdepth 1 -exec \
+    sh -c 'if test -d "{}"; then echo "$( du -hs "{}" )"; fi' \; |
+    sort -hr | column -t  | column
+```
+
+## 유용한 옵션
+  - -maxdepth {depth}
+  : folder의 재귀적 find에대한 깊이 제한
+
+  - -mindepth {depth}
+  : 만약, find의 타겟폴더를 제외시키고 싶다면 1을 depth로 주면된다.
+
+사용예
+---
+
+```
+# 실행파일 찾기
+find . -perm /u+x -type f
+
+```

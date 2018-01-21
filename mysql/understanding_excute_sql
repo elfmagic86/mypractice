@@ -1,0 +1,60 @@
+
+#
+# sql 처리 과정
+#
+	# 논리적 처리
+		- sql (놀리적)실행 순서
+		https://stackoverflow.com/questions/4596467/order-of-execution-of-the-sql-query
+		http://sqlmag.com/sql-server/logical-query-processing-what-it-and-what-it-means-you
+		https://hiriyo.files.wordpress.com/2011/08/logical-query-processing.png
+
+	# 실제 처리
+		- where 동작설명
+		http://www.dator.co.kr/57961
+		WHERE조건절에서의 조건은 드라이빙 조건과 체크조건으로 나뉘게 되며 수행은 항상 드라이빙 조건(조인조건)이 먼저 처리되고 체크조건이 수행되는것은 아실겁니다. 
+
+		- 실행플랜
+		http://www.developer.com/db/understanding-a-sql-server-query-execution-plan.html
+
+			- mysql explain(explain plan실행계획)
+				http://snowple.tistory.com/377
+
+			- 실행플랜 관련 유틸
+				SQL Server Management Studio
+				http://sqlfiddle.com
+
+	# 실처리 deep
+
+		- Oracle-Optimizer의-원리-이해-및-SQL-애플리케이션의-튜닝상-옵티마이저의-원리와-특징(상, 하)
+			http://leejehong.tistory.com/entry/Oracle-Optimizer의-원리-이해-및-SQL-애플리케이션의-튜닝상-옵티마이저의-원리와-특징
+			http://egloos.zum.com/jhjang/v/2370067
+
+		- sql 내부적 실행과정
+		문법, 실행계획들, ?
+		http://ojc.asia/bbs/board.php?bo_table=LecOrccleTun&wr_id=113
+
+		- deep
+		https://www.toptal.com/sql/sql-database-tuning-for-developers
+#
+# ??
+#
+	# 궁금
+		- 집계함수의 종류?
+
+		- select에 집계함수(counst, sum) 등이 나온다면 어떻게 동작할까? distinct, top와 순서는?
+
+		- 데이터베이스 인덱싱
+
+	# TODO
+		- sql이 여러과정을 거쳐서 실제 실행된 코드의 구조
+		Row Source Generator : 실행계획의  각단계를 실행하며 각 단계별로 결과를 리턴하며 Row Source Generator는 Row Source Tree(명령문에의해 참조되는 테이블의 순서, Access Method, Join Method,Filter/Sort/Aggregation과 같은 데이터 오퍼레이션을 포함)를 생산하며 Row Source는 테이블, 뷰,조인이나 그룹핑의 결과등이 해당된다.
+
+
+//////////////////////////////
+//////////////////////////////
+//////////////////////////////
+
+# 
+# 
+# 
+

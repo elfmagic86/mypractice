@@ -1,0 +1,61 @@
+help_and_debug
+===
+
+
+디버깅에 도움되는것
+---
+
+# 0
+	- vim 설정없이 실행
+	```
+	vim -u NONE
+	```
+
+# 1
+  - vim실행시 로드된 스크립트를 순차적으로 확인
+  :scriptnames
+
+  - 실행부터, 행동까지 모든동작에 설명이붙는다.
+  : vim -V(verbose)
+
+    - verbose를 logfile로 확인하기
+    : \vim -V[levle]{logfilename}
+
+  - ~/.viminfo
+
+# 2
+  - 설정된 옵션의, 값과 설정자 확인
+    ```
+    :verbose set ft
+    :verbose map
+    ```
+
+  - autucmd에 verbose를 사용할수있다.
+  ```
+  :verbose autocmd BufEnter
+  FileExplorer  BufEnter
+  *	  call s:LocalBrowse(expand("<amatch>"))
+  Last set from /usr/share/vim/vim-7.0/plugin/NetrwPlugin.vim
+  ```
+
+
+그외
+---
+# 메시지
+  - echo, echom차이
+  : echom은 :messages에 남음
+
+# help
+  - 같은이름을 구분하는 룰
+  : quote의 분류의미는?
+
+  ex) :h number, :h 'number' 둘은 다름
+
+# vim startup
+: :h slow-start
+: If Vim takes a long time to start up, use the |--startuptime| argument to find
+
+# 현재 vim 설정 파일로저장
+: mksession, mkview, mkvimrc
+  루트경로에 설정과 관련된 파일생성해줌
+: 약간씩 다름, 참고정도,

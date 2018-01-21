@@ -1,0 +1,23 @@
+
+===
+환경대상: windows7, ubuntu16
+
+
+ssh
+---
+
+# windows7 -> ubuntu16
+: putty -> sshd
+
+	- TODO login_shell을 위한 환경잡아줘야 터미널사용에 무리없겠다. ubuntu16
+
+# ubuntu16 -> windows7
+: ssh -> TODO 그런데 접근해봐야 cmd면 사용못하는것은 똑같은데 별의미가있나.
+
+
+sharing
+---
+
+# windows7 -> ubuntu16
+	- TODO 필요할때 다시보자.
+	http://jybaek.tistory.com/472

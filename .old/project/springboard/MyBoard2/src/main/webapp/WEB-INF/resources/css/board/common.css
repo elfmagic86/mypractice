@@ -1,0 +1,72 @@
+@CHARSET "EUC-KR";
+
+
+body {
+	margin: 0px;
+	color: #333333;
+	font-size: 11pt;
+	font-family: "µ¸¿òÃ¼" "µ¸¿ò" "±¼¸²Ã¼" "±¼¸²" verdana arial;
+	text-align: center;
+}
+
+table, tr {
+	border: 1px solid thin #333333;
+	align: center;
+	border-collapse: collapse;
+}
+
+td {
+	border: 1px solid thin #333333;
+	align: center;
+	padding: 5px;
+	font-size: 11pt;
+	font-family: "µ¸¿òÃ¼" "µ¸¿ò" "±¼¸²Ã¼" "±¼¸²" verdana arial;	
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: navy;
+	cursor: pointer;
+}
+
+img {
+	border: 0px;
+	vertical-align: middle;
+}
+
+.titleTr, .titleTd {
+	background-color: #999999;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+}
+
+.leftTd {
+	text-align: left;
+	padding-left: 10px;
+}
+
+.boardBtn {
+	width: 80px;
+	height:25px;
+	background-color: #999999;
+	color: #FFFFFF;
+	font-weight: bold;	
+	font-size: 11pt;
+	border: 1px solid#333333;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+

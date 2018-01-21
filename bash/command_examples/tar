@@ -1,0 +1,19 @@
+# tar
+  - 주의
+  : 압축시에 같은파일 덮어쓰기가 안됨. 에러가 안남서 햇갈릴수있음.
+
+  - tar.gz?
+  : tar(tarball)로 파일/foder을 묶고, gzip로 압축하는 두가지작업을 거침. 그래서 확장자가 tar.gz임
+
+```
+# 압축하기
+# 타겟폴더로 이동해서 압축하는 이유는, 거치는 경로까지 빈폴더가 만들어지기때문.
+(cd $TARGET_PATH && tar -czf $ARC_PATH .)
+
+# 압축풀기: -x가 extract(추출)
+ET_PATH=/tmp/$(basename ${ARC_PATH%%.*})
+mkdir $ET_PATH  # 폴더가없으면 에러남.
+tar -xzf $ARC_PATH -C $ET_PATH
+```
+
+

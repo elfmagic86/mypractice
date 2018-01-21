@@ -1,0 +1,78 @@
+ft_match_and_highlight
+===
+
+
+기본
+: http://learnvimscriptthehardway.stevelosh.com/chapters/44.html
+  ch 44~47참고
+---
+
+# 예시
+  ```
+  " 키워드
+  syntax keyword potionKeyword to times
+
+  " 한줄매칭
+  syntax match potionOperator "\v\+\="
+
+  " 여러줄 매칭
+  syntax region potionString start=/\v"/ skip=/\v\\./ end=/\v"/
+
+  " 색상지정
+  highlight link potionString String
+  ```
+
+# 특징
+  - syntax 키워드 사용이 reset아님
+  : This shows that running this command multiple times doesn't reset the syntax group -- it adds to it! This lets you define groups piecemeal.
+
+  - match 사용시 '\v'명시하여 very magic mode 사용
+
+
+
+
+색상관련
+---
+# 참조코드
+: vim8에서 color, syntax폴더의 코드확인   
+  !gnome-terminal --working-directory=$VIMRUNTIME
+
+
+# syntax
+  - 현재 filetype에 대해 매칭된것 확인
+  ex) :syn[tax]
+
+
+# color
+## 현재사용방법
+  - 사용할수있는 colorscheme에 대해.
+  : seoul256(dark)가 coloscheme로 사용되며, 해당칼라스킴이 vim에서 정의해놓은 highlight그룹의 칼라를 재정의하고있다.
+    그리고 그 highlight그룹으로 지정된 색상을 적용하여 사용하는것.
+
+## highlight 그룹 고르기
+  - 현재 파일타입에 대해 사용할수있는 highlight그룹 확인
+  ex) :hi, :hi Todo
+
+  - 이미 정의된 색상고를경우.
+  : :so $VIMRUNTIME/syntax/hitest.vim   // 좀느림.
+
+  - hi를 편집가능한 파일로보고싶을경우.
+  : :TabMessage hi
+
+  - 커스텀 hightlight 그룹 만들기
+  ex) highlight fg_21 ctermfg=0 ctermbg=226
+    - TODO 현재, syntax/mytext에서 정의하여 mytext filetype에서만 사용가능.
+
+## syntax그룹에 highlight그룹적용시키기
+  - highlight적용하기
+  ex) hi[ghlight][!] [default] link {from-group} {to-group}
+  ex) hi link mytextTodo Todo
+
+## TODO
+  - ctermbg, guibg
+  : 터미널색상, gvim등을 사용할때의 색상같은데 필요시자세히.
+  - hi link...명령시 옵션(!, default) 의미
+
+
+
+

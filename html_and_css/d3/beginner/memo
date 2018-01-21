@@ -1,0 +1,35 @@
+beginner
+: 요약 참조용도(상세한 내용없음)
+===
+
+
+기초
+---
+
+# D3(data-driven-documents)
+: https://d3js.org/#introduction
+> D3 helps you bring data to life using HTML, SVG, and CSS.
+
+  - d3 allows you to bind arbitrary data to a Document Object Model (DOM), and then apply
+    data-driven transformations to the document. For example, you can use D3 to generate an HTML
+    table from an array of numbers. Or, use the same data to create an interactive SVG bar chart
+    with smooth transitions and interaction.
+
+  - D3 does not introduce a new visual representation. Unlike Processing or Protovis, D3’s
+    vocabulary of graphical marks comes directly from web standards: HTML, SVG, and CSS
+
+  - D3 is not a monolithic framework that seeks to provide every conceivable(상상할수있는)
+    feature. 
+
+  - Selectors are defined by the W3C Selectors API and supported natively by modern browsers.
+
+  - 모듈, API doc
+  : https://github.com/d3/d3/blob/master/API.md
+
+# import module
+  - d3.v4.js는 모든 부분모듈이 포함된 세트.
+
+  - 필요 모듈만 import 가능
+  : https://github.com/d3/d3/blob/master/API.md
+    링크에서, 기능에 해당하는 모듈의 github에서 필요 의존성 알수있음
+

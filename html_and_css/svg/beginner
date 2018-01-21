@@ -1,0 +1,59 @@
+
+
+
+기본
+--------------------
+# 공통
+- svg...속성이 일반 html과는 다름. 아래처럼 백그라운드주면 안되고, 스타일로줘야함.
+	<svg width="100" height="100" background="aliceblue">
+
+# 위치
+: 절대위치기준으로만사용하나?
+- circle는 cx, cy
+- 나머지는? x, y로..
+
+# 속성주의
+!! svg태그는 어떤 형태를 만드는 표현이므로, 해당 도형을 표현하기위한 특화된 속성을 가짐. 속성이름조심.
+	 엘리먼트에 맞는 속성은 tuto.html의 예시 참조.
+
+
+
+용어
+--------------------
+- circle에서의 r(radius of circle): 원의반지름.
+- ellipse: 타원
+
+
+Deep
+--------------------
+# 효과
+## <filter>
+: <defs>안에서 uniq id로 정의되어야함.
+TODO 필터와 같은효과가 필요할때 추가적으로..할수있는것찾아볼것.
+
+## gradient
+- <linearGradient>: 선형효과...
+- <radialGradient>: 원형.. 
+	채우기에따라서 부채꼴모양도만들수있음.
+
+
+# 그리기
+## <g>
+: TODO 어떤것을 할수잇을가? 특정 속성의 상속? 그룹단위애니메이션?
+The <g> SVG element is a container used to group other SVG elements. Transformations applied to the <g> element are performed on all of its child elements, and any of its attributes are inherited by its child elements. It can also group multiple elements to be referenced later with the <use> element.
+
+  - https://www.dashingd3js.com/svg-group-element-and-d3js
+  : transform, scale에 대해 잘설명되어있음
+
+## <path>
+- 속성 d: define pathJ
+- TODO path는, 항상 연결되는건가?
+- mean
+M = moveto
+L = lineto
+H = horizontal lineto
+V = vertical lineto
+C = curveto
+S = smooth curveto
+Q = quadratic Bézier curve
+T = smooth quadratic Bézier curveto

@@ -1,0 +1,25 @@
+
+기본구조에대해
+---
+
+  - /tmp
+  : 이 위치에 있는 파일들은 매일 클린됨
+  https://askubuntu.com/questions/20783/how-is-the-tmp-directory-cleaned-up
+  The cleaning of /tmp is done by the upstart script /etc/init/mounted-tmp.conf. The script is run by upstart everytime /tmp is mounted. Practically that means at every boot.
+
+  - /proc
+  : 프로세스정보. ps
+
+  - /dev
+  : 물리적장치(블락), 가상장치 등등..
+	- deep
+	https://mug896.gitbooks.io/shell-script/content/etc.html
+
+
+
+
+
+
+
+
+

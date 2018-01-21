@@ -1,0 +1,18 @@
+terminal
+===
+
+terminal을 foreground로.
+---
+
+# parent terminal 사용
+: 현재vim을 suspend 후, 백그라운드 상태로 둠
+```
+<C-z>
+```
+
+# 새 터미널 연다(child)
+: <C-d>로 vim으로 돌아올수있음
+```
+:sh
+:!bash
+```

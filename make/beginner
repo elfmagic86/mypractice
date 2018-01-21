@@ -1,0 +1,89 @@
+beginner
+===
+
+
+기초
+---
+
+# make?
+: GNU make utility to maintain groups of programs
+
+  - 흐름
+  : -d(debug) 옵션으로 실행하면 규칙찾기, 선행작업, 명령실행 등의 흐름을 출력해줌.
+
+
+# 명령 실행
+  ```
+  make [ -f makefile ] [ options ] ... [ targets ] ...
+  ```
+
+  - target 명시
+  : make {target}
+
+  - ?
+  : target 명시 안했을경우 target은?
+    - 최상단의 target
+
+# 구조 및 구성요소
+## 기본 요소
+: 목표(target), 의존관계(dependancy), 명령(command)
+  ```
+  target: dependancy ...
+          command
+          ...
+  ```
+
+  - 목표(target)  
+    1. 결과물: 명령 실행의 결과물, 목적파일이나 실행파일
+    2. label: clean같은 결과물이없는것
+
+  - command
+  : 일반적인 쉘 명령 사용가능, bash도 지원
+    쉘환경을 그대로 사용
+    
+  NOTE: command의 시작은 TAB으로 글자로 시작해야함
+
+# 매크로
+: 아래와 같이 사용되고, $(), ${}, $... 를 사용하여 치환
+: 관례적으로 대문자사용
+  ```
+  OBJECTS = main.o read.o write.o
+
+  test : $(OBJECTS)
+                  gcc -o test $(OBJECTS)
+  ```
+
+  - predefine macro
+  : make -p 로 확인,
+
+  - ?
+  : 매크로가 command에서 사용될경우, 쉘의 치환명령은 어떻게 사용할수있을까?
+    - 일반적인 스크립트 실행전 매크로 치환됨, 이부분만 조심하면될듯함
+    - backtick 가능
+
+# 내부매크로
+  ```
+  $* <- 확장자가 없는 현재의 목표 파일(Target)
+  $@ <- 현재의 목표 파일(Target)
+  $< <- 현재의 목표 파일(Target)보다 더 최근에 갱신된 파일 이름
+  $? <- 현재의 목표 파일(Target)보다 더 최근에 갱신된 파일이름
+  ```
+
+
+
+그외 미룬것
+---
+# 동작
+: 재컴파일, 파일 변경점에 대해 c등의 빌드용도로 사용시 알아둬야함
+
+# 확장자규칙
+# 매크로 치환
+  ```
+  $(NAME:Jack=Jook)
+  ```
+  
+# 자동의존관계
+
+# 쉘실행값반환
+# :=, = 차이
+# @ 사용

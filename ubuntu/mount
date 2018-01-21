@@ -1,0 +1,12 @@
+
+
+확인
+  df로 체크
+
+remote 마운트
+
+  #현재폴더에 생김
+  sudo mount -t cifs //192.168.1.29/window_kang window_kang -o username=,password=
+
+마운트된것해제
+umount folder_name

@@ -1,0 +1,55 @@
+# goal
+-[] https://docs.docker.com/get-started/
+
+
+## get image
+:Remote이미지는 dockerhub, local은...어딘가에있겠쥐.
+
+- concept?
+: 한번, 로컬에다운하면 remote의 이미지가 변경되었을경우만 다시받는다.
+- 받기.
+: docker run....   실행하면서, 로컬에 없으면 dockerhub에서 다운 
+
+## run?
+: docker run -p 80:80 username/repo:tag
+- remote(dockerhub)에 올리고 사용할수도있음.
+	:태그를, 사용하는것은?
+	docker run -p 4000:80 username/repository:tag
+	If you don’t specify the :tag portion of these commands, the tag of :latest will be assumed, 
+	
+
+## docker의 port? host?
+You should see a notice that Python is serving your app at http://0.0.0.0:80.
+But that message coming from inside the container,
+ which doesn’t know you mapped port 80 of that container to 4000,
+ making the correct URL http://localhost:4000. 
+- host는 0.0.0.0??
+- port는 EXPOSE
+
+
+## compose
+: docker-compose.yml
+	- 왜. 포트는열려있는데 컨테이너에 접근을못할까?
+	: opera는 http://0.0.0.0:4000 이렇게해야함.. localhost로접근하면동작이안됨.
+	: localhost로할때, curl, postman, chrome는 됨.
+- volume
+: 컨테이너의 가상공간을 node의 물리적공간으로 직접? 사용하겠다.
+	- (swarm?)매니저룰을 지키지않으면 안됨?
+	constraints: [node.role == manager]
+- 컴포즈파일로 배포시 문제 (docker stack deploy -c docker-compose.yml getstartedlab)
+: 되긴하는데, 이런 에러를 뱉어낸다. 로컬이미지를대상으로해서그럼. 
+	unable to pin image friendlyname to digest: errors
+	: 참조: https://forums.docker.com/t/docker-stack-and-private-registry/27744
+
+## swarm
+: https://docs.docker.com/get-started/part4/#deploy-your-app-on-a-cluster
+
+- 동작흐름.. 
+물리/가상 머신을 하나의 노드라칭하며.. swarm매니저에 참여하게하여, 하나의 워커가 됨.
+그런 워커 모음으로 클러스터를 구성함.
+이후.. compose파일을 각 노드에 복사하여 실행.(ssh이용)
+
+------------------------------
+#
+- replicas(모의품, 복제품)
+

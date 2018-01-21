@@ -1,0 +1,12 @@
+
+
+# Goal
+: 크롬 개발자 도구를 좀 더 효율적으로.사용하자.
+  
+
+# Study
+  - headless-chrome
+    - https://developers.google.com/web/updates/2017/04/headless-chrome
+
+  - perf
+    - https://developers.google.com/web/tools/chrome-devtools/?hl=ko

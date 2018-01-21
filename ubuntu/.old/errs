@@ -1,0 +1,92 @@
+
+# env
+ubuntu14.04 LTS
+
+------------------
+
+
+
+# “System program problem detected” error dialogs
+- report problem...누르면 어떤에러가있는지 알려줌.
+: 에러..구글링해서 해결해야겠지.
+
+- 연관된 에러는 어디에있는거야?
+/var/crash/ 요기.
+
+
+
+
+
+-------------
+# python3를 기본으로 (shell에서 python시 3가사용되도록)사용하고 싶었음.  //!!하지마..
+: apt-get uninstall python3했다가 망함. 중간에 멈췄는데도 설정이 이상해짐.
+
+
+# “System program problem detected” error dialogs 전송하기눌러도 보고서가 안생김.
+- report problem..아무에러보고서가 안생긴다면??
+  - 확인
+  : /var/crash/...   내용물보면됨. crashcount도나옴.
+
+  - 캐쉬제거
+  이럴경우에는. 그냥 sudo rm /var/crash/* 작업해서. 이전크래쉬를없에버리면됨. 
+  문제가 해결된것이아닐경우 다시 기록이 생김. 
+  : https://askubuntu.com/questions/365358/im-getting-a-lot-of-system-program-problem-detected-error-dialogs-is-there-a/372036
+
+  - 재확인(캐쉬제거했고, 다시 문제가생겼다.)
+  : click 패키지를 지울때 /usr/bin/click에서 에러를 뱉어낸다. 에러 다이얼로그도 사라지지않는다.
+  : https://askubuntu.com/questions/613512/how-to-get-removed-a-broken-package-in-this-case-click
+  ```
+  the solution for me was removing package folder rm -rv /usr/local/lib/python3.4/dist-packages/click and then:
+
+  sudo apt-get update && sudo apt-get install -f
+  ```
+    : 위의방법으로 제거하고, apt패키지정리 의 내용처럼 정리도싹하고, /var/crash/도 제거한후. 재붓하니 정상화됨. 어디서사용되는 패키지길래...그랬던걸까.
+
+
+# ui가 퇴화됨?
+: ui퇴화는...의존성지워지다가gnome이망가진듯.
+->어쨋든 ubuntu-desktop이었나? 그거재설치해서 그럭저럭 나아짐.
+sudo apt-get update
+sudo apt-get install ubuntu-desktop
+  
+
+# 파일이름이 중간중간 공백으로 보이는상태가된다.
+: TODO 그냥..아래것하니 해결되었네..?
+sudo apt-get update
+sudo apt-get install ubuntu-desktop   // 이건 이미최신버전이라ㅏ 변경없었는데 괜찮아지네..
+
+
+# 한영이 전환은 되는데. 한글입력안됨.
+->설정의 Language(언어지원)에서.. 언어리스트를...한국어를 최상단으로끌어올림.
+됨. 대신 한글모드 ui로 변환되었다.
+
+
+# “System program problem detected” error dialogs
+- 메시지: usr/share/apport/approtcheckresume  kernaloops
+
+: solve: 
+http://askubuntu.com/questions/230670/apportcheckresume-recurring-error-and-gnome-shell-fixations
+
+Try the following commands:
+
+sudo apt-get purge apport
+sudo apt-get autoremove
+sudo apt-get clean
+sudo apt-get install apport
+The commands will
+
+remove the apport program
+remove packages that are no longer needed (ex. dependencies of apport)
+remove all packages files saved in the cache
+(re)install apport
+More details on apt-get can be found in the AptGet HowTo guide.
+
+--------------------------------
+# 모듈을 못찾는경우가 있다?
+:소문자로만 되어있어야함?
+
+-) ti module 로드를 못하네. -> 대소때문.
+http://stackoverflow.com/questions/9210141/titanium-mobile-requested-module-not-found
+-) ndk설치 후 경로 연결시 문제. -> 대소때문.
+	바른 경로 입력.(sdk위치/ndk-bundle/)
+	; 만약 에러(RELEASE.txt 파일이 없다는..)가 난다면 ndk경로로 이동하여 RELEASES.TXT -> RELEASES.txt로 변경

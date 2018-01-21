@@ -1,0 +1,21 @@
+
+# What
+Python3 practice
+
+# Goal
+학습, 쉘스크립트대체, WAS 
+
+
+# Work
+- tutorial: http://www.practicepython.org
+- 유용한 짧은 프로그램
+- 웹서버
+
+# TODO
+- 에러해결
+sudo pip3 install BeautifulSoup4          
+....
+The directory '/home/one/.cache/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
+The directory '/home/one/.cache/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
+Collecting BeautifulSoup4
+

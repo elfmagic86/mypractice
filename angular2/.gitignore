@@ -1,0 +1,28 @@
+# Logs
+logs
+*.log
+.DS_Store
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
+
+# Build directory
+dist
+
+# Editor temporary files
+*~
+\#*#
+.#*
+
+# Typescript-related generated files
+typings
+src/**/*.js
+src/**/*.js.map
+test/**/*.js
+test/**/*.js.map

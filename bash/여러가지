@@ -1,0 +1,13 @@
+
+
+
+3.
+BASH_ENV
+터미널을 새로 열때마다 interactive shell 이 시작되면서 .bashrc 파일이 실행됩니다. 비슷하게 non-interactive shell 인 스크립트 파일이 실행될때 마다 실행되는 파일을 이 변수에 등록합니다. 스크립트 파일용 .bashrc 인 셈입니다.
+
+4.
+INPUTRC
+Readline 라이브러리의 설정파일을 지정할수 있습니다. 디폴트는 ~/.inputrc 입니다.
+
+5.터미널 post scripts
+https://superuser.com/questions/198015/open-gnome-terminal-programmatically-and-execute-commands-after-bashrc-was-execu

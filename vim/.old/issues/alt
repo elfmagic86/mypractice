@@ -1,0 +1,18 @@
+alt
+===
+
+# vim에서 alt를 사용하고 싶다.
+  - 문제
+  : gnome-terminal에서 terminal vim 실행시 alt를 사용할수없음
+  : xterm으로 실행하면됨
+
+  - 해결1(안할것임)
+  : xterm실행 후 vim을 실행하면됨, 아마 다른 terminal emulator를 찾아보면 나아질듯?
+  : gvim 사용
+
+  - 해결2
+  : https://stackoverflow.com/a/10216459
+    esc + key 형태로 동작함.
+
+    - NOTE: map <esc>a ggVG 와 같이 직접바인딩해도 동작하지만, 
+      그럴경우 esc가 operate penddingkey 처럼 동작하는 문제가있음

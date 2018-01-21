@@ -1,0 +1,44 @@
+operator_pending_mapping
+===
+
+
+basic
+---
+
+# 무엇
+: 어떤 movement에 키가 입력되기를 기다리는 명령키에 대한 movement 등록하기
+
+  - ex:
+  Keys   Operator   Movement
+  ----   --------   -------------
+  dw     Delete     to next word
+  ci(    Change     inside parens
+  yt,    Yank       until comma
+
+# mapping 예
+: movement만 등록하고, 명령키와 조합하여 사용
+
+  ```
+  # 만약 d로 시작한다면 dp를 di( 명령으로 변경해줌
+  onoremap p i(
+
+  # 이와 같이 검색과 조합도 가능
+  onoremap b /return<cr>
+  ```
+
+  - 예제1
+    ```
+    onoremap in( :<c-u>normal! f(vi(<cr>
+    ```
+
+  - 예제2  
+    ```
+    :onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+    ```
+
+# 주의사항
+  - operator_pending_mapping을 에서 movement로 visual모드로 선택한다면 명령대상이 selected
+  text가 되고 명령후 비주얼모드는 해제됨
+
+  - 기본, 현재커서 movement까지가 명령 대상임
+  - visual모드로 현재커서와 밖의 특정 범위선택가능

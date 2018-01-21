@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# ~/.xprofile
+#
+
+# key delay
+xset r rate 200 80

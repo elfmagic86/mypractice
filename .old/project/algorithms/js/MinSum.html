@@ -1,0 +1,208 @@
+<html>
+  <head>
+  <meta charset="utf-8">
+  <input id="fileInput" type = "file">
+  <div id='resultDiv'><B>result</B></div>
+  <script type="text/javascript">
+// 1, 2, 4, 7, 9 → 176
+// 1, 2, 3, 1, 2, 3 → 246
+// 1, 2, 3, 4, 5, 6, 7 → 1603
+// 0, 1, 2, 3, 0, 1, 2, 3, 4 → 11257
+// 0, 0, 1 → -1
+    
+    // main
+    (function main(){
+      var ns = {}
+      defineModule(ns);
+
+      var U      = ns.U
+        , MinSum = ns.MinSum
+        , reader = new FileReader();
+
+      addFileListener(reader);
+
+      // input에 파일 업로드 후 readAsText의 콜백
+      reader.onload = function (e) {
+        var text    = reader.result
+          , strs    = text.split('\n')
+          , numsList= U.stringToList(strs, ',', function (value) { return Number(value)});
+
+        for(var i=0,max=numsList.length; i<max; ++i) {
+          var nums   = numsList[i]
+            , numsStr= nums.toString();
+          var minSum = new MinSum(nums)
+            , result = minSum.solve();
+
+          var resultDiv = document.getElementById('resultDiv');
+          resultDiv.appendChild(document.createElement('br'))
+          resultDiv.appendChild(document.createTextNode(numsStr + ' → ' + result));
+        }
+
+      }
+
+      //--- fileListener
+      function addFileListener(reader) {
+        var fileInput = document.getElementById('fileInput');
+
+        fileInput.addEventListener('change', function(e) {
+          var file = this.files[0];
+          reader.readAsText(file); // onload file
+        });
+      }
+
+      //----------------  defineModule
+      function defineModule(ns) {
+        _defineUtil(ns);
+        _defineMinSum(ns);
+
+        //------------------- MinSum
+        function _defineMinSum(ns) {
+          var U = ns.U;
+
+          var INVALID_NUM = -1;
+
+          var MinSum = ns.MinSum = function MinSum(nums) {
+            this._sortedNums  = U.quickSort(nums, 0, nums.length-1);
+            this._usedCount   = 0;  
+            
+          }
+          MinSum.prototype.solve = function () {
+            var aStr = '';
+            var bStr = '';
+
+            try {
+              while(this._usedCount != this._sortedNums.length) {
+                var minNum = this._findMinNum();
+                if(this._isInvalildNum(minNum)) throw INVALID_NUM;
+                
+                // 차례대로 a,b에 숫자 추가..
+                if(aStr.length > bStr.length) bStr += minNum;
+                else                          aStr += minNum;
+              }
+            } catch(e) {
+              if(e === INVALID_NUM) return INVALID_NUM;//예외는 -1 반환.
+              else throw e;
+            }
+
+            return Number(aStr) + Number(bStr);
+          }
+
+          //그냥 순서대로 찾기. 사용한것은 체크하고..
+          MinSum.prototype._findMinNum = function () {
+            var minNum = INVALID_NUM;
+
+            for(var i=0, max=this._sortedNums.length; i<max; ++i) {
+              var curNum = this._sortedNums[i];
+
+              if(this._isInvalildNum(curNum)) continue;
+              if(this._isInvalidFirstCipher(curNum)) continue; //첫번째 자릿수의 값 유효성 확인.
+
+              minNum = curNum;
+              this._sortedNums[i] = INVALID_NUM;
+              ++this._usedCount;
+              break;
+            }
+            return minNum;
+          }
+          MinSum.prototype._isInvalildNum = function (num) {
+            if(num == INVALID_NUM) return true;
+            else return false;
+          }
+
+          // 첫번째 자릿수인지 확인위해.사용한것 갯수 세고, 현재값이 자연수여야.(1이상)..
+          MinSum.prototype._isInvalidFirstCipher = function(curNum) {
+            if(this._usedCount < 2 && (curNum == 0) ) return true;
+            else return false;
+          }
+
+        }//end
+
+        // ---------------util
+        function _defineUtil(ns) {
+          var U = ns.U = {};
+          U.quickSort = function quickSort(list, startI, endI) {
+          
+            //종료조건.
+            if(endI < 0 || startI >= endI) return list;
+            if((endI-startI) == 0) return list;
+
+            var pivotI = this.randomRange(startI, endI)
+              , pivot  = list[pivotI];
+            
+            //pivot 을 끝으로.
+            this.swap(list, endI, pivotI);
+            pivotI = endI;
+            //pivot제외 뒤에서 앞으로오면서 swap.
+            for(var i=endI-1; i>=startI; --i) {
+              var curValue = list[i];
+
+              //큰경우만 변경하고. 피벗 인덱스도 변경.
+              if(curValue > pivot) { 
+                //TODO : 자리찾기. 원래는 인덱스 여럿사용하는방식인데..
+                var j = i;
+                while(!(j== pivotI)) {
+                  this.swap(list, j, j+1);
+                  ++j;
+                }
+                --pivotI;
+              }
+            }
+            // console.log(startI, endI, ';'+pivotI,pivot, list)
+
+            this.quickSort(list, startI, pivotI-1);
+            this.quickSort(list, pivotI+1, endI);
+
+            return list;
+          }
+          //펌.
+          U.randomRange = function (n1, n2) {
+            return Math.floor( (Math.random() * (n2 - n1 + 1)) + n1 );
+          }
+          U.isValidIndex = function (list, index) {
+            if(0 <= index < list.length) return true;
+            else return false;
+          }
+          U.swap = function (list, aIndex, bIndex) {
+            if(!(this.isValidIndex(list, aIndex) 
+                 && this.isValidIndex(list, bIndex)) ) throw 'invalid Index';
+
+            var temp = list[aIndex]
+            list[aIndex] = list[bIndex];
+            list[bIndex] = temp;
+          }
+          U.stringToList = function (strs, delimiter, eachFn) {
+              if(typeof strs === 'string') strs = [strs];
+
+              var lists = [];
+              for(var i=0,max=strs.length; i<max; ++i) {
+                var str   = strs[i]
+                  , aList = [];
+
+                //TODO: slice말고. 범위를 좁혀가며 값만 읽으면 더 좋을듯.
+                while(str.length > 0) {
+                  var curEndI = str.indexOf(delimiter)
+                  curEndI     = (curEndI != -1) ? curEndI : str.length;
+
+                  var value   = str.slice(0, curEndI);
+                  aList.push(eachFn(value));
+
+                  str = str.slice(curEndI+1);
+                }
+                // console.log(aList)
+                lists.push(aList);
+              }
+
+              return lists;
+          }
+          
+        }//end
+        
+      }   
+    })();
+  </script>
+
+  </head>
+  
+  <body>
+  </body>
+</html>

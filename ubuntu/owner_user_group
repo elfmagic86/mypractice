@@ -1,0 +1,15 @@
+
+
+# 확인
+	id
+	groups
+	cat /etc/groups
+
+# 그룹제거.
+	groupdel {이름}		//
+		- 에러 groups: can not find
+		지우고 재로그인해야함. 추정컨데, 배쉬다시열때, 배쉬설정은 루트에게 남아있어서 에러난듯함. /etc/groups에선 지워지기에..
+
+# /etc/passwd, /etc/passwd- 의 차이는?
+: https://unix.stackexchange.com/questions/53128/difference-between-passwd-and-passwd-file
+  > /etc/passwd-는 백업, man 보면 나온다고함

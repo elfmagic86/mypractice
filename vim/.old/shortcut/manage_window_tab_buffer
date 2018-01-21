@@ -1,0 +1,76 @@
+manage_window_tab_buffers
+===
+
+manage window or tab
+---
+
+# 기본
+  - help
+  : `:h wincmd`
+  : wincmd명령과 <C-w>이 매칭된다고보면됨
+
+# 이동
+```
+" 윈도우 포커스만 이동
+" <C-w>{h|j|k|l}
+
+" 직전창으로이동(현재탭에서)
+" <C-w>p
+
+" 윈도우 위치 이동
+" <C-w><S-{h|j|k|l}>
+
+" 탭위치 이동
+" :tabm {-|+|0~9}
+```
+
+
+# 창 열기
+  - 보통
+  : 현재 위치기준으로 {name}이 자동완성됨
+  ```
+  " tab
+  : tabnew {name}
+  : tabe[dit] {name}
+
+  " window
+  :vsp {name}
+  :sp {name}
+  ```
+
+  - 기타
+  ```
+  " tab으로 헬프창열기
+  :tab h help
+  ```
+
+# 창닫기
+
+  - 전체닫기
+  ```
+  " 현재탭만남기고 모두닫음. 편집중 탭은 유지됨
+  :tabo[nly]
+
+  " 현재탭에 대해 분단된 윈도우 모두닫음, 편집중 윈도우 유지됨
+  :on[ly]
+  <C-w>o
+  ```
+
+  - 현재창닫기
+  ```
+  " :q와 같음
+  <C-w>q
+
+  " :wq 와 같음
+  ZZ
+  ```
+
+# 사이즈조정
+```
+" resizing
+<C-w>=
+
+" width(height는 -/+)
+<C-w>[count]<
+<C-w>[count]>
+```

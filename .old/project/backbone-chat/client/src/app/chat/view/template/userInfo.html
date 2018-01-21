@@ -1,0 +1,11 @@
+
+
+<div><B>id</B></div>
+<div><%=id%></div>
+<div><B>name</B></div>
+<div>
+	<input type="text" value="<%=name%>" id="<%= EL_IDS.inputOfName %>">
+	<button id="<%=EL_IDS.changeNameBtn %>">change</button>
+</div>
+<div><B>created</B></div>
+<div><%= new Date(created).toLocaleDateString() %></div>

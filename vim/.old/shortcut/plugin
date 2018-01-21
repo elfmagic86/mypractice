@@ -1,0 +1,142 @@
+plugin
+===
+
+vim-fugitive
+: gitwrap
+---
+
+- Gstatus
+```
+g?    show this help
+-     |:Git| add
+-     |:Git| reset (staged files)
+
+D     |:Gdiff|
+ds    |:Gsdiff| # Like |:Gdiff|, but always split horizontally.
+
+
+q     close status
+r     reload status
+
+cc    |:Gcommit|
+```
+
+vim-surround
+---
+# 입력모드에서 작업
+- 입력하기
+1) quote 커맨드창으로 이동후
+<C-g>s[t]
+2) 원하는 quote입력.
+- TODO 왜 <C-s>는 안되는걸까.
+- freeze: (if you accidentally freeze your terminal, use <C-Q> to unfreeze it)
+
+ctrlsf
+---
+# run
+nmap     <C-F>f <Plug>CtrlSFPrompt
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+
+# advanced search
+```
+" Search a regular expression pattern case-insensitively:
+:CtrlSF -R -I foo.*
+
+" Search a pattern that contains space:
+:CtrlSF 'def foo():'
+
+" Search a pattern with characters requiring escaping:
+:CtrlSF '"foobar"'
+
+" or
+:CtrlSF \"foobar\"
+```
+
+# Key Maps In CtrlSF window:
+Enter, o, double-click - Open corresponding file of current line in the window which CtrlSF is launched from.
+<C-O> - Like Enter but open file in a horizontal split window.
+t - Like Enter but open file in a new tab.
+p - Like Enter but open file in a preview window.
+P - Like Enter but open file in a preview window and switch focus to it.
+O - Like Enter but always leave CtrlSF window opening.
+T - Like t but focus CtrlSF window instead of new opened tab.
+M - Switch result window between normal view and compact view.
+q - Quit CtrlSF window.
+<C-J> - Move cursor to next match.
+<C-K> - Move cursor to previous match.
+q - Close preview window.
+
+ctrlp
+---
+- TODO 한글입력이 안된다.
+- 탐색기열기: <C-p>
+
+- 탐색기내에서
+  : <C-{j|k}> 위아래이동
+  : <C-{f|b}> 파일,버퍼,mru등의 순환
+  : <F5> CtrlPClearCache    // refresh
+
+NerdTree
+---
+- menu: m
+- folder만들기. ma 
+  :마지막에 /붙이면됨.
+- r : refresh
+- o[O]/x[X]: open/close directory
+
+NerdCommenter
+---
+- 주석추가: [count]<leader>cc
+- 주석지우기:[count]<leader>cu
+
+vim-multiple-cursor
+---
+TODO 불편해. quote부분이 특히.
+
+!!주의. 비주얼모드에서 시작하지않는다면 공백, 특수문자는 매칭을못함....
+https://github.com/terryma/vim-multiple-cursors/wiki/Keystrokes-for-example-gifs
+
+- 여러개 선택 단축키
+- <C-n>
+  : 선택한것 취소시는 <C-p>
+  : 현재것선택안하고 다음것으로옮기려면 <C-x>
+
+  - 선택범위에따른 입력은 A, I  삭제는 d
+  
+- 여러줄에 커서만드려면?
+  : <C-v>로 여러줄선택, <C-n>하면 노멀모드로 멀티커서가됨.
+
+- TODO Using regex
+  : MultipleCursorsFind
+
+
+vim-surround
+---
+- 추가하기
+TODO 명령이.. ysiw..you surround ....뭐시긴디. 왜이렇게길고 복잡함?? 어떻게 사용해야 편할까?
+!! visualmode만사용함.
+  - 노멀모드
+  : ySiw{문자} 이건.newline추가해줌.
+
+  - visualmode
+  :단어선택: viw이나 라인선택을 한후. S{char} 
+
+    - 지우기: ds{target}
+    - 변경하기: cs{target}{afterChar}
+
+    - html...tag할때는: dst, cst이런형태..
+
+    - Now wrap the entire line in parentheses with yssb or yss).
+
+YouCompleteMe
+---
+- shortcut(ycm 자동완성 윈도우에서)
+```
+" 이전 이동 단어로 이동
+<C-{p|n}>
+
+" 다음단어로 이동
+<tab>
+```
+

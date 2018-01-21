@@ -1,0 +1,171 @@
+<html>
+  <head>
+  <script type="text/javascript">
+  (function main() {
+    var board = [
+                   [0,0,0,0,0, 0,0,0,0,0]
+                  ,[0,1,1,1,1, 1,1,1,1,0]
+                  ,[0,1,1,1,1, 1,1,1,1,0]
+                  ,[0,1,1,1,1, 1,1,1,1,0]
+                  ,[0,1,1,1,1, 1,1,1,1,0]
+                  ,[0,1,1,1,1, 1,1,1,1,0]
+                  ,[0,1,1,1,1, 1,1,1,1,0]
+                  ,[0,0,0,0,0, 0,0,0,0,0]
+                ];
+    // var board = [
+    //                [0,1,1,1,1,1,0]
+    //               ,[0,1,1,1,1,1,0]
+    //               ,[0,0,1,1,1,0,0]
+    // var board = [
+    //                [0,1,1,1,1,1,0]
+    //               ,[0,1,1,1,1,1,0]
+    //               ,[0,0,1,1,0,0,0]
+    //             ]
+
+
+    var BoardCover = defineBoardCover()
+      , boardCover = new BoardCover(board);
+    console.log(boardCover.solve());    //1514
+    //
+
+    function defineBoardCover() {
+      // define Position
+      var Position = function Postion (x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      Position.prototype.isAbleOn = function (board) {
+        //범위 넘어갔을경우. false
+        if(   this.x >= board.length
+           || this.y >= board[this.x].length ) return false;
+
+        //위치값이 1인 경우 TRUE 
+        if(board[this.x][this.y] == 1) return true; 
+        else return false;
+      }
+      Position.prototype.isComplete = function () {
+        if(this.x == -1 && this.y == -1) return true;
+        else return false;
+      }
+      // 현재위치에서 위(행이동)로 한칸씩 이동한다. 끝일경우 오른쪽(열이동) 및  최하단으로
+      Position.prototype.moveToTopOn = function (board) {
+          var isFindAbleOrCompletePosition = false;
+          var nextY = this.y;
+          var nextX = this.x;
+
+          while( !isFindAbleOrCompletePosition ) {
+            nextY += 1;//위로 한칸이동시
+            if(nextY >= board[this.x].length) { //행 넘어가면 최하단으로.
+              nextX += 1;
+              nextY =  0;
+            }
+            // 만약 열이 보드 범위를 넘어갔다면. -1-1로() Complete 위치표시..
+            if(nextX >= board.length) { 
+              nextX = nextY = -1; isFindAbleOrCompletePosition = true; continue;
+            }
+            //만약 현재 위치가 보드에서 사용할 수 있는 것이면 발견.
+            if(board[nextX][nextY] == 1) {
+              isFindAbleOrCompletePosition = true;
+              continue;
+            }
+            //그외
+          }
+          return new Position(nextX,nextY);
+      }
+      // define Block
+      var Block = function Block(positions) {
+          this.positions = positions;
+      }
+      // TODO : 코드 개더럽.
+      //position에 대한 블락을 만들되, 보드에서 사용할 수 있는 것들만. 반환.
+      Block.getCanUseBlocksOn = function (board, pos) {
+        var x = pos.x
+          , y = pos.y;
+        var allBlocks = [Block.createA(x,y), Block.createB(x,y), Block.createC(x,y), Block.createD(x,y)]
+          , canUseBlocks = [];
+        for(var i in allBlocks) {
+          var aBlock = allBlocks[i];
+          if(aBlock.isAbleOn(board)) canUseBlocks.push(aBlock);
+        }
+        return canUseBlocks;
+      }
+
+      Block.createA = function (x, y) { // 위, 위오른쪽
+        return new Block([new Position(x,y),new Position(x,y+1), new Position(x+1, y+1)]);
+      }
+      Block.createB = function (x, y) { // 위, 오른쪽
+        return new Block([new Position(x,y),new Position(x,y+1), new Position(x+1, y)]);
+      }
+      Block.createC = function (x, y) {// 오른쪽, 오른쪽위
+        return new Block([new Position(x,y),new Position(x+1,y), new Position(x+1, y+1)]);
+      } 
+      Block.createD = function (x,y) {// 오른쪽, 오른쪽아래
+        return new Block([new Position(x,y),new Position(x+1,y), new Position(x+1, y-1)]);
+      }
+
+      Block.prototype.setToBoard = function (board ,value)  {
+        for(var i in this.positions) {
+          var pos = this.positions[i];
+          // if(board[pos.x][pos.y] == 0 && value == 0) console.error('못놓는곳을 사용했을경우...')
+          board[pos.x][pos.y] = value;
+        }
+      }
+
+      Block.prototype.isAbleOn = function (board) {
+        for(var i in this.positions) {
+          var pos = this.positions[i];
+          if(!pos.isAbleOn(board)) return false; //하나의 점이라도 사용불가시..
+        }
+        return true;
+      }
+
+      // define BoardCover
+      var BoardCover = function BoardCover(board) {
+        this._board = board;
+      }
+      //
+      BoardCover.prototype.solve = function () {
+        //0,-1해야. 0,0부터 찾게됨.
+        var board    = this._board
+        var position = new Position(0,-1).moveToTopOn(board)  
+        return this.countAllCoverCase(position, board);
+      }
+
+      var FAIL_COVER_COUNT    = 0
+        , SUCCESS_COVER_COUNT = 1;
+      BoardCover.prototype.countAllCoverCase = function (curPos, curBoard) {
+        if(curPos.isComplete()) {
+          // console.log('성공했을경우인데....')
+          return SUCCESS_COVER_COUNT
+        };
+      
+        var blocks  = Block.getCanUseBlocksOn(curBoard, curPos);
+        var sum = FAIL_COVER_COUNT; // 처음은 0.
+
+        for(var i in blocks) {
+          var block   = blocks[i];
+        // console.log(block, '; p :', curPos.x, curPos.y)
+          block.setToBoard(curBoard, 0) //사용함 curBoard의 변경.. 변경된것에 대한 다음위치를 가져와야해.
+          sum += this.countAllCoverCase(curPos.moveToTopOn(curBoard), curBoard);
+          block.setToBoard(curBoard, 1) //취소.
+        }
+
+        return sum;
+      }
+
+      //
+      return BoardCover;
+    }
+    
+
+
+
+  })();
+  </script>
+
+  </head>
+  
+  <body>
+  he
+  </body>
+</html>

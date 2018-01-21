@@ -1,0 +1,25 @@
+setting_config
+===
+
+기초
+---
+  - 시스템, 글로벌, 로컬 세가지의 파일
+    - system: /etc/gitconfig
+    - global: ~/.gitconfig
+    - local: ./.git/config
+
+  - 확인
+    ```
+    # --stytem, --global, --local 옵션으로 어느파일을 확인할지 결정
+    git config --global -l
+
+    # 아래는 전체확인
+    # system, global, local을 순차적으로 발견하면 전부출력
+    git config -l
+    ```
+
+TODO 
+---
+  - 무엇을 추가하는것이 좋을까?
+  - newline 관련 OS 호환 이슈(CRLF)
+  - support trailling whitespace

@@ -1,0 +1,58 @@
+<html>
+  <head>
+  <script type="text/javascript">
+    main();
+function main() {
+  var wp    = [
+               [0.0000000000,326.0008994586,503.1066076077,290.0250922998]
+              ,[326.0008994586,0.0000000000,225.1785728436,395.4019367384]
+              ,[503.1066076077,225.1785728436,0.0000000000,620.3945520632]
+              ,[290.0250922998,395.4019367384,620.3945520632,0.0000000000]
+              ];
+  var nodes  = Object.keys(wp);
+  var ROOT   = 'root'
+  
+  var dp = {}; // 일단 쉽게 이걸로.. 
+  var count = 0;
+  
+  console.log(tsp(ROOT, nodes));
+  console.log(count);
+  
+
+  function tsp(curNode, restNodes) {
+    // 하나.. 일 경우  tsp(a ,{c})
+    if(dp[curNode+restNodes]) return dp[curNode+restNodes];
+    ++count;
+    // console.log(curNode)
+    if(restNodes.length == 1) return _getWp(curNode, restNodes.pop());
+    
+    
+    var minTsp = Number.POSITIVE_INFINITY;
+    for(var i in restNodes) {
+      var childNode    = restNodes[i]
+        , newRestNodes = _getRestNodes(restNodes, childNode)
+        ,aTspValue     = _getWp(curNode, childNode) + tsp(childNode, newRestNodes);
+
+      if(minTsp > aTspValue) minTsp = aTspValue;
+    }
+    
+    return dp[curNode+restNodes] = minTsp;
+  }
+  function _getRestNodes(nodes, excludeNode) {
+      return nodes.filter(function (v,i) {
+             return v != excludeNode;
+      })
+  }
+  function _getWp(fromIdx, toIdx) {
+      if(fromIdx==ROOT) return 0;
+      else return wp[fromIdx][toIdx];
+  }
+};
+  </script>
+
+  </head>
+  
+  <body>
+  he
+  </body>
+</html>

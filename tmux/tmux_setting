@@ -1,0 +1,40 @@
+
+
+tmux_setting
+===
+
+설치
+---
+# 설치 및 업그레이드
+
+  - 설치
+  : 압축파일이용
+  : https://github.com/tmux/tmux
+  : README참조
+
+    - 필요한 의존성 설치
+    - releases의 특정버전 받기
+    - 설치
+      ```
+      cd tmux-2.5
+      ./configure && make
+      sudo make install
+      ```
+
+  - 업그레이드는 위의 설치과정과 같음
+
+
+기초
+---
+# version 확인
+  ```
+  tmux -V
+  ```
+# 옵션
+
+  - 확인
+  : tmux server가 실행된상태로 해야함
+    ```
+    # -g(global session)외의 옵션도잇음
+    tmux show-options -g
+    ```

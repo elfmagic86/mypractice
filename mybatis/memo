@@ -1,0 +1,4 @@
+
+- where 1=1
+: http://jdm.kr/blog/7
+  기본적으로 성공이 전제되기에 두번째 조건등의 실패로 UPDATE, DELETE 등이 적용될 가능성이있다.

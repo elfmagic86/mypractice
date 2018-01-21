@@ -1,0 +1,19 @@
+
+- lock
+	E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily
+	navailable)
+	E: Unable to lock the administration directory (/var/lib/dpkg/), is anothe
+	 process using it?
+
+	  - 처리
+	  : https://askubuntu.com/a/99538
+	  ```
+	  sudo rm /var/lib/dpkg/lock
+	  sudo dpkg --configure -a
+	  ```
+
+- ppa를 어디서 찾아야할까?
+	how do you find this third party ppa? – Hölderlin Jan 19 at 16:18
+	Google "[package] site:launchpad.net", click on the first result and
+	scroll down to the end of the page and look for the green text that says "Other versions of '[package]' in untrusted archives",
+	click on it and it will reveal a list of all ppa's containing the package – Rune Jan 19 at 16:45

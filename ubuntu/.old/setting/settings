@@ -1,0 +1,92 @@
+settings(ubuntu16)
+===
+
+NOTE: ubuntu14와 큰차이없음.
+
+# PPA 바로잡기
+: ubuntu14와 차이주의. 
+: /etc/apt/source.list 에서 직접 수정가능
+
+# 내 설정
+```
+# root 패스워드설정
+sudo passwd root
+
+# esc for capslock
+dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
+
+# enable workspace
+gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ vsize 1
+gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ hsize 4
+
+# key delay
+gsettings set org.gnome.desktop.peripherals.keyboard delay 300
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 15
+```
+
+# 화면 깜빡임 제거
+
+문제:
+  terminal, vim 등 입력과 관련된 작업시, 화면 1/3정도의 하단이 깜빡이는 현상.
+
+해결:
+  그래픽카드와 관련된 펌웨어가 제대로 설정되지 않은것으로 추정.
+
+  1. 커널 업그레이드(필수는 아닌것 같음)
+  : https://askubuntu.com/questions/760319/screen-flickering-on-ubuntu-16-04-lts
+    4.12로 업그레이드했지만 해결되지않음
+
+  ```
+  # 버전확인
+  uname -sr
+
+  # 업그레이드
+  # https://www.tecmint.com/upgrade-kernel-in-ubuntu/
+  wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.12/linux-headers-4.12.0-041200_4.12.0-041200.201707022031_all.deb
+  wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.12/linux-headers-4.12.0-041200-generic_4.12.0-041200.201707022031_amd64.deb
+  wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.12/linux-image-4.12.0-041200-generic_4.12.0-041200.201707022031_amd64.deb
+  sudo dpkg -i *.deb
+  ```
+
+  2. 펌웨어 이슈해결
+  : https://askubuntu.com/questions/811453/w-possible-missing-firmware-for-module-i915-bpo-when-updating-initramfs
+
+    - 이슈
+    ```
+    # driver 확인(i915)
+    lshw -c video
+
+    # 펌웨어관련 이슈가 있는지 확인
+    sudo update-initramfs -u
+    ```
+
+    - 해결
+    : https://01.org/linuxgraphics/downloads/firmware
+      위의 펌웨어 이슈에 맞는 것을 설치하면되고, 일부만 설치했을때, 깜빡임문제는 해결됨.
+
+
+# 한글설정(ibus, right alt)
+
+  1. system settings -> language support -> update
+  2. hud 단축키 막음
+  ```
+  dconf write /org/gnome/desktop/input-sources/xkb-options "['compose:ralt']"
+  ```
+  3. 우측 alt설정
+  NOTE: 임시방편으로 처리함.
+
+    - 문제
+    : ubuntu14와 다르게 ibus한글로 전환되도 hangul mode로 변경하지않으면 한글입력이안된다.
+    : ibushangul setup의 hangul토글키 text entry의 input source 전환 키가 같으면 한글토글키
+      안먹힘
+
+    - 처리
+    : text entry의 전환을 없에고, hangul 토글키 설정만함
+
+      1. setting -> text entry -> 한글소스만 남겨놓고 switch키는 모두 disable
+
+      2. right alt를 multikey로 변경
+      : setting -> keyboard -> shortcut -> Typing -> Compose key를 RAlt로 설정
+
+      3. $> ibus-setup-hangul -> hangul toggle key에 Multi_key 추가
+      : RAlt가 아닌 multikey입력이 되야함

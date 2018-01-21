@@ -1,0 +1,19 @@
+ycm
+===
+
+# YCM에러
+  - 에러
+  ```
+  "$KANG_SRC_ROOT/Project_Mine/practice-html5-graphic/gulpfile.js" 87L, 2488C                                                                                                                            
+  Error detected while processing function <SNR>91_OnBufferRead[7]..<SNR>91_SetOmnicompleteFunc[1]..<SNR>91_Pyeval[2]..provider#python3#Call:                                                       
+  line   18:                                                                                                                                                                                        
+  Invalid channel: 1                                                                                                                                                                                
+  Error detected while processing function <SNR>91_OnBufferRead[9]..provider#python3#Call:    
+  ....
+  ```
+  - 해결
+    - using python3
+    : ubuntu14.04기본 cmake(2.8), py3.4인데, 둘이 호환안되서 py3로빌드를못했음. cmake버전업후 재설치.
+
+    - nousing neovim
+    : neovim에서 gvim으로 변경하니 발생안한다... py3가 neovim에서 좀 잘 안되는듯.

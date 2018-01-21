@@ -1,0 +1,11 @@
+
+
+
+https://stackoverflow.com/questions/11448068/mysql-error-code-1175-during-update-in-mysql-workbench
+:
+	It looks like your MySql session has the safe-updates option set. This means that you can't update or delete records without specifying a key (ex. primary key) in the where clause.
+
+	Try:
+
+	SET SQL_SAFE_UPDATES = 0;
+	Or you can modify your query to follow the rule (use primary key in where clause).

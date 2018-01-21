@@ -1,0 +1,17 @@
+# Setting
+: https://angular.io/docs/ts/latest/guide/webpack.html
+- entries - the entry-point files that define the bundles.
+- resolve - how to resolve file names when they lack extensions.
+            .ts extension or .js extension (for regular JavaScript files and pre-compiled TypeScript files)
+- module.rules - module is an object with rules for deciding how files are loaded.
+- plugins - creates instances of the plugins.
+
+## plugins
+- 파일분리: https://webpack.js.org/plugins/commons-chunk-plugin/
+
+# webpack-dev-Server
+?) 실행: 실행시 특별한 옵션없어도 watch, reload가 된다??
+?) hot(옵션): 붙이면 무슨차이?
+?) node: { global: true,....... } // 이 속성들은 무슨 의미?
+
+- 기본 주소(host/) 연결 파일위치 설정: --content-base src: src/index.html

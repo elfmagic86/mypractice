@@ -1,0 +1,26 @@
+
+# tmuxinator
+: https://github.com/tmuxinator/tmuxinator
+
+- 설치
+: 따라하면되고..bashrc에 $EDITOR설정.
+: tmuxnator의 명령어로, 설정한 것, 제어가능.
+
+- 설정만들기 
+TODO 이것도, 링크로 관리하도록만들어야함.
+
+	- 주의
+	: !! ~/.tmuxnator에 저장됨.
+	: !! 한개의 윈도우에 여러pane을 설정할때는 직접 pane구성후에 값을가져와야함 
+		: tmux list-windows
+		:ref https://fabianfranke.de/2013/11/19/use-tmuxinator-to-recreate-tmux-panes-and-windows/
+	: yml파일.... 공백주의. 에러난다.
+
+	- 만들기(기본) // update도가능
+	: tmuxinator new {projectname}
+		: (설정된)에디터가 기본템플릿염
+	: tmuxinator copy [existing] [new]
+
+- 한번에 여러창닫을경우?(세션)
+: C-b d (tmux명령어임)
+: tmuxinator list ,  tmuxinator stop

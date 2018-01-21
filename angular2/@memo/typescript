@@ -1,0 +1,34 @@
+
+# Setting
+: https://angular.io/docs/ts/latest/guide/typescript-configuration.html
+: tsconfig.json: tsc(typescript complier)를 위한 설정.
+
+## tsconfig.json
+- target, lib: 런타임 환경을 무엇으로 고려하고 컴파일할 것이다.(es6, dom같은)
+
+- 외부 모듈(ts) 사용: tsc에게 알려줘야 하는부분
+  1) 모듈에 ??.d.ts가 포함되어 있을경우.
+  : 추가 설정없음.
+  : You need do nothing to get typings files for library packages that include d.ts files?as all Angular packages do.
+
+  2) 모듈에 ??.d.ts가 없을경우.
+  : 다른 분들이 작성해주신 ?.d.ts를 사용하면된다. 포함하는 설정이 필요. // 아직 안해봄
+    단계1) ??.d.ts 찾기: @types/* scoped package에 존재하는것, 찾아서 추가
+    단계2) dev 의존성에 받기: ex:) npm install @types/jasmine --save-dev
+    [?]단계3) tsconfig에 파일경로 추가
+    [?]단계4) typings.json 추가
+
+# Grammer
+- Type Assertion: https://basarat.gitbooks.io/typescript/docs/types/type-assertion.html
+: 컴파일 시점 결정이기에, casting과는 다름.
+- 고정된 타입?
+: var foo:Foo = someFoo;
+- 다형성 고려?
+: var foo = <Foo>someFoo; or var foo = <Foo>someSpecificFoo;
+: var foo = someFoo as Foo; or var foo = someSpecificFoo as Foo;
+: as operator?: jsx를 지원할수있는데, <Foo>someFoo</Foo> 같은 상황 혼돈 방지위함
+
+ = {} // 정적타입결정
+:
+
+# For AoT

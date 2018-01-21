@@ -1,0 +1,177 @@
+sed(Stream EDitor)
+: stream editor for filtering and transforming text
+===
+
+기초
+---
+
+
+# 문법기초
+  - ;
+  : 명령의 끝 구분자
+
+  - {}
+  : 명령그룹
+
+  - 명령어
+  : print, delete와 같은 명령을 사용할수있으며, 한 문자(p,d)로 표시한다.
+
+# 명령기초
+  - g, G
+  hold space 에 있는 라인들을 pattern space 으로 옮기는 명령이 g,G 이기 때문입니다. 문자 p 는 print 명령으로 사용되므로 데이터가 거쳐가는 곳 (Go through) 이란 의미에서 G 를 생각하면 되겠습니다
+
+  - subexpression의 매칭 된것을 아래처럼 이용할수있음
+  ```
+  echo '111,222,333,444' | sed -r 's/(.*),(.*),(.*),(.*)/\4,\2,\3,\1/'
+  444,222,333,111
+  ```
+
+  - 패턴공간과 newline(\n)
+  : 패턴공간에 라인 입력될때, 마지막 라인의 \n이 임시제외상태로있다가, print시 (있으면)
+    붙어서 출력된다.
+    즉, \n에 대한 고려는 multiline인 경우만 하면됨
+
+## print
+: 현재 패턴공간있는 내용을 출력함. 
+: P는 패턴공간에 multiline이 있는 경우, 첫번째 라인만 출력하고 싶을경우 사용
+  보통은 패턴공간에는 singleline이있으므로 p와 별차이없음
+
+## pdelete
+  1. 패턴공간에 있는 내용을 전부삭제함, 
+  2. 새 명령사이클 중단하고 다시 시작함
+    - TODO D는 명령사이클이 BEGIN으로 돌아가는데, 중단과 무슨차이일까?
+  3. 읽을 라인이 없으면 종료
+
+  - D는 P와 유사, 첫번째 라인삭제 후 명령사이클의 BEGIN으로 돌아감.
+
+## quit
+: sed는 stream editor 로써 기본적으로 어떤 출력 옵션을 사용하던 상관없이 파일의 처음부터
+  끝까지를 모두 스캔하므로 데이터 처리가 끝나는 곳에서 quit 명령을 사용해야 한다.
+: q는 종료하며 패턴공간의 내용 출력, Q는 출력안함
+```
+# $? 종료코드(4) 설정가능
+echo -e "AA\nBB\nCC\nDD\nEE" | sed 'N;N;Q4'
+
+$ sed -n '3{p;Q}' veryBigFile
+```
+
+## substitute
+  - 구조
+  ` s / regex / replacement / [flags] `
+
+
+
+# address(input string에서 원하는 line 선택하는방법)
+: address 에 해당하는 명령이 복수개 이상일 경우 { } 명령 그룹을 이용
+: address 뒤에 ! 문자를 붙이면 logical NOT 역할
+: , 문자를 이용해 두개의 address 를 연결하면 일종의 address range 를 형성
+
+  - 구조
+  ```
+  address ! { commands ... }
+  ```
+
+  - 예시
+  ```
+  # 라인넘버
+  sed '10d'
+  sed '20s/foo/bar/'
+  seq 10 | sed -n '4~4p'  
+  seq 10 | sed -n '3,+2p'
+
+  sed -n '/apple/p' 
+  sed '/apple/ s/foo/bar/'
+
+  ```
+
+  - address range 예
+  ```
+  sed -n '10,20p'
+  sed -n '/BEGIN/,/END/p'
+
+  ```
+
+  - logical not
+  ```
+  seq 5 | sed -n '3!p'
+
+  # address range의 not임.
+  # 우측 경계나 p와같은 명령의 not이 아니다
+
+  sed '10,20! s/foo/bar/'
+  seq 10 | sed -n '3,8!p'
+  echo -e "AA\n11\nBB\n22\nCC\n33\nDD" | sed -n '/[0-9]/,/[0-9]/!p'
+  ```
+
+  - 공백관련
+  ```
+  # 'BEGIN' 이 포함되는 라인부터, 공백 라인까지 프린트
+  $ sed -n '/BEGIN/,/^$/p'
+
+  # 공백라인
+  sed -n '/^$/!p' file
+  ```
+
+  - 마지막라인, 대소문자
+  ```
+  # 'MIDDLE' 이 포함되는 라인부터 마지막 라인까지 프린트
+  $ sed -n '/MIDDLE/,$p'
+  # 마지막 라인만 프린트
+  seq 10 | sed -n '$p
+
+  # 'I' 옵션을 사용하면 대, 소문자 구분 없이 매칭할 수 있다.
+  echo heLLo | sed -n '/hello/Ip'
+  ```
+
+  - range 주의
+  ```
+  # 11~22까지 처리후, 33~끝까지 또 처리함
+  # end를 못찾으면 찾을때까지 pattern공간에 들어가는듯하다
+  $ echo -e "AA\n11\nBB\n22\nCC\n33\nDD" | sed -n '/[0-9]/,/[0-9]/p'
+  11
+  BB
+  22
+  33
+  DD
+  ```
+
+# address, /.../구분자 사용시 /를 escape하는 방법들
+```
+# '\' 문자를 모두 escape 해야 되기 때문에 가독성이 떨어진다.
+$ sed -n '/\/usr\/local\/bin/p'
+
+# 구분자로 사용할 임의의 문자를 선정한 후 첫번째 문자만 escape 한다.
+$ sed -n '\@/usr/local/bin@p'
+$ sed -n '\#/usr/local/bin#p'
+$ sed -n '\,/usr/local/bin,p'
+```
+
+# address, and or
+- and
+```
+echo "AA 11 BB 22 CC" | sed -n '/AA/{ /BB/{ /CC/p } }
+```
+
+- or
+```
+echo "11 BB 22 CC 33" | sed -rn '/AA|BB/p'
+echo "11 BB 22 CC 33" | sed -rn -e '/AA/{bX}; /BB/{bX}; b' -e ':X p'
+
+echo "11 CC 22 DD 33" | sed -rn '/AA|BB|CC/p'
+echo "11 CC 22 DD 33" | sed -rn -e '/AA/{bX}; /BB/{bX}; /CC/{bX}; b' -e ':X p'
+
+# AA || BB || ( 11 && 22 && 33 )
+echo "11 CC 22 DD 33" | sed -rn -e '/AA|BB/{bX}; /11/{ /22/{ /33/{bX} } }; b' -e ':X p'
+```
+
+# 명령
+# 아래 스크립트들은 잘모르는것, 그 흐름을 이해한다면 대략 완료
+```
+sed -r 's#\s+(.*/(.*))#svn co \1 \2#' file
+
+sed -n -e '$!N; s/\n/ /' -e 'P;D'
+sed -z 'N; s/\x0/.../'
+
+
+```
+

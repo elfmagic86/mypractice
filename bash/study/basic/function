@@ -1,0 +1,30 @@
+
+# 기본규칙
+  - function 키워드는 bash에서만 허용함.(sh는안됨)
+
+# 선언된 함수 확인하기
+```
+# 내용확인
+declare -f 함수명
+
+# 모든 리스트
+declare -F
+```
+
+# 함수 반환값얻기
+: https://mug896.gitbooks.io/shell-script/content/functions.html
+  > "함수에서 연산 결과를 리턴하는 방법" 섹션참고
+
+  1. 종료코드
+  : return 숫자 로 종료코드설정.
+
+  2. 출력값(stdin에 설정됨???)
+  : $()이용해서 반환값으로 사용할수있다.
+
+  ## echo사용하는방법
+```
+function filter_regex() {
+  echo "$(echo "$1" | grep "$2")"	
+}
+DIRS=$(filter_regex "$DIRS" $1) 
+```

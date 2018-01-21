@@ -1,0 +1,33 @@
+# 결과 날짜순 정렬하기
+: 파이프에서 sort를 거치면됨
+: trash-list | sort | grep f
+
+
+# 설치된 위치 확인하기
+: locate 이름
+
+# 실행된 프로세스확인
+: ps aux | grep fcitx
+
+
+# 백그라운드 프로세스 제어. //non blocking in terminal
+d
+- 실행 
+: 명령 &   //emacs &
+
+- 찾기
+: jobs
+
+- 종료
+: kill % 1  // jobs로나온 jobID
+
+
+# 폴더/파일생성
+mkdir {이름}
+touch ss
+
+-----------------
+-----------------
+
+# !!
+직전 명령 재실행

@@ -1,0 +1,48 @@
+
+# 옛날것, 지금은 fzf 이용하는걸로바꿈.
+#---------------------------------------------------------------
+# move
+#---------------------------------------------------------------
+function filter_regex() {
+	# target=$1, filterstring=$2
+	RT=$(echo "$1" | grep "$2")
+	echo "$RT"
+}
+function filtered_names() {
+	# target=$1, filterstring=$2
+	RS=$(filter_regex "$1" "$2") 
+	# 결과가 없다면 입력값그대로반환
+	if [ "$RS" == "" ]; then
+		RS="$1"
+	fi
+	echo "$RS"
+}
+
+# 현재는 단순히 탐색을좁혀나가는형태..나중에는 ctrlp같이 탐색가능하게만들어야지
+function where_will_you_go() {
+	#!! 주의 echo "$DIRS" | grep ... .
+
+	#현재는 Project_Mine에있는 디렉토리만 대상임
+	PROJ_PATH=~/Desktop/Project_Mine
+	DIRS=$(ls -l $PROJ_PATH | grep ^d | awk '{print $9}')
+
+	# 질의값이있으면 미리 필터링하는데 어차피 grep에 ""하면 전체반환해주니 방어안해도됨
+	DIRS=$(filtered_names "$DIRS" $1) 
+	echo "$DIRS"	
+
+	# 하나이하가될때까지 고르고...
+	while [ ! `echo "$DIRS" | wc -l` -le 1 ]; do
+		read filter_str
+		DIRS=$(filtered_names "$DIRS" $filter_str) 
+		echo "$DIRS"	
+	done
+	#
+	echo "move to $DIRS"
+	cd ${PROJ_PATH}/${DIRS}
+
+	#TODO 한번 거른결과가 3개이하면 숫자로 선택하게만들자..
+	#awk의 1, 2값 따로 변수에 할당하고. 사용하면됨
+	#'ls . | grep -n '.*' | sed 's/:/ /' | awk '{print $1 $2}''
+	
+}
+

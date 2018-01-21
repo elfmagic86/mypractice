@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<style>
+			#chart div {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				margin-right: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="chart"></div>
+		<script type="text/javascript">
+			var colorMap = d3.interpolateRgb(
+					d3.rgb('#d6e685'),
+					d3.rgb('#1e6823')
+					);
+
+			d3.select("#chart")
+				.selectAll("div")
+				.data([.1, .2, .3, .9, 1])
+			.enter()
+				.append("div")
+				.style("background-color", d => d === 0 ? "#eee" : colorMap(d));
+		</script>
+	</body>
+</html>

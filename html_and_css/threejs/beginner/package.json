@@ -1,0 +1,14 @@
+{
+  "name": "practice-threejs",
+  "version": "1.0.0",
+  "description": "practice-threejs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.84.0"
+  }
+}

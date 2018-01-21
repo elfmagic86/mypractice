@@ -1,0 +1,85 @@
+
+syntax
+===
+
+
+# 특이해보이는 문법의 이유
+: **열고 닫는 키워드**에 redirection, |, & 를 붙여 사용할 수 있다.
+  그래서, fi, done, esac등에 위와같은 키워드가 붙어있는 코드가 볼수있었던것.
+
+  - 예시
+  ```
+  # 기묘한 함수정의?
+  err_msg() { echo "$@" ;} >&2
+  err_msg "Invalid option: $1"
+  ```
+
+# TODO 우선순위 다시볼것
+: https://mug896.gitbooks.io/shell-script/content/precedence.html
+
+  - 특히, pipe, redirectino관련된것
+
+# 링크참고
+: https://mug896.gitbooks.io/shell-script/content/compound_commands.html
+
+  - while ... done < infile 같은경우 어떻게 동작함?
+  : 링크의 while을 설명참고. 
+
+  - select, until사용하기?
+
+  - for (( expr1 ; expr2 ; expr3 )).....?
+
+# 특별한 표현식 or builtin 
+: 아래 표현식과, 그 내부에서 사용되는 문자에 대해 **쉘의 일반적인 문자나 해석이 적용된 것이라고 판단하면 안됨**
+
+## 산술확장
+  - $(( )), (( ))
+  : 서브쉘문자()을 사용하지만 서브쉘이 아니라, 현재쉘에서 실행되는 산술확장표현식임
+
+    - (())은 bash에서만가능, 표현식안의 내용이 실행되어, 종료코드 설정됨
+      종료코드이용하여 for, if 등에서 사용할수있다.
+    - 할수잇는것
+    > 이 표현식에서 사용할 수 있는 연산자들은 C 언어에서 사용하것과 같습니다. var++, --var, a ? b : c, ( ) 을 이용한 연산자 우선순위 조절, , 연산자 등 모두 사용할 수 있습니다.+
+    > 정리하면 $(( )) (( )) 표현식 내에서는 그냥 프로그래밍 언어를 한다고 생각하시면 됩니다. 참, 거짓 판단도 동일하게 0 이 거짓이고 그외 숫자가 참입니다. ( 산술연산 이기 때문에 )
+
+  - let
+  : builtin임, (())와 유사기능, help let참고
+
+## [[]]
+  - [], [[]]의 차이는?
+    - []은 builtin임
+    : 쉘명령의 체계를따름
+
+    - [[]]은 쉘 키워드
+    : bash에서 사용할수있는 특별한 표현식임
+      [[]]에서 사용되는 (), &&, ||은 쉘의 표현이아닌, [[]]자체의 연산자임
+
+  - "", escape 생략등의 편의를제공.
+  : 그러나, 우측 피연산자를 패턴이나 regex 이 아닌스트링으로 다루고자 할때는 quote 한다
+
+  - substr
+  - regex
+    - 스트링 대 스트링( = ) , 스트링 대 pattern( = ) , 스트링 대 regex( =~ )
+    - BASH_REMATCH와 ()조합으로 매칭된것 캡쳐가능
+
+
+# pipe
+: pipe의 좌우변이 **각각** 서브쉘로 실행이됨
+
+  - |& 는 stdout, stderr 둘 다 파이프로 전달하며 2>&1 | 와 동일한의미
+
+# TODO 리다이렉션문자를 사용하는것들
+```
+<
+>
+>> (append) 
+>&  
+<>  
+&> ( >word 2>&1 )  
+&>> ( >>word 2>&1 )  
+>| (override noclobber) 
+<< (here document) 
+<<- (no leading tab)
+<<< (here string)
+```
+

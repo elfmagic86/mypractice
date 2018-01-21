@@ -1,0 +1,19 @@
+#MAKEFLAGS += --silent
+
+macro1 = macrostring
+
+test1:
+	echo $(MAKE)
+	shopt
+	declare
+
+test2:
+	rm test
+	echo hello world > test
+
+
+macrotest:
+	echo $macro1
+	echo ${macro1}
+	echo `echo substitution and macro`$(macro1)
+

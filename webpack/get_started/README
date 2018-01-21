@@ -1,0 +1,9 @@
+
+# what
+https://webpack.js.org/guides/get-started/
+get started...
+
+# work
+- bundling with split js(app, vendor, polyfill)
+- html-wepback-plugin for inject bundle to html  
+

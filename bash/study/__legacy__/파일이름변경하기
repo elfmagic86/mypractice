@@ -1,0 +1,10 @@
+http://stackoverflow.com/questions/2372719/using-sed-to-mass-rename-files
+
+- 쉬운거.
+: rename s/Link/link/ Link*    //현재폴더기준이고, 매칭되는부분이 변경되는것. 마지막은 찾을이름.
+
+- 중간쉬움
+: 링크중간에 for~ 사용하는거.
+
+- 어려움.이해안감(
+: sed사용하는거.

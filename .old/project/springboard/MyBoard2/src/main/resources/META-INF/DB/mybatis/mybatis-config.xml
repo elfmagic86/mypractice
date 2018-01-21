@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases><!-- 특이하게 안되네 ㅡㅡ environments랑 이거랑 순서가 이렇게 되야함 -->
+		<typeAlias alias="Board" type="com.kang.myboard.domain.Board" />
+		<typeAlias alias="Answer" type="com.kang.myboard.domain.Answer" />
+         <typeAlias alias="HashMap" type="java.util.HashMap" />
+         <typeAlias alias="Map" type="java.util.Map" />
+         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
+         <typeAlias alias="List" type="java.util.List" />
+	</typeAliases> 
+	
+     <environments default="default">
+        <environment id="default">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+<!--                 <property name="driver" value="${jdbc.driverClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/> -->
+                <property name="poolMaximumActiveConnections" value="20"/>
+                <property name="poolMaximumIdleConnections" value="20"/>
+                <property name="poolMaximumCheckoutTime" value="20000"/>
+                <property name="poolPingEnabled" value="true"/>
+                <property name="poolPingQuery" value="select 1"/>
+                <property name="poolPingConnectionsNotUsedFor" value="43200"/>
+                <property name="poolTimeToWait" value="30000"/>
+                <property name="driver.encoding" value="UTF-8"/>
+            </dataSource>
+        </environment>
+    </environments> 
+
+	<mappers>	
+		<mapper resource="com/kang/myboard/dao/board-sql.xml"></mapper>
+		<mapper resource="com/kang/myboard/dao/answer-sql.xml"></mapper>
+	</mappers>
+</configuration>

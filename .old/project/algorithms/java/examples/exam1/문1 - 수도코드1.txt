@@ -1,0 +1,79 @@
+# 현재상태
+  - 2번째수정.
+
+ 
+ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ,# 슈도코드...           //중간중간 허술.
+  - 제어순서
+
+ // 텍스트 입력을받고. 영역을 나눔.
+   for(하나영역 :   모든영역)
+ // 하나의 영역의 입.출력만 전달된다.
+  params   fromString    toString
+  println('[')
+ 
+  ss = new StringShuffler(fromString, toString)
+  ss.shuffle() 
+  println('')
+  println(']')
+
+///
+class StringShuffle
+ fromString
+ fromChars
+ toString
+ toChars  <= reversed로하자.
+ stack //   push(),pop()
+
+// 한번의 Suffle '별' 상태기록용 자료구조
+ checkedToCharIndex
+ countForPop   =0
+  shuffledString 
+//
+
+shuffle(){    
+    if(from, to 길이다르면 ) 안함.    // long short보니. 길이체크도 하는듯하다. 안할수도있지만..뭐.    
+
+    shuffledString  = new ... // pop 결과 담을것.
+    while(shuffedString.equal(toString)) {
+	countForPop   =0 //이건 아래서 pop될때 초기화 push될때 상승.    
+    	checkedToCharIndex  = new () //한번의 셔플을 위한상태
+	shuffedString = aShuffle(shuffledString)
+    }
+}
+
+// side effect.
+func aShuffle(shuffledString){
+        
+    for ( fromChar : fromChars )  {
+         try {	
+              pushOrPop(fromChar, currentIndex)
+         } catch(e) {
+	//  fromChar와 일치하는 toChars가 하나도 없다. 그럼 다른문자열이니. 그만함  
+              //  문제자체에서는. 포함문자라는 것을 전제로함. 그러니 길이체크로만해도 맞음.(push,pop은 일어나지만 결국 스탑.)
+         }
+     }
+     return shuffedString
+}
+        
+function pushOrPop(fromChar, currentIndex) throw 일치예외 {
+    
+    findedToChar = toChars.findFirst(fromChar)  // 체크된 것이 아니여야한다. 값으로찾음.
+    if(findedToChar) throw 일치가없다. // 모든 fromChar는 toChras의 부분문자이니.  못찾으면 부분문자가아니라는것이야.
+			            // 체크되지 않은것만 찾아야해.
+
+    pushAndCheck(fromChar)  //checkedToCharIndex.. 체크해서 범위를 줄이고,    ++countForPop
+
+    if(findedToCharIndex의 next가 체크되었거나, 없는것(끝이라면) )  
+         pop.  countForPop만큼.
+          countForPop 초기화한다.
+
+      shuffledStr.append(poped된거)
+   }
+
+}//suffle-end
+
+
+  # 추가 -------
+  - 스택은 pop시 어디까지. 꺼내야할지. 기억해야해.
+
+  - 할때, 

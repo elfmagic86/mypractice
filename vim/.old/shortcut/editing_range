@@ -1,0 +1,46 @@
+editing
+===
+
+범위
+---
+
+recently
+---
+# restore last selected visual
+```
+gv
+```
+
+shortcut
+---
+# visualmode로 범위 선택
+: v{a|i}{range}
+
+  - range 부분
+    - w(단어), p(단락)
+
+    - 그외 닫힌영역
+    : ",',( 등
+
+  - ex
+  ```
+  vip
+  viw
+  va"
+  va'
+  va", va', 
+  va(
+  ```
+
+# 명령형태
+: <숫자><명령><텍스트 개체 또는 모션>
+
+# operator list for motion
+: :h operator
+
+  목록에는 없지만 v도 가능
+	|c|	c	change
+	|d|	d	delete
+	|y|	y	yank into register (does not change the text)
+	|>|	>	shift right
+	|<|	<	shift left

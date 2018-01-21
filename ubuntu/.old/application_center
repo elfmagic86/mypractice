@@ -1,0 +1,20 @@
+
+## dash에서 검색가능하게 어플리케이션센터?에 아이콘등록하기
+Create a desktop file
+
+Create a new file androidstudio.desktop
+
+nano ~/.local/share/applications/adndroidstudio.desktop
+
+and add the lines below
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Android Studio
+Exec="/opt/android-studio/bin/studio.sh" %f
+Icon=/opt/android-studio/bin/studio.png
+Categories=Development;IDE;
+Terminal=false
+StartupNotify=true
+StartupWMClass=android-studio

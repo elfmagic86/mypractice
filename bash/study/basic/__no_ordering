@@ -1,0 +1,85 @@
+
+분류되지 않은것들
+===
+
+---
+# 쉘이 쉘스크립트로 확장된 유래?
+쉘은 커널과 유저(터미널)사이의 소통 수단
+Unix 에 shell 이 처음 등장했을 때는 단순히 사용자에게 명령을 입력받아 실행시키는 interactive interpreter 에 불과했습니다. 그후에 script 기능이 추가되고 command history, alias, tab completion, extended scripting syntax 가 추가됩니다.
+
+
+---
+
+# 명령 그룹.
+  - {}, () 차이
+  : https://mug896.gitbooks.io/shell-script/content/functions.html
+    > 명령 group 은 { ;} , ( ) 을 이용해 만들수 있는데
+    > 차이점은 { ;} 은 현재 shell 에서 ( ) 는 subshell 에서 실행된다는 점이 다릅니다.
+    > 그래서 보통 함수를 정의할때 { ;} 을 사용하지만 필요하다면 ( ) 을 사용할 수도 있습니다.
+
+  - 문법적인부분예시
+  ```
+  # {} test([)와 유사하게 동작되는듯함
+  { echo 1; echo 2 }  # echo2 } 로 해석되서 실패
+  { echo 1; echo 2; }  # 성공
+
+  # () 서브쉘은 특별해서 (echo 이렇게 해석되지않고, 정상적인 명령문장으로 동작함
+  (echo 1; echo 2 )  # 성공
+  ( echo 1; echo 2)  # 성공
+  ```
+
+  - group으로 우선순위조절 예
+  ```
+  # { ;} 를 이용해 우선순위 조절, 왜냐면 ||와 &&의 우선순위가 동등하기때문
+  if [ test1 ] || { [ test2 ] && [ test3 ] ;} then ...
+
+  # 우선순위 조절을 위해 `( )` 를 사용할때는 shell 메타문자와 충돌하므로 escape 합니다.
+  if [ test1 -a \( test2 -o test3 \) ]; then ...
+  ```
+
+---
+
+---
+
+# redirect
+- 커맨드의 에러메시지를 파이프로 연결하여 사용하는방법
+command 2>&1 >/dev/null | grep 'something'
+
+# /dev/null
+  - 읽으면: end-of-file 상태반환
+  - 쓰면: 입력되는데이터는 모두무시되고, 쓰기 성공이반환됨
+# /dev/zero
+  - 읽으면: 연속된 NUL문자가 제공됨, 주로 데이터 스토리지 초기화용도로 사용됨.
+  - 쓰면: /dev/null과같음
+
+
+
+---
+# TODO 권한관련
+  - 현재 유저의 권한을 파일에 줌.??
+  chmod u+s {filename}    # 실행하면, 설정된 유저의 권한을 가진채로 실행됨
+
+---
+
+# mapfile/readarray
+: 줄단위로 읽어서 array에 저장하는것.
+: https://mug896.gitbooks.io/shell-script/content/builtin_commands.html
+```
+mapfile -t array < datafile   # 이명령은 실질적으로 아래와 같습니다.
+
+while read -r line 
+do
+    array[i]="$line"
+    i=$((i + 1))
+done < datafile
+```
+
+# ulimit
+: shell의 리소스 제한을 설정. 설정된 값은 해당쉘과 chlid process에 적용됨
+  - 현재 쉘의 상태확인
+  cat /proc/$$/limits
+
+# wait
+: chlid process가 종료상태가될때까지 현재 쉘을 대기시킴
+: help wait
+

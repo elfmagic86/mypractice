@@ -1,0 +1,6 @@
+
+이슈
+---
+	- TODO 에러가 계속발생하지만, 동작은 함.
+	: [2017-09-26T13:16:51,485][WARN ][o.e.t.n.Netty4Transport  ] [nptJPnY] exception caught on transport layer [[id: 0x7ae0bf51, L:/192.168.1.29:9300 - R:/192.168.1.29:14320]], closing connection
+java.io.IOException: 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다

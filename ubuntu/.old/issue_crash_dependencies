@@ -1,0 +1,171 @@
+
+
+결론: 적절히 백업하여 재설치하는것이 낫다.
+
+
+
+
+
+
+기록용
+issue_crash_dependencies
+===
+
+상황:
+  sed4.4로 업그레이드 시도 후, 다른 많은 것이 업그레이드됨
+  reboot 후 에러(한글 입력안됨, gnome-session dialog)가 생김
+  여러가지 시도하여 (거의)되돌림
+
+
+과정 기록
+---
+
+# sed 4.4 upgrade
+  1. apt로 설치하기위해 list추가
+  : https://packages.debian.org/sid/amd64/sed/download
+    /etc/apt/sources.list url 추가후
+    apt update 시도
+
+  2. apt update 이슈
+    - 에러1 GPG kye
+      - 해결
+      : https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=826043
+      ```
+      I managed to reproduce the issue indeed.
+      apt-get install --reinstall debian-archive-keyring
+
+      didn't fix it.
+
+      dpkg --force-depends -P debian-archive-keyring
+      dpkg -i /var/cache/apt/archives/debian-archive-keyring*
+
+      did fix it.
+      ```
+
+    - 에러2
+    : W: Ignoring Provides line with DepCompareOp for package
+
+  3. 에러2상황에서 apt upgrade 시도함
+    - 많은 것이 업그레이드되고 중간에 에러남
+
+      처리하는데 오류가 발생했습니다:
+      /var/cache/apt/archives/manpages_4.12-1_all.deb
+      E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+    - reboot 후 문제
+      - 한글입력안됨
+      - gnome sessoin=ubuntu.... dialog
+      - 그외, 프로그램 문제 dialog
+
+왜그럴까,추정:
+  /bin/sed 이기 때문에 시스템에 포함된 소프트웨어다.
+  sed4.4는 ubuntu14 후의 어떤 버전에 포함된 것이기에, 등록한 ppa는 그 버전에 해당하는 다른
+  소프트웨어도 존재. upgrade로 시스템과 연관된 소프트웨어 버전도 올라감. gui 및 다른
+  소프트웨어의 의존성이깨져서 문제남
+  TODO 버전, ppa등 지식이필요함
+
+이후 처리 과정(결국, 임시방편으로 처리)
+---
+
+# 시도, 문제해결은안됨
+  1. ubuntu-desktop 재설치등 여러가지 시도.
+  2. rollback을 시도
+  https://www.cyberciti.biz/howto/debian-linux/ubuntu-linux-rollback-an-apt-get-upgrade/
+  링크참조하여, 최신 apt로그(var/log/apt/history.log) 참조하여
+  버전을 downgrade함(apt-get install package=version)
+  수백개라 하나씩 되돌리는 스크립트로 실행.
+  중간중간 실패하는 것들, 실행이 오래걸림
+    downgrade과정자체가 지우고, 설치하는것이라 마찬가지로 의존성 문제가 생기는것같음
+
+  수동 다운그레이드시도
+    - 설치할수있는 패키지확인(apt update와 연관있음)
+      apt-cache policy packagename
+
+    - 다운그레이드해야할 패키지찾기
+    필요한 최상위것(ubuntu-desktop, unity)을 제거, 다시 install시도하면 의존성 문제경고 나오면서
+    설치안됨, 경고중 최하위 것을 다시 시도하다보면 설치해야하는 버전이 나옴
+
+    - 찾은것 다운그레이드
+    의존버전으로 재설치, 수동작업 몇번 반복함
+  3. ppa:gnome3...추가 후 ubuntu-gnome-desktop 설치.
+
+
+# 임시방편
+결국 원래상태로 거의 되돌리는 작업을함
+
+- GUI, console 환경에서 작업병행
+  console은 단축키(Ctrl-Alt-{f1~f6})으로 접속가능하고 GUI화면은 C-A-f7임
+
+## GUI 재설치
+  1. ppas 초기 상태로
+    1.1 /etc/apt/sources.list 추가한 부분 제거
+    /etc/atc에 sources.list만 남기고 제거
+
+    1.2 업데이트
+    ```
+    # clean and reboot
+    sudo apt-get clean
+    sudo apt-get clean all
+    sudo apt-get autoclean
+    sudo reboot
+
+    # 업데잍
+    sudo apt-get update
+    ```
+
+  2. GUI 환경 관련된것 지움
+  ```
+  sudo apt-get purge unity-* gnome-* ubuntu-desktop unity lightdm gdm
+  sudo apt-get autoremove
+
+  # display manager(lightdm, gdm)
+  ```
+
+  3. 재설치 및 정돈
+  ```
+  # 최상위것만 설치하면 필요한 하위의존성은 (없을시)설치됨
+  sudo apt-get install ubuntu-desktop
+  sudo reboot
+
+  # 정리정돈
+  sudo apt-get update
+
+  sudo apt upgrade
+  sudo apt-get install -f
+  sudo apt dist-upgrade
+  ```
+
+## GUI 재설치 후 문제처리
+  문제1:한글 및 폰트사이즈 문제
+    - crash gnome-language-selector
+    - 한글
+    - fontsize
+
+  해결:
+    ```
+    # 재설치,
+    sudo apt-get purge im-config
+    sudo apt-get autoremove
+    sudo apt-get install ubuntu-desktop
+
+    # 만약 한글설치안되면 직접설치
+    sudo apt-get install ibus-hangul
+    # gui로 한글 설정함
+    ibus-setup
+
+    # gui로 font or textscale변경하기
+    sudo apt-get install unity-tweak-tool
+    unity-tweak-tool
+    ```
+
+  문제2: session관련 dialog error
+    - 메시지내용(~/.xsession-errors 확인)
+    unable to launch "gnome-session --session=ubuntu" X session ---
+    "gnome-session --session=ubuntu" not found; falling back to default session.
+
+  임시방편처리:
+    기본 display manager가 lightdm으로 되어있음, gdm으로 변경함
+    ```
+    sudo apt-get install gdm
+    sudo dpkg-reconfigure gdm
+    ```

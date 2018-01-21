@@ -1,0 +1,90 @@
+
+study_path
+: https://developer.mozilla.org/ko/docs/Web/SVG/Tutorial/Paths
+===
+
+기본
+---
+# 기본 특징
+  - 직선으로만 이루어진 복잡한 도형은
+    polylines으로도 그릴 수 있지만, polylines은 비슷한 모양을 가진 paths로 그린 도형에 비해
+    곡선을 묘사할 때 더 많은 직선을 필요로 하기에 확대가 잘 되지 않을 수 있다
+    - ??
+    <polygon> 태그나 <polyline> 태그가 더 간편해보일 수 있다. 그렇지만, path는 개발자들입장에서 그리기 더 편하다. 성능을 보면 다 우열을 가릴 수 없이 다 비슷비슷하니, 편한 것으로 사용하자.
+
+
+# 그리기 동작(그려지는 위치가 어떻게 변하는지)
+: 현재 그려지는 위치를 XY좌표계의 (10, 10)로 이동할 때, "Move To" 명령어를 사용하게 되는데
+이 명령어는 알파벳 M으로 일컫는다. 그렇기에 SVG처리기가 M문자를 보게되면, 현재 그려지는
+위치를 (10, 10) 으로 이동시키며 그리고 또 이어지는 명령어를 받게 된다.
+
+# 그리기 관련
+  - 기본값
+  : fill="black" stroke="black"
+
+  - fill주의, 연결된도형이 아니더라도 어떤식??으로 도형으로 이어줌
+
+
+# 점, 선까지는 화면에 표시되지않음?
+
+
+구현관련
+---
+# TODO "d" 특성의 좌표는 절대로 단위를 가질 수 없으며?
+
+# 명령어의 대/소문자 차이
+: 모든 명령어는 2가지 변형이 존재
+
+  - 알파벳이 대문자일 경우(예를 들면 대문자 M), 뒤따르는 좌표는 페이지의 절대좌표를 참조하며, 
+  - 소문자 알파벳(m)일 경우 마지막 위치에 대한 상대적 좌표로 참조된다.
+
+
+# 명령 종류
+
+  - M = moveto
+  : 선을 그리지 않고, 이동만 한다, (새로)그릴 시작점으로 생각하면될듯.
+  : M x y   or    m dx dy
+
+  - 현재위치에서 시작점으로 직선을그림(대/소문자 차이없음)
+  Z = closepath
+
+## 직선
+  - L = lineto
+  : L x y   or    l dx dy
+  
+  - H = horizontal lineto
+  : H x (or h dx)
+  - V = vertical lineto
+  : V y (or v dy)
+
+## 곡선
+: 무한한 수의 베지어 곡선이 있지만, 패스 엘리먼트에서는 단 두 개의 간단한 속성이 있을
+  뿐이다. 하나는 'C' 라고 부르는 3차(Cubic) 베지에 곡선이고, 다른 하나는 'Q' 로 사용되는
+  2차(Quadratic) 베지에 곡선이다.
+
+: https://developer.mozilla.org/ko/docs/Web/SVG/Tutorial/Paths
+곡선은 각(C,S 등) 명령에 대한 점을 링크의 그림으로 참고
+
+NOTE: 곡선구현은 wysiwyg에디터로 초본 만들면 될듯한데.
+      https://github.com/SVG-Edit/svgedit
+
+  - C = curveto
+  : C x1 y1, x2 y2, x y (or c dx1 dy1, dx2 dy2, dx dy)
+
+  - S = smooth curveto
+  : S x2 y2, x y (or s dx2 dy2, dx dy)
+
+  - Q = quadratic Bézier curve
+  : Q x1 y1, x y (or q dx1 dy1, dx dy)
+
+  - T = smooth quadratic Bézier curveto
+  : T x y (or t dx dy)
+  : This only works if the previous command was a Q or a T command. If it is not, then the
+  control point is assumed to be the same as the previous point, and you'll only draw lines.
+
+  - A = elliptical Arc
+  : TODO 필요시 더 볼것. 
+  : A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+   a rx ry x-axis-rotation large-arc-flag sweep-flag dx dy
+
+

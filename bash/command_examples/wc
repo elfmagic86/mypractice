@@ -1,0 +1,7 @@
+
+# wc
+: print newline, word, and byte `counts` for each file
+: -l(lines), -c(bytes), -w(word)
+```
+wc -l $FILE | awk '{print $1}'
+```

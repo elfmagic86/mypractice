@@ -1,0 +1,60 @@
+mapping
+===
+
+
+basic
+---
+
+# map command
+  - map: inset외 모든모드 전용
+  - nmap: normal map
+  - nunmap: normal un(제거하는것) map
+  - nnoremap: normal non recursive map
+  - cnnoremap: command line map
+
+# non recursive mapping
+: 재귀, side effect(plugin등)의 문제가있으므로 non recursive mapping을 해야함.
+  재귀는 매핑된 rhs의 키 문자열이, 정의된 다른 map의 동작을 하는것. 
+  재귀를 막을시에 Vim will use the default functionality for all of them.
+
+# leader
+  - 종류
+    ```
+    # global
+    let mapleader = "-"
+
+    # local
+    # vim string escape로 escape한 \를 할당한것
+    let maplocalleader = "\\" 
+    ```
+
+  - 차이
+  : localleader is meant for a specific buffer, you generally use it based on a filetype
+
+
+# map, local에 우선순위 두기
+: shadowing?이라고 하고, :h map-local로 내용확인
+  setlocal과 유사하게 특화된 매핑을 위한작업임
+
+  - 예시:
+  ```
+  # buffer이 있는것이 더 특화되어있다고 판단하기에 같은키 바인딩시 buffer있는것을
+  # 선택한다(순서 상관없음)
+  nnoremap          Q dd
+  nnoremap <buffer> Q x
+  ```
+
+
+그외
+---
+
+# 유용해보이는 매핑 후보
+
+  - word-motion
+  ```
+  :map [[ ?{<CR>w99[{
+  :map ][ /}<CR>b99]}
+  :map ]] j0[[%/{<CR>
+  :map [] k$][%?}<CR>
+  ```
+

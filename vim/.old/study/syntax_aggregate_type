@@ -1,0 +1,86 @@
+syntax_aggregate_type
+===
+
+
+list
+---
+# 사용예
+  ```
+  echo ['foo', [3, 'bar']]
+
+  " -1은 마지막, -2는 두번째 마지막을 의미함
+  echo [10, [1, 2]][-2] " output: 10
+
+  echo ['foo', [3, 'bar']]
+
+  " -1은 마지막, -2는 두번째 마지막을 의미함
+  " echo [0, [1, 2]][-2]
+  echo [10, [1, 2]][-2]
+
+  " slice
+  echo ['a', 'b', 'c', 'd', 'e'][0:2]
+  echo ['a', 'b', 'c', 'd', 'e'][-2:-1]
+  echo ['a', 'b', 'c', 'd', 'e'][:1]
+  echo ['a', 'b', 'c', 'd', 'e'][3:]
+
+  " NOTE: string은 slice, index는 되지만 nagative index만 사용시에는 빈값을 반환함
+  echo "abcd"[1] 
+  echo "abcd"[-2:]
+
+  " 빈값
+  echo "abcd"[-1] 
+
+  " + 사용가능
+  echo ['a', 'b'] + ['c']
+
+  " builtin function
+  let foo = [1]
+  echo add(foo, 'b')
+  echo len(foo)
+  echo get(foo, 0, 'default')
+  echo get(foo, 100, 'default')
+
+  " 값으로 인덱스찾기, 없으면 -1
+  " NOTE: -1은 if에서 true임
+  echo index(foo, 'b')
+  echo index(foo, 'nope')
+
+  " 배열 -> 문자열 
+  " separator string 주의
+  echo join(foo)
+  echo join(foo, '---')
+  echo join([1, 2, 3], '')
+  echo foo | echo reverse(foo)
+  ```
+
+
+dictionaries
+---
+# 사용예
+: js object와 유사
+
+  ```
+  echo {'a': 1, 100: 'foo'}
+  " last comma
+  echo {'a': 1, 100: 'foo',}
+
+  " get
+  echo {'a': 1, 100: 'foo',}['a']
+  echo {'a': 1, 100: 'foo',}[100]
+echo {'a': 1, 100: 'foo',}.a
+echo {'a': 1, 100: 'foo',}.100
+
+" 수정
+let foo = {'a': 1}
+let foo.a = 100
+let foo.b = 200
+echo foo
+
+" 제거
+let test = remove(foo, 'a')
+unlet foo.b
+echo foo
+echo test
+
+unlet foo["asdf"]
+  ```

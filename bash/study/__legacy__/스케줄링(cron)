@@ -1,0 +1,35 @@
+ // -----------------------
+// 스케줄링.크론
+// -----------------------
+
+
+: 시간설정 cron이 실행하도록 등록하기.  //작업목록을 크론탭 파일 이라고하네.
+
+:
+분 시 일 월 요일 명령
+15 09 14,15 * * /bin/spmake   //오직 각달의 14일,15일에 9시 15분에만 시작해랑. 
+
+
+
+# 사용자용 크론.
+:/var/spool/cron/crontabs //권한없음. crontab -l 등을 통해서만 작업가능함.   
+
+# 시스템.
+#>cat /etc/crontab  // 내용
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+
+
+
+ // -----------------------
+// 단일작업.at
+// -----------------------
+: at, atq(확인)
+
+ex) at 22:33 -> echo hi | wall -> ^D  -> atq     //브로드캐스트메시지보내기.

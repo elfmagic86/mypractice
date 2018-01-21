@@ -1,0 +1,31 @@
+clipboard
+: copy & paste 관련
+===
+
+
+# 여러개의 클립보드를 사용하기위해 :version시 +clipboard가 되야함
+: gvim 설치
+
+  - 만약 단일클립보드사용하려면 set clipboard=unnamed 설정필요.
+
+# <c-z>로 vim을 suspend한 상태로 해당 터미널에서 복/붙을 사용하고싶다.
+
+  - 문제
+    - 현재터미널(vim을 실행시킨)은 복사한것 사용할수없음
+
+  - 해결1
+  : :shell로 vim을 정지시키지 않은 상태에서 현재 터미널사용하면 됨. 
+    - 문제: 그러나 <c-d>로 쉘을 종료시켜야한다는것이 의도하지 않은동작임
+
+  - 해결2
+  : 클립보드에 복사한내용을 xclip에 복사함.
+
+    - 문제: 동작이 더 이상해짐.
+
+  - 해결결론: 해결2에 xsel을 사용하면됨, xsel은 서버를 사용함. 이게 원하는 동작.
+  : https://dalibornasevic.com/posts/38-paste-text-from-vim-when-it-s-suspended-ctrl-z
+
+# TODO 차이는 무엇? 클립보드 연관된 의문들, 왜 그런지 모르고 경험상으로알고있는것들..
+  - gnome-terminal에서 붙여넣기는 C-S-Insert인데, 다른곳(브라우저, edit등)에서는 S-Insert만 가능함
+  - gnome-terminal에서, S-Insert하면 어떤곳(vim, term, browser등)이라도 마지막에 visual selection된 값이 붙여넣기됨
+

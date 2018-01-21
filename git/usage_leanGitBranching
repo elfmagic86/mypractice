@@ -1,0 +1,90 @@
+
+기본
+---
+
+## commit
+  ```
+  git commit
+  ```
+## branch
+  ```
+  git branch
+
+  # 1.new and checkout
+  git branch {newBranch}
+  git checkout {newBranch}
+
+  # 1.new and checkout
+  git checkout -b {newBranch}
+  ```
+
+## merge
+  ```
+  git branch bugFix;git checkout bugFix;git commit;
+  git checkout master;git commit;
+
+  # 현재(master) 브랜치가 새커밋을 만든다.
+  # 이때, 새커밋은
+  # - bugFix의 내용과 HEAD의 내용이 합쳐진것.
+  # - merge로 부모 커밋이 둘이지만 기준은 master임
+  git merge bugFix;
+  ```
+
+## reabse(새로운 기준점)
+: 대상커밋의 기록을?? 복사하여 나의 부모로만듬
+
+  - 개별 가지인, master를 부모, bugfix자식으로 만들기
+  ```
+  # 이 경우 HEAD는 상관없고, bugFix가 HEAD가됨
+  git rebase master bugFix
+
+  # 이 경우는 HEAD가 bugFix인 상태
+  git rebase master;
+  ```
+
+
+## revert
+: 커밋(여기서는HEAD)이 가르키는 직전 커밋과 동일한 새로운 커밋을 만듬
+  ```
+  git revert HEAD
+  ```
+
+이동
+---
+## HEAD, branch
+  ```
+  # 상대위치, 어떤 브랜치등(의 최종커밋)기준으로 이동가능
+  git checkout HEAD^
+  git checkout bugFix^ # 부모커밋(1커밋전
+  git checkout bugFix~3 # 3커밋전
+
+  # 이건 체크아웃아님, master branch만 강제로 이동됨
+  git branch -f master bugFix~3 # 3커밋전
+  ```
+
+삭제
+---
+## reset
+  ```
+  # 상대위치로 지정된 커밋위치로, 현재브랜치이동시킴
+  # 이동 중간 커밋들이 **제거**된다 주의.
+  git reset HEAD^
+  ```
+
+커밋간의 복잡한이동
+---
+## 현재 브랜치기준으로 과거나, 다른브랜치의 커밋 합치기
+: revert + merge와 비슷한것같다.
+: revert처럼 새커밋이 생김
+
+1. rebase -i
+: 현재부터, 어느지점의 커밋리스트를 선택하여. 순서, 특정커밋 pick(빼기)할수있음
+  ```
+  git rebase -i HEAD~4
+  ```
+
+2. cherry-pick
+: 특정커밋을 개별선택하여 새커밋만듬
+  ```
+  git cherry-pick C1 C3...
+  ```

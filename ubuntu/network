@@ -1,0 +1,15 @@
+
+
+# 현재 열려있는 모든 포트확인
+: https://askubuntu.com/questions/9368/how-can-i-see-what-ports-are-open-on-my-machine
+sudo netstat -tulpn
+
+# 가용 네트워크 확인
+	```
+	netstat -plntu
+	```
+
+# 공인(외부) ip 확인
+	```
+	curl icanhazip.com
+	```

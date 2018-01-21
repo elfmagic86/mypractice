@@ -1,0 +1,6 @@
+
+# chmod
+```
+# 실행권한주기
+chmod +x test.sh
+```

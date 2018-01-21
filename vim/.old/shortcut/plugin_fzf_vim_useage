@@ -1,0 +1,63 @@
+shortcut_fzf
+: https://github.com/junegunn/fzf.vim
+===
+
+basic
+---
+
+# 기본동작
+  - fullscreen: 명령끝에 !붙이기
+  : :Ag!
+
+  - 파일열기
+  : <enter>, <c-t>, <c-v>, <c-x>
+    현재윈도우, newtab, vsplit, hsplit
+
+기능
+---
+
+# command list
+: prefix 주의
+
+## 사용할것
+
+  - find file
+  Files [PATH]	Files (similar to :FZF)
+  Ag [PATTERN]	ag search result (ALT-A to select all, ALT-D to deselect all)
+  Buffers	Open buffers
+  History	v:oldfiles and open buffers
+
+  - line 찾기
+  Lines [QUERY]	Lines in loaded buffers
+  BLines [QUERY]	Lines in the current buffer
+
+  - window
+  Windows	Windows
+
+  - history
+  History/	Search history
+
+  - etc
+  GFiles?	Git files (git status)
+  Marks	Marks
+
+  Commits	Git commits (requires fugitive.vim)
+  BCommits	Git commits for the current buffer
+
+  Commands	Commands
+  Maps	Normal mode mappings
+  Colors	Color schemes
+  Filetypes	File types
+
+## 사용할듯
+
+Snippets	Snippets (UltiSnips)
+
+## 아마 사용안할듯
+
+GFiles [OPTS]	Git files (git ls-files)
+Tags [QUERY]	Tags in the project (ctags -R)
+BTags [QUERY]	Tags in the current buffer
+Locate PATTERN	locate command output
+History:	Command history
+Helptags	Help tags 1

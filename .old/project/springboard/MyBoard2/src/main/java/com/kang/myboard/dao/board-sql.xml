@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board">
+ <!--/////////  -->
+	<!--delete all -->
+	<delete id="deleteAll">
+		delete from board
+	</delete>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM BOARD where num = #{id} 	
+	</delete>
+	<!--insert  -->
+ 	<insert id="add" parameterType="Board">
+		INSERT INTO BOARD (
+		NUM,
+		WRITER,
+		EMAIL,
+		SUBJECT,
+		PASSWD,
+		REG_DATE,
+		READCOUNT,
+		CONTENT,
+		FILENAME
+		)
+		VALUES (
+		board_seq.nextval,
+		#{writer},
+		#{email},
+		#{subject},
+		#{passwd},
+		TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+		#{readcount},
+		#{content},
+		#{filename}
+		)
+	</insert> 
+	
+	<!--////////////////// select  -->
+ 	<select id="selectAll" resultType="Board">
+		SELECT * FROM BOARD
+	</select> 
+	<select id="rowCount" resultType="int">
+		SELECT count(*) FROM BOARD
+	</select> 
+	<select id="rowCountOfquery" resultType="int">
+		SELECT count(*) FROM BOARD where subject like #{query}
+	</select> 
+	
+  	<select id="selectList" parameterType="Map" resultType="Board">
+		select num ,writer, email, subject, passwd, reg_date, readcount, content, filename
+		from  (  select rownum as realrownum,  num ,writer, email, subject, passwd, reg_date, readcount, content, filename 
+             	 from ( select rownum,  num ,writer, email, subject, passwd, reg_date, readcount, content, filename 
+             	 		from board 
+             	 		order by num desc) 
+              )
+		where realrownum between #{startRowIndex} and #{endRowIndex} 
+	</select> 
+	
+	<select id="select" parameterType="int"  resultType="Board" >
+		select * from board where num = #{num}
+	</select>
+	<select id="search" parameterType="Map"  resultType="Board" >
+		select num ,writer, email, subject, passwd, reg_date, readcount, content, filename
+		from  (  select rownum as realrownum,  num ,writer, email, subject, passwd, reg_date, readcount, content, filename 
+             	 from ( select rownum,  num ,writer, email, subject, passwd, reg_date, readcount, content, filename 
+             	 		from board 
+             	 		 where subject like #{query}
+             	 		order by num desc) 
+              )
+		<if test="startRowIndex != null" >
+        where realrownum between #{startRowIndex} and #{endRowIndex}
+     	</if>    
+	</select>
+	
+	<!--/////////////////////// update  -->
+	<update id="update" parameterType="Board" >
+		UPDATE BOARD SET 
+			writer=#{writer}, 
+			email=#{email},
+			subject=#{subject},
+			passwd=#{passwd},
+			reg_date = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+			content=#{content}
+		<if test="filename != ''" >
+			,filename=#{filename}
+		</if>
+		WHERE 
+			num=#{num}
+	</update>
+	<update id="updateReadcount" parameterType="Board" >
+		UPDATE BOARD SET
+			readcount = ${readcount} 
+		WHERE 
+			num=#{num}
+	</update>	 
+	 
+<!-- 	<select id="searchBoard1" parameterClass="Search" resultClass="Board">
+		SELECT * FROM BOARD
+		<dynamic prepend="WHERE">
+			<iterate property="areas" conjunction="OR" open="(" close=")">
+				#표시 - preparedStatement 파라미터를 사용할 때 사용 $표시 - 단순히 값의 치환자의 역할을 담당, 
+					리터럴
+				$areas[]$ like #searchKey#
+			</iterate>
+		</dynamic>
+		ORDER BY SEQ DESC
+	</select>
+
+	<select id="searchBoard2" parameterClass="java.util.Map" resultClass="Board">
+		SELECT * FROM BOARD
+		<dynamic prepend="WHERE">
+			<isEqual property="searchType" compareValue="all" prepend="AND">
+				(title like #searchKey# or writer like #searchKey#)
+			</isEqual>
+			<isEqual property="searchType" compareValue="title" prepend="AND">
+				(title like #searchKey#)
+			</isEqual>
+			<isEqual property="searchType" compareValue="writer" prepend="AND">
+				(writer like #searchKey#)
+			</isEqual>
+		</dynamic>
+		ORDER BY SEQ DESC
+	</select>
+
+	<select id="detailBoard" parameterClass="int" resultClass="Board">
+		SELECT * FROM BOARD
+		WHERE seq = #seq#
+	</select>
+
+	<select id="listBoard" resultClass="Board">
+		SELECT * FROM BOARD
+	</select>
+
+	<delete id="deleteBoard" parameterClass="int">
+		DELETE FROM BOARD WHERE
+			seq=#seq#
+	</delete>
+
+-->
+</mapper>

@@ -1,0 +1,30 @@
+
+study indent script
+=======================
+
+# 참조코드
+: vim8에서 indent/README.txt, 및 코드 확인.
+  !gnome-terminal --working-directory=$VIMRUNTIME
+
+
+# indent
+## 변수
+  - 기초
+  : 어떤 변수이냐에따라 선언과 사용방법이다름.
+  ```
+  :let foo = 42
+  :echo foo
+
+  :set textwidth=80
+  :echo &textwidth
+
+  :let &textwidth = &textwidth + 10
+  :set textwidth?
+  ```
+
+  - b:var : 현재 버퍼의 변수.
+  - v:var : vim변수
+    - v:lnum
+    : insertmode에서의 마지막커서의 라인번호
+    : normal->insertmode 진입시에 그 줄번호로 변경됨
+    

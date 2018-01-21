@@ -1,0 +1,23 @@
+autocmd
+===
+
+
+basic
+---
+
+# autocmd.
+: 정해진 이벤트에 대한 리스너등록하는 기능 제공
+
+# augroup
+: autocmd는 리스너 등록이므로 중복된 리스너 등록이 생길수있다.
+  vimrc재로딩, 여러곳에 등장, 긴 코드라인 등으로 이런케이스가 생길수있음.
+: 중복방지를위해 autogroup의 autocmd!이용하여
+  group 기준으로 등록된 autocmd를 clear후 작업할수있다.
+
+  - 사용 
+    ```
+    augroup testgroup
+        autocmd! " autocmd!를 사용하면 현재 그룹에 대해, 이전에 등록된것 clear해줌
+        autocmd BufWrite * :echom "Cats"
+    augroup END
+    ```

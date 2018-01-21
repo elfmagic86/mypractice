@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>Demo</h1>
+		Data: <input id="data" type="text" name="data"><br>
+		<input type="button" value="Submit" onclick="upate()">
+		<div id="chart"></div>
+		<script type="text/javascript">
+			var svg = d3.select("#chart")
+			.append("svg")
+			.attr("width", 900)
+			.attr("height", 400)
+			.append("g")
+			.attr("transform", "translate(20, 20)");
+			function upate() {
+				var inputValue = document.getElementById("data").value;
+				data = inputValue.split(",");
+				var s = svg.selectAll("rect")
+					.data(data).style("fill", "red");
+				s.enter()
+					.append("rect").style("fill", "green");
+				console.error(s)
+
+					s.exit()
+					.remove();
+				console.error(s)
+
+					s.attr("width", function(d){return d * 10;})
+					.attr("height", function(d){return d * 10})
+					.attr("x", function(d){return d * 100});
+			}
+		</script>
+
+		<div>22</div>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+# 문제 
+Longest Increasing Sequence
+https://algospot.com/judge/problem/read/LIS
+
+# 풀이.
+ - 동적계획법 사용해야된다는것..알고있었고. 
+   대충(정말대충)풀어본 것으로..토대로.
+   슈도코드를 만들어 봐야사이즈가 나올듯.
+
+# 슈도코드
+
+
+  TARGET = [1,2,5.....N] // N개 순서뒤섞여있음.
+  Y          = [1,2,3,...N] // Target에 대한 최대부분문자열.
+  trace     = []
+
+  t_lastIndex = TARGET.length -1; 
+  y_lastIndex = Y.length - 1;
+
+  
+  
+  LIS(t_lastIndex, y_lastIndex)
+
+
+//
+functiion LIS(t_lastIndex, y_lastIndex) {
+  if( t_lastIndex < 0 || y_lastIndex < 0) return 0; // 같은것이 없다면... 길이0.
+
+   t_lastValue  = TARGET[t_lastIndex]
+   y_lastValue = Y[y_lastIndex]
+
+  if(t_lastValue == y_lastValue) { 
+          trace.push(t_lastValue) //어느거나상관없이
+          return LIS(t_lastIndex-1, y_lastIndex-1) ;
+  };
+  if(t_lastValue != y_lastValue) {
+     prevT_LIS = LIS(t_lastIndex-1, y_lastIndex)
+     prevY_LIS = LIS(t_lastIndex, y_lastIndex-1)
+          
+     if(prevT_LIS >= prevY_LIS) {
+         return prevT_LIS
+     } else {
+         return prevY_LIS
+    }  
+}

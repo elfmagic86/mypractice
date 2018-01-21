@@ -1,0 +1,68 @@
+search_and_grep
+===
+
+
+basic
+---
+
+# regex in search 
+: search는 regexp를 사용한다.
+
+  - 일반문자가 아닌 regexp로 인식하는 문자는 무엇일까?
+  : h magic 참고 TODO 기본값은 무엇일까?
+    ```
+    search에서 ". *"은 기본적으로 regexp 표현 문자로 사용됨(escape필요없다)
+    ```
+
+  - 사용예
+  ```
+  " search에서 \문자 사용하기 위해 \\로 escape했음
+  execute "normal! gg/for .\\+ in .\\+:\<cr>"
+
+  " 위의 표현을 literal string과의 조합으로 아래처럼 표현할수있음
+  execute "normal! gg" . '/for .\+ in .\+:' . "\<cr>"
+  ```
+
+vim grep
+---
+# grep
+: :grep 명령은 쉘의 grep 프로그램 사용함. 대상폴더는 :!pwd의 기본 폴더인듯함
+
+# cmdline-special
+: 단어가 의미하는 string으로 치환할수있음
+: :!echo <cword>
+
+  - Note: these are typed literally, they are not special keys!
+    <cword>    is replaced with the word under the cursor (like |star|)
+    <cWORD>    is replaced with the WORD under the cursor (see |WORD|)
+
+  - <cword> 사용예
+    ```
+    " expand는 <cWORD>를 현재커서의 단어로 치환해줌
+    " shellescape는 쉘에 전달시 literal로 사용할수있게 ''를 이용해 치환해줌
+      사용할수있게도와줌
+    :echom shellescape(expand("<cWORD>")) " ouput: 'that'\''s'
+    ```
+
+  - TODO :h expand
+
+# 현재 단어, 현재폴더기준 재귀탐색 grep하기
+: 같은기능 조금씩 다른표현
+
+  ```
+  " 만약 single quote하지않는다면 cword가 ls일경우 ls명령이 실행됨.
+  nnoremap <leader>g :grep -R '<cWORD>' .<cr> " -R은 재귀탐색
+
+  " 1. <cword> 현재커서단어로 확장
+  " 2. 일반문자로 인식하기위해 shellescape
+  " 3. copen으로 quickfix window에 출력하기
+  nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+
+  " silent로 터미널출력 막기
+  nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+  ```
+
+TODO 그외
+---
+  - :h match
+  - :h patterns

@@ -1,0 +1,56 @@
+
+# directive
+:
+## structural directives
+: ngIf and ngFor are called “structural directives” because they can change the structure of portions of the DOM. In other words, they give structure to the way Angular displays content in the DOM.
+
+# attribute directives
+: <any-angular-component [hero]="heroes"></ ... >  // 여기서 [hero]="heroes" 이부분
+: 일단, @input() 데코레이터로 React의 state -> prop전달과 비슷하다는 것으로만.이해
+
+- Pipe : https://angular.io/docs/ts/latest/guide/pipes.html
+: ex:) <p>The hero's birthday is {{ birthday | date:format }}</p>
+:Pipes are a good way to format strings, currency amounts, dates and other display data. Angular ships with several pipes and we can write our own.
+
+# routing
+- 기본설정
+  1) <base href="/">
+  2) path: RouterModule.forRoot([...
+  3) <router-outlet></router-outlet>
+
+- <base href="/">
+: routing 접근시의 root path
+: The browser uses the <base href> value to prefix relative URLs when referencing CSS files, scripts, and images.
+
+- forRoot: We use the forRoot method because we're providing a configured router at the root of the application. The forRoot method gives us the Router service providers and directives needed for routing, and performs the initial navigation based on the current browser URL.
+
+- <router-outlet>: routing설정한 path의 component가 그려지는 위치.
+
+## routing detail
+- redirect
+: https://angular.io/docs/ts/latest/guide/router.html#!#redirect
+  - path: ""는 http://host 를 의미하는 기본주소,
+  - pathMatch: path 일치판단, full은 완전 일치해야한다는것.
+
+- [?] detail(hero/1)은 어떻게 자신의값을찾을까.
+: 예제에서는 service호출로 값전달함... prop전달에서 변경됨.
+: TODO !! 공통store를 수정한것처럼 변경된값이 모든 곳 동일하게 유지됨.
+  어떻게????
+  => mock을 사용했을때 변경이 반영되었던것은 getHero호출시 this.getHeroes().then.... 이렇게 내부에서 호출했기때문
+
+- unsubscribe? router.params....subscribe(()=>{})
+: The Router manages the observables it provides and localizes the subscriptions. The subscriptions are cleaned up when the component is destroyed, protecting against memory leaks, so we don't need to unsubscribe from the route params Observable.
+
+- [?] canDeactivate
+
+
+# Http Service
+- Angular in-memory-web-api: It intercepts Angular Http requests that would otherwise go to the remote server via the Angular XHRBackend service
+- [?] JSON.stringify 왜할까?
+
+# Rxjs
+- switchMap: reserves the original request order while returning only the observable from the most recent http method call. Results from prior calls are canceled and discarded.
+
+# etc
+- ngFor사용시 에러난것
+: const hero of heroes // let 대신 const사용했다가 안됨. 정해진것이있는듯.

@@ -1,0 +1,42 @@
+beginner
+===
+
+
+normal
+---
+
+# 한줄, 여러줄 
+  - silent
+  : :messages 했을경우나오는 알림창을 보지않겠다.
+    - TODO  messages창에 로그도 안남는다. 원하는것은 로그는 남고 알림창만보지않는것인데.
+
+    - slient!
+    : 에러메시지도?? 무시하는것.
+
+    - 사용례
+    : 일반적인 명령어전에 사용하면된다.
+      au BufRead,BufNewFile *.mytext silent echom 'mytext' | set filetype=mytext
+
+  - autocmd
+  : au[tocmd] [group] {event} {pat} [nested] {cmd}
+    특정 이벤트발생시 트리거되는 명령바인딩
+
+    - 여러줄? 여러 커맨드?
+    : 멀티라인하려면, \와 |(파이프)사용해야함.
+      autocmd BufNewFile,BufRead * 
+        \ if expand('%:t') !~ '\.' |
+        \   echom 'mytext' |
+        \   set filetype=mytext |
+        \ endif
+
+    - autocmd!
+    : 이전에 바인딩된 모든 autocommand를 제거함.
+
+
+# vim command에 !이 붙는경우 고려해볼만한것
+  - 기존명령 override 경우(function! 등)
+  - vim 기본 동작 사용하겠다는 의미(mapping 등)
+  - option이 boolean 타입일 경우 토글
+  - autogroup, autocmd! 조합으로 기존것초기화
+  - map!은 다른기능이 아닌 isert, command-line 모드 mapping이라는 의미
+

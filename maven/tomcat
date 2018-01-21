@@ -1,0 +1,75 @@
+tomcat plugin으로 동적으로 프로젝트 실행하기
+: https://www.lesstif.com/pages/viewpage.action?pageId=14090451
+===
+
+# 1. 톰캣 플러그인다운
+: pom.xml에 작성하지 않고 명령어 사용으로 다운
+
+  - 다운받을필요없이. 정확히 이름줘서 사용하면 자동 다운되는것같다.
+
+  NOTE: 명령으로 다운할때 missing download에러가 날수있음.
+    mvn에서 log로 찍어주는 다운시도 주소와 실제 다운로드 주소가 일치하는지 잘봐야함.
+    아래 사이트에서 실 locate url을 잘못줘서 다운이실패했던것
+    https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin/3.0-r1756463
+
+  - usage
+    ```
+    # 형태: mvn dependency:get -Dartifact=groupId:artifactId:version:jar:sources
+
+    # TODO version 8은 다시 시도해봐야함
+    mvn dependency:get \
+      -DgroupId=org.apache.tomcat.maven \
+      -DartifactId=tomcat8-maven-plugin \
+      -Dversion=3.0-r1756463 \
+      -DrepoUrl=https://artifacts.alfresco.com/nexus/content/repositories/public
+
+    # v7
+    mvn dependency:get \
+      -DgroupId=org.apache.tomcat.maven \
+      -DartifactId=tomcat7-maven-plugin \
+      -Dversion=2.2
+
+    ```
+
+# 2. 실행
+: maven-plugin에 배포(개발용)
+  - guide
+  http://tomcat.apache.org/maven-plugin-2.1/tomcat7-maven-plugin/run-mojo.html
+
+  - 어떤 plugin을 사용할것인지
+  : pom.xml에 적지 않는다면 fullname을 사용해야한다(.m2/위치에 다운된것..)
+    ```
+    # 버전은 사용안하면 최신버전이 실행되는듯, 내껀 2.2)
+    mvn org.apache.tomcat.maven:tomcat7-maven-plugin:run
+    mvn org.apache.tomcat.maven:tomcat7-maven-plugin:2.1:run
+    ```
+
+  - usage v7
+	1. clean, package
+	```
+	mvn -X -P local \
+	  org.apache.maven.plugins:maven-war-plugin:war
+	  clean \
+	  org.apache.maven.plugins:maven-resources-plugin:resources \
+	  org.apache.maven.plugins:maven-compiler-plugin:compile \
+	  org.apache.maven.plugins:maven-antrun-plugin:run \
+	  org.apache.maven.plugins:maven-war-plugin:war
+	```
+
+	2. tomcat에 war배포
+      # path: url루트
+      # warSourceDirectory: 빌드된 target/ROOT 폴더를 의미함.
+	  # contextReloadable: mvn war:war와 같은 재빌드? 작업시 재배포됨
+      mvn -X -P local \
+        org.apache.tomcat.maven:tomcat7-maven-plugin:run \
+        -Dmaven.tomcat.port=8080 \
+        -Dmaven.tomcat.contextReloadable=true \
+        -Dmaven.tomcat.path='/' \
+        -Dtomcat.warSourceDirectory='${project.build.directory}/${project.build.finalName}'
+      ```
+
+	3. 파일 변경재배포
+	: 아래 명령만 해주면 2의 명령이 대기 후 재배포함
+		```
+		mvn org.apache.maven.plugins:maven-war-plugin:war
+		```

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+      <!--path에서 하나의 점은 화면에 나타나지않음-->
+      <path d="M10 10" fill="red" stroke="black"/>
+    </svg>
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+      <!--네모그리기-->
+      <path d="M0 0 H 20 V 20 H 0 L 0 0" fill="transparent" stroke="black"/>
+      <path d="M 30 30 H 60 V 60 H 30 Z" fill="transparent" stroke="black"/>
+      <path d="M 70 70 h 20 v 20 h -20 Z" fill="transparent" stroke="black"/>
+    </svg>
+
+    곡선은 각(C,S 등) 명령에 대한 점을 그림으로 참고
+    https://developer.mozilla.org/ko/docs/Web/SVG/Tutorial/Paths
+    <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+       <!--curve-->
+      <path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
+      <path d="M70 10 C 70 20, 120 20, 120 10" stroke="black" fill="transparent"/>
+      <path d="M130 10 C 120 20, 180 20, 170 10" stroke="black" fill="transparent"/>
+      <path d="M10 60 C 20 80, 40 80, 50 60" stroke="black" fill="transparent"/>
+      <path d="M70 60 C 70 80, 110 80, 110 60" stroke="black" fill="transparent"/>
+      <path d="M130 60 C 120 80, 180 80, 170 60" stroke="black" fill="transparent"/>
+      <path d="M10 110 C 20 140, 40 140, 50 110" stroke="black" fill="transparent"/>
+      <path d="M70 110 C 70 140, 110 140, 110 110" stroke="black" fill="transparent"/>
+      <path d="M130 110 C 120 140, 180 140, 170 110" stroke="black" fill="transparent"/>
+    </svg>
+    <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+      <!--curve + smooth-->
+      <path d="M 180 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
+      <!--<path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>-->
+    </svg>
+  </body>
+</html>

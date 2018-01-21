@@ -1,0 +1,84 @@
+structure_and_lifecycle
+===
+
+
+basic
+: http://learnvimscriptthehardway.stevelosh.com/chapters/42.html
+: :h startup
+---
+
+# vim 실행시 항상 로드되는것
+  - ~/.vim/vimrc 
+  : vimrc는 vim open시 항상 로드된다.
+
+  - ~/.vim/plugin/
+  : Files inside ~/.vim/plugin/ will each be run once every time Vim starts.
+  These files are meant to contain code that you always want loaded whenever you start Vim.
+	: This does the same as the command: >
+		:runtime! plugin/**/*.vim
+  : :h load-plugins
+
+  - ~/.vim/ftdetect/
+  : Any files in ~/.vim/ftdetect/ will also be run every time you start Vim.
+  : ftdetect stands for "filetype detection". The files in this directory should set up autocommands that detect and set the filetype of files, and nothing else. This means they should never be more than one or two lines long.
+
+    - ftdetect와 관련있는것
+    : :h filetype
+
+      - /usr/share/vim/vim80/scripts.vim, $VIMRUNTIME/scripts.vim
+      : If your filetype can only be detected by inspecting the contents of the file.
+
+# hack
+  - ~/.vim/after/
+  : vim 실행후 로드(~/.vim/plugin 로드 후는 아님), override internal files
+  : The ~/.vim/after/ directory is a bit of a hack. Files in this directory will be loaded every time Vim starts, but after the files in ~/.vim/plugin/.
+  : This allows you to override Vim's internal files. In practice you'll rarely need this, so don't worry about it until you find yourself thinking "Vim itself sets option x, but I want something different".
+
+
+  - ~/.vim/autoload/
+  : plugin제어를 하는 vim-plug가 autoload에 존재함.
+    - 동작: http://learnvimscriptthehardway.stevelosh.com/chapters/53.html
+    : Autoload lets you delay loading code until it's actually needed
+    : call somefile#Hello()
+      When you run this command, Vim will behave a bit differently than a normal function call.
+      If this function has already been loaded, Vim will simply call it normally.
+      Otherwise Vim will look for a file called autoload/somefile.vim in your ~/.vim directory (and any Pathogen bundles).
+      If this file exists, Vim will load/source the file. It will then try to call the function normally.
+      Inside this file, the function should be defined like this:
+      function somefile#Hello()
+          " ...
+      endfunction
+
+
+
+  : The ~/.vim/autoload/ directory is an incredibly important hack. It sounds a lot more complicated than it actually is.
+  : In a nutshell: autoload is a way to delay the loading of your plugin's code until it's actually needed. We'll cover this in more detail later when we refactor our plugin's code to take advantage of it.
+
+
+# 특정 옵션이나, 기능에 의존하여 로드되는것
+## color
+  - ~/.vim/colors/
+  : Files inside ~/.vim/colors/ are treated as color schemes. For example: if you run :color mycolors Vim will look for a file at ~/.vim/colors/mycolors.vim and run it. 
+
+## filetype이 결정된 후 로드되는것
+  - ~/.vim/ftplugin/
+  : When Vim sets a buffer's filetype to a value it then looks for a file in ~/.vim/ftplugin/ that matches. For example: if you run set filetype=derp Vim will look for ~/.vim/ftplugin/derp.vim. If that file exists, it will run it.
+    derp가 폴더라면, 모든 vim파일 실행
+
+  : TODO Because these files are run every time a buffer's filetype is set they must only set buffer-local options! If they set options globally they would overwrite them for all open buffers!
+
+  - ~/.vim/indent/
+  : indent files should set options related to indentation for their filetypes, and those options should be buffer-local.
+  : Yes, you could simply put this code in the ftplugin files, but it's better to separate it out so other Vim users will understand what you're doing. It's just a convention, but please be a considerate plugin author and follow it.
+
+  - ~/.vim/compiler/
+  : Files in ~/.vim/compiler/ work exactly like indent files. They should set compiler-related options in the current buffer based on their names.
+    - compiler-related options
+
+# 그외
+  - ~/.vim/doc/
+  : The ~/.vim/doc/ directory is where you can add documentation for your plugin
+
+  - set runtimepath
+  : 보통의 plugin manager는 이 옵션에 관리하는 플러그인의 경로를 추가함.
+  : TODO 위의 vim구조에 의한 파일로드와 runtimepath에 추가한 경로에 대한 파일로드 관계는??

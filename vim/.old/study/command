@@ -1,0 +1,31 @@
+command
+===
+
+
+vim_command
+---
+
+# 사용예
+  ```
+  command! -nargs=0 FileTypeTemplate call s:TemplateFileType()
+  ```
+
+# command 등록은 생각보다복잡, 필요시 더찾아볼것
+
+
+external_command
+---
+
+# 부모(터미널)의 출력결과를 보지 않으려면 system()을 사용
+: system()은 출력을 값으로 받을수있는 형태고
+  excute '!ls', :!ls등은 결과가 부모로 뿌려짐.(키입력 대기창 화면나타남)
+
+# system()주의
+: 두번째 arg가 stdin임
+
+# 사용예
+  ```
+  call system('__open_terminal ' . shellescape(l:path))
+
+  execute '!__open_terminal '. shellescape(l:path)
+  ```

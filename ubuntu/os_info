@@ -1,0 +1,11 @@
+info_os
+===
+
+- os version
+	```
+	lsb_release -a
+	```
+
+# architecture
+  - diff AMD64, X86_64?
+  : Actually, it was AMD themselves who started switching the name from AMD64 to x86_64... Now x86_64 is the "generic" name for AMD64 and EM64T

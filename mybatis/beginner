@@ -1,0 +1,82 @@
+
+사용법위주
+http://www.mybatis.org/mybatis-3/ko/sqlmap-xml.html#select
+
+	# sql 정의부분(xml)
+		일반(curd 부분)
+		http://www.mybatis.org/mybatis-3/ko/sqlmap-xml.html
+
+		연산자(if, when, foreach, etc..)
+		http://www.mybatis.org/mybatis-3/ko/dynamic-sql.html
+
+	# sql 사용부분(java)
+	http://www.mybatis.org/mybatis-3/ko/java-api.html
+
+
+detail
+	# insert - selectkey
+		- db에서 자동생성키를 지원하는경우
+		<insert id="insertAuthor" useGeneratedKeys="true"
+		    keyProperty="id">
+		  insert into Author (username,password,email,bio)
+		  values (#{username},#{password},#{email},#{bio})
+		</insert>
+
+		- db에서 자동생성키를 지원X
+		BEFORE selectkey를 위한 쿼리, 이후 본쿼리.
+		<insert id="insertAuthor">
+		  <selectKey keyProperty="id" resultType="int" order="BEFORE">
+		    select CAST(RANDOM()*1000000 as INTEGER) a from SYSIBM.SYSDUMMY1
+		  </selectKey>
+		  insert into Author
+		    (id, username, password, email,bio, favourite_section)
+		  values
+		    (#{id}, #{username}, #{password}, #{email}, #{bio}, #{favouriteSection,jdbcType=VARCHAR})
+		</insert>
+
+
+	# util - include
+	SQL 조각은 다른 구문에 포함시킬수 있다.
+
+		<sql id="userColumns"> ${alias}.id,${alias}.username,${alias}.password </sql>
+
+		<select id="selectUsers" resultType="map">
+		  select
+		    <include refid="userColumns"><property name="alias" value="t1"/></include>,
+		    <include refid="userColumns"><property name="alias" value="t2"/></include>
+		  from some_table t1
+		    cross join some_table t2
+		</select>
+
+
+	# 문자열 대체(String Substitution)
+		#{} 문법은 마이바티스로 하여금 PreparedStatement프로퍼티를 만들어서 PreparedStatement파라미터(예를들면 ?)에 값을 셋팅하도록 할 것이다.
+		${} SQL 구문에 변하지 않는 값으로 삽입하길 원하기도 한다.
+
+		> 이부분은 quote로 감싼다(or 안한다)의 차이로 보임
+
+	# resultType
+		- TypeAliases
+		<!-- XML설정파일에서 -->
+		<typeAlias type="com.someapp.model.User" alias="User"/>
+
+		<!-- SQL매핑 XML파일에서 -->
+		<select id="selectUsers" resultType="User">
+		  select id, username, hashedPassword
+		  from some_table
+		  where id = #{id}
+		</select>
+
+		- custom type
+		<resultMap id="userResultMap" type="User">
+		  <id property="id" column="user_id" />
+		  <result property="username" column="username"/>
+		  <result property="password" column="password"/>
+		</resultMap>
+		구문에서는 resultMap속성에 이를 지정하여 참조한다. 예를들면
+
+		<select id="selectUsers" resultMap="userResultMap">
+		  select user_id, user_name, hashed_password
+		  from some_table
+		  where id = #{id}
+		</select>

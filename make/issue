@@ -1,0 +1,11 @@
+
+# Cmake 의존성 문제
+	- 의존성 수동으로 찾기
+	: http://blog.naver.com/PostView.nhn?blogId=ambidext&logNo=220990050831&categoryNo=0&parentCategoryNo=10&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
+	  1. make 실행 로그에서 의존성 error 메시지 부분체크
+	  2. apt-cache search name
+	  3. install
+
+	- ex) lua path가 없다고나온다면
+	: cmake가 ubuntu에서는 /usr/include/lua... 위치에서 헤더파일을 찾는다. 없을경우 못찾음
+	이럴때는 liblua-dev같은 이름의 패키지를 설치해줘야함

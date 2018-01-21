@@ -1,0 +1,101 @@
+syntax
+===
+
+
+basic
+---
+
+# 한줄, pipe
+: shell의 파이프보다는 semicolon의 역할(명령의끝)인듯함
+  ```
+  echom "foo" | echom "bar"
+  ```
+
+# true/false
+: if에 사용했을경우임, 다른건아직
+
+  - false
+    - "0"
+    - ""
+    - " "
+    - "string값이있는것"
+    : integer변환이 안되는 문자열은 0이 되기에, if에 사용한다면 false임
+
+  - true
+    - "111", "-11"
+    : 이와같이 0이 아닌숫자는 true로 인식됨
+  
+  - 문자열의 integer변환이 특이함
+  : string은 integer변환을 해야하는데, 못하는 상태라면 0이됨
+    ```
+    :echom "hello" + 10 " 10이 출력됨
+    :echom "10hello" + 10 " 20이 출력됨
+    :echom "hello10" + 10 " 10이 출력됨
+    ```
+
+
+if
+---
+
+# if
+  - NOTE: if는 피연산자로 integer를 받는다. (:h TRUE)
+    boolean operators가 Number를 사용하기때문.
+    만약, 문자열을 피연산자로 준다면 integer변환 후, 0 / 1 판단을함
+
+  - 기본형태
+    ```
+    if 0
+        echom "if"
+    elseif "nope!"
+        echom "elseif"
+    else
+        echom "finally!"
+    endif
+  ```
+
+ 
+
+# if 비교
+
+  - integer 및 문자열 타입끼리의 비교는 평범함
+    ```
+    if 10 == 11
+        echom "first"
+    elseif 10 == 10
+        echom "second"
+    endif
+    ```
+
+  - Case-sensitive comparisons
+    - NOTE: The behavior of == depends on a user's settings.
+    - string 비교시 특이점
+    : 혼돈피하기위해 항상 noignorecase로 하는것이 낫다고함, 덜엄격해서.
+    : Using ==# and ==? with integers will work just fine
+      ```
+      set noignorecase
+      if "foo" ==? "FOO"
+          echom "first" " 이곳이 출력됨
+      elseif "foo" ==? "foo"
+          echom "second"
+      endif
+
+      set ignorecase
+      if "foo" ==# "FOO"
+          echom "one"
+      elseif "foo" ==# "foo"
+          echom "two" " 이곳이 출력됨
+      endif
+      ```
+
+
+  - 숫자비교, >#은 >로 생각하면됨. #, ? 은 위의 Case-sensitive 비교이고, string일때
+  의미가있음
+    ```
+    function TextwidthIsTooWide()
+      if &l:textwidth ># 80
+        return 1
+      endif
+    endfunction
+    ```
+
+

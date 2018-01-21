@@ -1,0 +1,62 @@
+settings_awesomewm
+===
+
+NOTE: lightdm을 display manager로 사용함
+
+basic
+---
+NOTE: 만약, v3.5에서 v4.1로 업그레이드하는 것이라면 /etc/xdg/awesome 의 이전버전의 프로그램설정을 지워줘야함(사용안하는것같고, 있으면 에러)
+ 
+# v4.1 설치
+  1. handwork_install_deps/awesomewm4_1.bash 참고하여 dpkg -i .... 작업까지함
+
+  2. 설정파일
+  : 링크의 내용을 ~/.config/awesome/rc.lua 에 복사함
+    https://github.com/awesomeWM/awesome/blob/v4.1/awesomerc.lua
+
+  3. 실행자 설정
+
+    - 링크 내용을 /usr/share/xsessions/awesome.desktop에 복사함.(권한은 root로 설정함)
+    : https://github.com/awesomeWM/awesome/blob/v4.1/awesome.desktop
+
+  4. optional
+    - 세션실행시점에 xset과 같은 환경설정이 필요하다면 ~/.xprofile에 설정을 둬야함
+    : https://bbs.archlinux.org/viewtopic.php?id=170945
+    : https://wiki.archlinux.org/index.php/LightDM#Login_using_.7E.2F.xinitrc
+
+
+# 실행
+: 로그인화면에서 awesome 윈도우매니저를 선택
+
+
+settings
+---
+
+NOTE: settings의 내용으로 ubuntu16에서의 설정 후 아래의 작업함
+
+# 키설정
+: http://egloos.zum.com/nemonein/v/5222946
+  링크내용참고, xev로 키코드 확인해서 바르게 설정해야함
+: dotfiles/.Xmodmap 파일 확인
+
+  - escape <-> capslock
+  - 한/영, 한자키
+
+# ibus 한글설정
+: settings파일의 한글설정의 임시방편과 유사함
+
+    - 처리단계
+    : text entry의 전환을 없에고, hangul 토글키 설정만함
+
+      1. $> ibus-setup
+      : 한글 소스만 남겨놓고 switch키는 모두 제거
+
+      3. $> ibus-setup-hangul -> hangul toggle key에 Hangul 추가
+      : 위의 키설정으로 Hangul을 등록해야함
+        Hangul과 Multi_key(ubuntu desktop 것)가 등록된 상태
+
+# 키보드 타이핑 속도조정
+```
+# ~/.xprofile
+xset r rate 200 80
+```

@@ -1,0 +1,61 @@
+
+# 자주사용
+# ===
+	- 커밋 읽기
+		- git log -1    // commit 로그확인하기 1개. 2개...이렇게.
+		- 한파일에 대한 로그보기
+		```
+		git log --follow -p -- file
+		```
+
+	- 커밋 수정
+		- 커밋메시지만 수정
+		git commit --amend -m "Your new message"
+
+		- 커밋 제거하고, 특정 커밋시점으로 돌아가기
+		```
+		# !! do *not* use --force, keep your files!
+		# 이전 커밋으로 돌아가는것. HEAD 외 hash 이용가능.
+		git reset --soft HEAD^
+		```
+
+	- 변경사항 버리기
+		- 변경사항만 버림
+			```
+			git clean -f
+			git checkout .
+			```
+
+		- 추가된 파일도 버림 // 정확한지는 모름
+			```
+			git clean -df # git clean removes all untracked files and git checkout clears all unstaged changes.
+			git checkout -- .
+			```
+
+		- gitignore 실수로 등록안된 파일 버리기
+			```
+			# !! .(dot) 사용시 현재기준 전체버림이 됨. 특정한 파일을 지정해서 제거해줘야한다.
+			git rm -r --cached .
+
+			git add .
+			git commit -m "fixed untracked files”
+
+			# !! remote를 local로 강제 일치시킴.
+			git push -f origin branch
+			```
+
+
+# 잘안씀1
+# ===
+
+# check
+# ---
+	- verbose
+	ex: $> GIT_CURL_VERBOSE=1 git push origin master
+
+	- git remote -v show
+	: push, fetch등의 명령어에 대한 remote 주소 확인
+
+# basic
+# ---
+	- git init

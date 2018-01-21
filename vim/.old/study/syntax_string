@@ -1,0 +1,19 @@
+syntax_string
+===
+
+
+string
+---
+
+# 사용예
+  ```
+  echom strlen("foo")
+  echom len("foo")
+
+  echo split("one two three") " default separator is whitespace
+  echo split("one,two,three", ",")
+
+  echom tolower("Foo")
+  echom toupper("Foo")
+  ```
+

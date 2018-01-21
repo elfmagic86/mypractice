@@ -1,0 +1,39 @@
+# 설치하기
+  - docker
+  : https://store.docker.com/editions/community/docker-ce-server-ubuntu?tab=description
+  > Docker CE 17.03.1-ce
+
+  - docker-compose
+  : https://github.com/docker/compose/releases
+  : 적절한 버전선택하여 설치
+
+
+# docker 사용하기전 자질구레한일
+: dockerd(데몬), docker(클라이언트 프로그램)
+  docker 사용하기 위해 데몬이 실행된상태여야함
+
+## docker데몬의 autostart 막고 서비스실행하기
+: autostart가 기본임.
+: dockerd는 서비스로 실행되야 필요한 전후과정을 처리할수있음
+
+  - 참고(서비스 시작 스크립트)
+  : /etc/init/docker.conf
+
+  - autostart 막고, 서비스 실행하기
+    ```
+    # autostart 막기
+    sudo bash -c 'echo "manual" > /etc/init/docker.override'
+
+    # 서비스 실행
+    sudo service docker start
+    ```
+
+
+## docker 클라이언트 사용시에 sudo 안하기
+: dockerd 서비스 실행시 생성되는 /var/run/docker.sock 파일 권한이
+  root소유, docker그룹이기에 user에 docker그룹을 추가해야 sudo 안하고 사용할수있다.
+
+  - 유저에 docker그룹추가하기
+  : https://coderwall.com/p/4zeaqq/run-docker-commands-without-sudo
+  : id 명령으로로 확인
+    재로그인 및 dockerd 서비스 재실행필요

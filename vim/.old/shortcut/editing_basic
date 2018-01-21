@@ -1,0 +1,74 @@
+editing_basic
+===
+
+basic
+---
+# inputmode로 전환
+```
+" newline
+o
+O
+
+" insertmode newline
+<C-o>o
+<C-o>O
+
+" 현재라인 기준
+a
+```
+
+
+# Undo/Redo
+```
+" undo
+u
+
+" redo
+<C-r>
+
+" 직전것에 대해서 undo/redo토글
+U
+```
+
+
+# copy or paste 
+  - 복붙
+  : yank, paste관련된 것들. 
+    - key: y, p, d
+    - clipboard
+
+  - insertmode 붙여넣기
+  ```
+  <C-o>p
+  <C-o>,p
+  ```
+
+# 수정하기
+- 하나의 문자를 변경하려면 r -> 문자입력 // 입력모드가아님!
+  만약, visualmode라면 선택한 문자들 전부 변경됨
+
+- R: 단순히 오탈자 수정할때 사용하면될것같음. 길이는변하지않는다.bo
+- 조합
+: c[횟수][대상] // 삭제와비슷. 
+
+# 치환하기
+- 한단어:  `:s/old/new`
+- 여러개: `:s/old/new/g` 
+: s/는 한줄,  #,#s/는 줄사이, %s/는 파일전체
+: 변경할지확인하려면 c를 붙인다 `:%s/old/new/gc`
+
+# 삭제
+- 문자지우기: x  // d[이동키] 가낫다,
+- 지우기조합: d[횟수][대상]
+ex) d[w|e|$|^] //각 의미가 현재커서기준으로 단어이동, 라인첫, 끝을 의미함
+- 문장지우기: dd, D(커서우측한줄) 
+
+- 긔외
+```
+" 현재 커서(포함) 우측 삭제 후 imode
+C
+
+" C와 같되 삭제후, nmode
+D
+```
+

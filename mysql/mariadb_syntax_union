@@ -1,0 +1,12 @@
+https://mariadb.com/kb/en/library/union/
+
+
+	ALL, DISTINCT
+	The ALL keyword causes duplicate rows to be preserved. The DISTINCT keyword (the default if the keyword is omitted) causes duplicate rows to be removed by the results.
+
+
+	SELECT ...
+	UNION [ALL | DISTINCT] SELECT ...
+	[UNION [ALL | DISTINCT] SELECT ...]
+	[ORDER BY [column [, column ...]]]
+	[LIMIT {[offset,] row_count | row_count OFFSET offset}]

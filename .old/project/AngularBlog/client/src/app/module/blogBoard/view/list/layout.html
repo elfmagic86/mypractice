@@ -1,0 +1,16 @@
+<div class="col-sm-offset-1 " id = 'blogBoard-listView'>
+	<meta charset="utf-8">
+		<div ng-if="currentUser.isLogin" class="row">
+			<a ui-sref="app.blogBoard.insert" class="btn btn-default col-xs-offset-10">
+			입력
+			</a>
+		</div>
+		<!-- taps -->
+		<div ui-view="tab" class="col-sm-11 col-xs-12"></div>
+		<!-- postList -->
+		<div ui-view="postList" class="col-sm-11 col-xs-12"></div>
+		<!-- pager (inclue pager  -->	
+		<div ui-view="pager" class="col-sm-11 col-xs-12"></div>
+	
+</div>
+ 

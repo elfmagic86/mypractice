@@ -1,0 +1,56 @@
+<html>
+  <head>
+  <script type="text/javascript">
+// n명의 사람에게 서로다른 과일 k개를 나눠주는 모든 경우의 수. 
+  // 각 경우에서 과일은 모두 소비되야하고 최소 한명에게 분배를해야한다.
+
+  // ex ) 3명에게  과일 5개[a,b,c,d,e]
+
+    //  조합 공식 nCr = n-1Cr  + n-1Cr-1     , n || r이 0이면 1 , n<r 이면 0
+    // main
+    (function main(){
+      //test
+      var manCount    = 3
+        , fruitsCount = 5;
+
+      // console.log( divideFruitsCount(2, 1) ); //0
+      // console.log( divideFruitsCount(3, 3) ); //27개
+      // console.log( divideFruitsCount(2, 3) ); //8개
+      // console.log( divideFruitsCount(2, 4) ); //16개
+      // console.log( divideFruitsCount(2, 5) ); //32개
+
+      function divideFruitsCount(restManCount, restFruitsCount, isNotFirst) {
+        if(!isNotFirst && restFruitsCount < restManCount ) return 0; //처음일경우만.
+        if(restFruitsCount <= 0 || restManCount <=0) return 1;  // 
+        
+        var result = 0;
+        for(var curFruitsCount=0; curFruitsCount<=restFruitsCount; ++curFruitsCount) {
+          //한명남았으면 남은 것 전부사용. 3C3, 3C0 같으니.. 
+          if(restManCount == 1) curFruitsCount = restFruitsCount;
+
+          var curCount  = combine(restFruitsCount, curFruitsCount)
+            , nextCount = divideFruitsCount(restManCount-1, restFruitsCount-curFruitsCount, true);
+
+          result += (curCount * nextCount);
+          
+        }
+        return result;
+
+      }
+
+      function combine (n, r) {
+        if(n<r) return 0;
+        if( (n == 0) || (r ==0)) return 1;
+
+        var result = combine(n-1, r) + combine(n-1, r-1);
+        // console.log('combine nCr', n,r, ' : ', result);
+        return result;
+      }
+    })();
+  </script>
+
+  </head>
+  
+  <body>
+  </body>
+</html>

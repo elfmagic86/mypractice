@@ -1,0 +1,97 @@
+
+Plugin manager
+---------------------------------------
+# Plug
+: https://github.com/junegunn/vim-plug
+
+
+Plugins
+---------------------------------------
+!! 그냥설치하면되는것은 생략.
+!! coloscheme 주의
+  - tmux와함께할경우, tmux -2로 실행해야 256칼라지원하는 설정으로 접근됨.(alias로변경해놓음)
+  - vimrc기본설정의 t_Co도 256으로
+
+
+# fzf
+!! prerequires(터미널에서 사용할수있게 program설치)
+  fzf, ag
+
+- Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+
+# YouCompleteMe
+
+  - 빌드 
+  sudo apt-get install build-essential cmake && \
+  sudo apt-get install python-dev python3-dev && \
+  cd ~/.vim/plugged/YouCompleteMe && \
+  python3 ./install.py --all
+
+  - 트러블슈팅
+
+    - 서버가 정상동작하는지 확인
+    : YcmRestartServer등을 이용하면 에러메시지확인할수있음. 
+
+    - TAB이 왜 안되지?
+    : set paset때문
+      http://stackoverflow.com/questions/28304137/youcompleteme-works-but-can-not-complete-using-tab
+
+    - neovim 혹은 python3문제로 제대로 동작하지않음
+    : python3로 빌드하고 ycm서버설정도 python3로해야함.
+      py2는 한번씩 py3함수콜못한다고 한번식 오류가남.
+      neovim이 문제있던건가? gvim+python3사용하니 괜찮다.
+
+      - python3 사용시 필요준비
+        - cmake2.8(기본)을 3.x로 업그레이드해야함.
+        https://askubuntu.com/questions/829310/how-to-upgrade-cmake-in-ubuntu
+
+        - ycm 서버 설정
+        let g:ycm_server_python_interpreter = 'python3'
+
+    - 언어, 
+    : ycm제공하는 언어확인하여 적절히 빌드해줘야함(옵션 --all은 지원하는 것 모두 사용한다는의미)
+
+      - FOR ruby, scala
+      : 스칼라, ruby등을 위해서는  Eclim을 사용해야한다고함.
+        setting_eclim참조.
+        https://www.joinc.co.kr/w/Site/Vim/Documents/Eclim
+
+
+# powerline
+: powerline/setting 참조.
+
+
+사용했던것 or 사용할것처럼보이는은것
+--------------------------------------------------
+# Vundle
+: Vim plugin manager
+: 플러그인 저장소로 github를 사용함
+	: Plugin git://~, file://~    이런 프로토콜로도 사용 가능
+
+## 설치
+: https://github.com/VundleVim/Vundle.vim
+	: readme설명 따라하면됨
+	: 단,vimrc설정 예시에서 모두따라할필요없이 required만 잘 확인하면됨.
+
+- [?] plugin version관리는??
+
+
+# Command-T
+: https://github.com/wincent/command-t/blob/master/doc/command-t.txt
+: 버퍼 기준으로 파일탐색/열기 등가능. readme의 이미지볼것.
+- !! Tmux와함께할경우 이동키가안되는것처럼보였는데, 256칼라지원하도록 tmux를 실행하지않아서 색이안보였던것임.
+
+## 설치
+!! 다른 패키지 다르게 컴파일을 해줘야함
+: 내환경은 별이슈가없었지만 다른환경에서 루비등의 버전문제가 있나봄.
+: 내환경 ubuntu14.04, vim 8.0, ruby 1.9.3p551 (2014-11-13) [x86_64-linux, command-t 4.0(doc의 history를 보고 판단):
+: https://github.com/wincent/command-t/blob/master/doc/command-t.txt
+ 1. Vundle로 등록
+ 2. 컴파일
+```
+cd ~/.vim/bundle/command-t/ruby/command-t
+ruby extconf.rb
+make 
+```
+

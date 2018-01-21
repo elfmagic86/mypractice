@@ -1,0 +1,29 @@
+
+Beginner Term
+========
+
+# POSIX?
+: 인터페이스규칙
+: POSIX는 이식 가능 운영 체제 인터페이스(portable operating system interface)의 약자로, 서로 다른 UNIX OS의 공통 API를 정리하여 이식성이 높은 유닉스 응용 프로그램을 개발하기 위한 목적으로 IEEE가 책정한 애플리케이션 인터페이스 규격이다.
+POSIX의 마지막 글자 X는 유닉스 호환 운영체제에 보통 X가 붙는 것에서 유래한다
+
+# UNIX?
+: 운영체제
+: Most UNIX systems are commercial in nature
+
+# LINUX?
+: 유닉스 클론, 운영체제
+: UNIX와 같은 기능(멀티유저, 멀티태스킹)제공하지만 유닉스와 독립적으로 개발되었기에, 유닉스 계열이 아닌 유닉스클론 운영체제.
+
+# X Window System (X11, or shortened to simply X)
+: is a windowing system for bitmap displays, common on UNIX-like computer operating systems.
+
+
+기타용어
+===
+# 구문
+: https://ko.wikipedia.org/wiki/구문_(프로그래밍_언어)
+> 컴퓨터 언어 구문은 일반적으로 세 단계로 구별할 수 있다:
+> 단어(word): 문자가 어떻게 토큰을 형성하는지를 결정하는 어휘적 수준
+> 구(phrase): 어떻게 토큰이 구를 형성하는지를 결정하는 문법 수준
+> 컨텍스트(context): 어느 객체나 변수 이름이 참조하는지를 결정 (형이 유효한지 등)

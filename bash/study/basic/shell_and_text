@@ -1,0 +1,197 @@
+
+(bash)쉘과 텍스트사이
+===
+
+
+텍스트와 해석
+---
+
+# 해석순서 요약
+  - https://mug896.gitbooks.io/shell-script/content/expansions_and_substitutions.html
+  > 프롬프트에서 명령문을 작성한후 enter 키를 누르면
+  > shell 은 먼저 명령문을 tokens (words) 으로 분리한 다음
+  > 해석해야할 표현식이 있을경우 변수확장, 산술확장, 명령치환 을 거쳐 최종 변경된 명령문을 만들게 됩니다.
+  > 그리고나서 마지막으로 불필요한 quotes 삭제 처리를 합니다.
+
+  - http://wiki.bash-hackers.org/syntax/grammar/parser_exec
+
+# 해석 과정
+: 1.구문분석과 파싱, 2.확장, 치환, 3. 명령실행
+
+  1. 구문분석과 파싱
+
+    - 확장과 치환 이전에 처리되는 것들
+    : https://mug896.gitbooks.io/shell-script/content/expansions_and_substitutions.html
+    > 키워드, 메타문자 해석, 대입연산, quotes, \ 문자를 이용한 escape, alias, 
+    > ! 문자를 이용한 명령 history 는 확장과 치환 이전에 처리됩니다.
+    > 그러므로 명령치환 이나 변수확장의 결과로 키워드나 alias 또는 대입연산이 나온다면
+    > 이미 해석 작업이 끝난 상태이므로 제대로 기능하지 않습니다.
+
+    - Compound commands
+    : http://wiki.bash-hackers.org/start
+
+  2. 확장, 치환
+    a) Brace Expansion
+      ```
+      {A,B,C}
+      {A..C}
+      ```
+
+    b) Tilde Expansion
+      ```
+      ~/
+      ~root/
+      ```
+
+    c-1) left to right 로 무순서로?으로 실행되는것 
+      - Parameter expansion
+        ```
+        $FOO
+        ${BAR%.mp3}
+        ```
+      - Command Substitution
+        ```
+        `command`
+        $(command)
+        ```
+      - Arithmetic Substitution
+        ```
+        $((1 + 2 + 3))
+        $[4 + 5 + 6]
+        ```
+
+    c-2) Process Substitution
+    : Process substitution is performed simultaneously(동시적으로) with parameter expansion, command substitution and arithmetic expansion. 
+      It is only performed when the underlying(기반의) operating system supports it.
+    : 실행되면, 램덤생성된 fd로 연결된 익명파이프가 그 위치에 남음.
+      ```
+      <(command)
+      >(command)
+      ```
+
+    d) Word Spliting
+    : IFS에 있는 문자를 space로 변환하여 분리함
+      space가 연속될경우 하나의 space만남음
+      
+    e) Pathname expansion (globbing)
+        ```
+        /data/*-av/*.mp?
+        ```
+        
+        - 값할당과 pathname 확장 관계 주의
+
+  3. 명령실행
+
+
+# 변수할당관련
+
+## globbing과 연관된것
+: TODO 어디서는 되고, 어디는안되고.. 잘모르겠음.
+
+  - 일반텍스트는 globbing 안됨
+  : http://wiki.bash-hackers.org/syntax/grammar/parser_exec
+  > The text after the = in each variable assignment undergoes(겪다, 치르다)
+  > tilde expansion, parameter expansion, command substitution, arithmetic expansion, and quote removal before being assigned to the variable.
+  ```
+  foo=*
+  echo "$foo"
+  ```
+
+  - array은 globbing이 됨
+  ```
+  foo=(*)
+  echo "${foo}"
+  ```
+
+  - 기타로, for나 echo는 globbing됨
+  ```
+  for i in *; do echo $i; done
+  ```
+
+## 명령전 변수할당
+  - TODO 변수할당전, 변수확장이 되는것같은데, 이 표현자체가 어떤동작인걸까.
+    ```
+    foo=bar echo $foo
+    foo=bar eval echo $foo
+    foo=bar eval 'echo $foo' # 이것만 값이나옴
+    ```
+
+  - globbing과 관계
+  : 위에서 되던 표현이 안됨. 이 표현에서는 array 사용이안된다는부분은
+    무엇을의미할까.
+    ```
+    foo=(a *) eval 'echo ${foo}'
+    ```
+
+
+# 명령인 텍스트의 구문 형태
+: http://wiki.bash-hackers.org/syntax/basicgrammar
+  - Simple Commands
+    ```
+    ls
+    ls > list.txt
+    ls -l
+    LC_ALL=C ls
+    ```
+  - Pipelines
+    ```
+    [time [-p]] [ ! ] command [ | command2 … ]
+    ```
+  - Lists
+    ```
+    <PIPELINE1> <newline> <PIPELINE2>
+    <PIPELINE1> ; <PIPELINE2>
+    <PIPELINE> & <PIPELINE>
+    <PIPELINE1> && <PIPELINE2>
+    <PIPELINE1> || <PIPELINE2>
+    ```
+  - Compound Commands
+  - Shell Function Definitions
+    ```
+    <NAME> () <COMPOUND_COMMAND> <REDIRECTIONS>
+    ```
+
+빌트인 명령, 쉘키워드, 특수한용도의문자, 특별한표현식
+---
+
+# 명령어 우선순위
+alias, keyword, function, builtin, 외부 명령 순 
+
+# 빌트인명령, 쉘키워드 확인
+  ```
+  # 특정명령이 누구것인지확인
+  type -a time
+
+  # 빌트인 명령 리스트(cd, read같은것)
+  compgen -b | column
+
+  # builtin 목록확인하는 다른방법
+  help 
+
+  # 쉘 키워드 리스트(if 같은것)
+  compgen -k | column
+  ```
+
+# 쉘 메타문자
+: https://mug896.gitbooks.io/shell-script/content/metacharacters.html
+> shell 에서 메타문자는 명령문이 해석되어 실행을 위한 구문을 정의하게 될 때 사용됩니다.
+> 메타문자는 shell 에서 특별히 취급하는 문자, 다른 단어와 공백 없이 붙여서 사용할 수도 있다.
+
+  ```
+  ` ( )   `   &&   ||   &   |   ;
+   <   >   >>                        # redirection 문자
+   *   ?   [ ]                       # glob 문자
+   "   '                             # quote 문자
+   \   $      
+   =   +=                            # 대입연산``
+  ```
+  - 단순문자로 사용하기 위해서는 escape(/)시키거나 quoate('')로 감싸줘야한다.
+
+  - { }
+  : 이건 메타문자아니고 키워드
+  : 명령어그룹화( { ;} ), 변수확장( ${AA} )같은 표현으로사용됨
+
+  - ,
+  : 이건 그냥문자이지만. {,}등특별한 용례는있음..
+
+

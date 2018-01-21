@@ -1,0 +1,66 @@
+settings.old(ubuntu14)
+===
+
+# super user 비번변경
+sudo passwd root
+
+
+# trash로 rm강제삭제를막자.
+- 설치 및 키워드
+https://github.com/andreafrancia/trash-cli
+설치시, easy_install trash-cli 해줘야 trash-rm 스크립트가 생성됨.
+
+- rm대체 스크립트. // _rm은 실제 rm에연결
+: bash_aliases의 rm 설정참고
+
+- 복구하기: trash-restore
+- 전체 지우기: trash-empty
+- 디렉토리에러로, trash-empty가 실패하면?
+  직접지우면된다:
+  ``` 
+  \rm -rf ~/.local/share/Trash/
+  ```
+
+- 삭제동작
+:trash와 gnome ui에서 삭제하면 같은위치로 감. 그러나 해당위치에 삭제된것과 trash-list의 결과는다름
+위치: ~/.local/share/Trash
+
+
+# workspace 세팅
+http://askubuntu.com/questions/459284/how-to-use-different-workspaces-on-ubuntu-14-04
+
+. enable workspace를 체크해야해.
+
+// 확장하기. 1*4로.
+http://askubuntu.com/questions/622390/how-do-i-arrange-workspaces-in-ubuntu
+
+
+
+
+# 키보드 설정변경
+텍스트 엔트리-> 런처 -> key to show the hud(backspace눌러서 disable)
+
+
+# 바탕화면에... 바로가기 아이콘만들기.>
+- 그냥 우클릭하면되는거네..
+
+
+# 한영키를 사용하고싶다.
+: 한영키는 altR로 인식되고, 그것의 기본동작(기능키역할)을 제거해야한다.
+
+  - 설정 -> 키보드 -> 바로가기 -> 타이핑에서.
+  ; compose Key 를 right alt로 설정하고.
+  ; switch to next source를 오른쪽 alt눌러주면 멀티키로 설정됨.
+  ; switch to previous source 는 disable해주고.. 그럼끝.    
+
+# 기본 shortcut 막기
+
+  TODO 기본동작막고, 에디터에서도 사용할수있게되길바람
+
+  - 방법
+  : 설정 -> 키보드 -> 사용자설정 -> +버튼으로 이름과, 키보드명령추가
+    명령추가시에 이름 우측의 키보드텍스트 부분을 클릭해서 변경해줘야함..
+
+  - 막아야 하는 기본동작
+    - ctrl-shift-u: unicode?를 보여줌
+

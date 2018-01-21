@@ -1,0 +1,8 @@
+
+- backtick, singlequote 차이는?
+: sql 해석시, ``안의 것은 예약어X로 인식, + function이 사용되었다면 실행되도록 형태도 변경해줌?
+: ''은 다른 해석없이 문자열로만 인식
+
+# TODO sql 디버깅? 성능? 튜닝?
+
+	explain extended select seq from t_account;

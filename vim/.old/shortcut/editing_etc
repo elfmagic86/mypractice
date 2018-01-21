@@ -1,0 +1,74 @@
+
+editing_etc
+===
+
+marcro
+---
+- 기록시작: q{1~0|a-z}
+  버퍼? 클립보드?에 명령기록시작.
+- 기록종료: q
+- 기록반복: [count]@{기록했던버퍼} 
+
+
+이것저것
+--- 
+
+# folding
+: 참고: http://learnvimscriptthehardway.stevelosh.com/chapters/48.html
+  - foldmethod 옵션이 indent등으로 설정되어있어야 동작함
+  : foldignore는, 기본값이 #임.
+
+  - 단축키
+  : zc(close), zo(open), za(toggle??)
+  NOTE: HTML 태그에서 zfat(zfit)를 먼저해줘야 folding이잡힌다...왜?
+
+# 반복작업
+- newline넣기: 10o + esc
+
+# textwidth기준으로 긴문장 wrapping
+```
+" 현 커서의 라인기준
+gqq
+
+" 선택된것 기준
+{visual}gq
+```
+
+# 문자변환
+  - U/u(visualmode): 선택된 영문 대문자/소문자로 변환
+
+
+# 표준/입출력사용
+: 쉘명령을 사용하는 부분만다룸
+  - 구조
+  ```
+  :[range]w[rite] [++opt] !{cmd}
+  :[range]r[ead] [++opt] !{cmd}
+  ```
+
+  - 표준출력에서 읽어서 현재 커서위치에 내용붙이기
+    ```
+    :r !ls -l
+    ```
+
+  - 표준입력으로 셀렉션된 내용보내기
+  : 범위를 선택 후 명령모드로 전환해야 '<,'>가 나옴
+    ```
+    :'<,'>w !cat | xargs echo HI 
+
+    # 파일에 쓰기
+    :'<,'>w !cat > HI
+    # 현재파일(%)과 같은위치
+    :'<,'>w !cat > $(dirname %)/HI
+    ```
+
+# 
+  ```
+  " 커맨드 명령결과 입력으로 넣기.
+  :r !pwd 
+
+
+  " echom, 기타 등등으로 발생된 메시지 확인창
+  :message # vim에서 발생한 로그확인
+
+  ```

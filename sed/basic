@@ -1,0 +1,44 @@
+basic
+===
+
+# sed(Stream EDitor)
+: stream editor for filtering and transforming text
+
+# 실행 옵션
+  - -n, --quiet, --silent
+  : sed는 패턴공간의 내용이 자동출력되는것이 기본설정임.
+    -n은 자동출력을 막는다. p명령과함께 출력대상을 명시화할수있음
+
+  - -r, --regexp-extended, -E
+  : ERE 사용하겠다
+
+  - -e script, --expression=script
+  : 실행할 명령으로 스크립트를 추가한다
+
+  - -f script-file, --file=script-file
+  : 스크립트 파일을 명령으로 추가한다?
+
+# BRE, ERE?
+BRE( Basic Regular Expressions ), ERE( Extended Regular Expressions ), PRE( Perl Regular Expressions ) 
+  - BRE(default)
+  ```
+  $ echo AA22-CC1234 | sed -n 's/[A-Z]\{2\}[0-9]\+-\([A-Z]\{2\}[0-9]*\)/\1/p'
+  CC1234
+  ```
+
+  - ERE
+  ```
+  $ echo AA22-CC1234 | sed -En 's/[A-Z]{2}[0-9]+-([A-Z]{2}[0-9]*)/\1/p'
+  CC1234
+
+  $ echo ABCD | sed -rn '/CC?|EE?/p'
+  ```
+
+# 기본 요소
+  - 두개의 버퍼가 존재한다
+  : pattern space, hold space
+    - hold space 는 단순히 임시 저장소 역할
+    - pattern space는 명령
+
+  - 명령사이클
+  : 버퍼

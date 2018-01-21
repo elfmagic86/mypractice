@@ -1,0 +1,28 @@
+execute
+===
+
+
+basic
+---
+
+# 무엇
+: vim commmand를 string으로 실행한다.
+
+  - 일반적인 다른 언어에서의 eval과의 차이는?
+  : 역할은 같음. 다만 일반적인 언어에서 eval과는 위험도, 응용 등이 다름(vim에서는
+    유용하게 잘 사용됨)
+  : http://learnvimscriptthehardway.stevelosh.com/chapters/28.html
+
+  - spection character(like <cr>)
+  : execute lets you build commands programmatically, so you can use Vim's normal string escape
+    sequences to generate the non-printing characters you need. Try the following command
+
+# 사용예
+  ```
+  execute "echom 'Hello, world!'"
+
+  execute "rightbelow vsplit " . bufname("#")
+
+  execute "normal! mqA;\<esc>`q"
+  ```
+

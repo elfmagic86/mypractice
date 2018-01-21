@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<style>
+			#chart div {
+				display: inline-block;
+				background: blue;
+				width: 20px;
+				margin-right: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="chart"></div>
+		<script type="text/javascript">
+			d3.select("#chart")
+				.selectAll("div")
+				.data([11, 13, 15])
+			.enter()
+				.append("div")
+				.style("height", d => `${d}px`);
+		</script>
+	</body>
+</html>

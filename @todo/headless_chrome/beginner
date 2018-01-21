@@ -1,0 +1,45 @@
+beginner
+: https://developers.google.com/web/updates/2017/04/headless-chrome#drivers
+===
+
+# required
+  - Headless mode is available on Mac and Linux in Chrome 59.  Windows support is coming in
+  Chrome 60
+
+# 무엇
+Essentially, running Chrome without chrome! It brings all modern web platform features
+provided by Chromium and the Blink rendering engine to the command line.
+
+  - 할수있는것
+  you may want to run some tests against a real web page, create a PDF of it, or just inspect how the browser renders an URL.
+
+
+# 기본 사용
+  - 기본형태
+    ```
+    chrome \
+      --headless \                   # Runs Chrome in headless mode.
+      --disable-gpu \                # Temporarily needed for now.
+      --remote-debugging-port=9222 \
+      https://www.chromestatus.com   # URL to open. Defaults to about:blank.
+    ```
+
+  - 사용예
+  ```
+  # 덤프, pdf, screenshot
+  chrome --headless --disable-gpu --dump-dom https://www.chromestatus.com/
+  chrome --headless --disable-gpu --print-to-pdf https://www.chromestatus.com/
+  chrome --headless --disable-gpu --screenshot https://www.chromestatus.com/
+
+  # repl
+  chrome --headless --disable-gpu --repl https://www.chromestatus.com/
+  chrome --headless --disable-gpu --repl https://naver.com/
+
+  # remote debugging
+  # 아래 명령 실행 후 원하는브라우저로 http://localhost:9222 에 접속
+  chrome --headless --disable-gpu --remote-debugging-port=9222 https://www.chromestatus.com
+
+  # trace파일 생성하는 이런것도있고..
+  chrome --headless --disable-gpu --trace-startup=* --trace-startup-duration=10 --remote-debugging-port=9222 http://www.independent.co.uk
+  ```
+

@@ -1,0 +1,31 @@
+normal_command
+===
+
+
+basic
+---
+
+# normal command 사용에 대한 의문
+  - :noraml!에서 !의 용도?
+  : nmap으로 바인딩된 동작을 사용하지 않고, vim의 기본동작을 사용하겠다는 의미.
+
+  - <c-u> 용도?
+    - 현재 커서위치를 무시하고싶을경우 사용됨, omap이나 vmap시 사용됨
+    - visual mode시 :'<,'>에 대해
+    : We use <c-u> to say "delete from the cursor to the beginning of the line", removing the text. This leaves us with a bare :, ready for the call command.
+    - :h omap-info 
+
+  - execute와 같이 사용하는이유는?
+  : normal에서 non-character(<cr>)을 사용하면 개별문자로 인식된다.
+    execute로 escape와 함께사용해야 특별한기능(newline)을 사용할수있음
+
+    - non-character list
+    : h expr-quote
+
+
+# 사용예
+  ```
+  execute "normal! gg/foo\<cr>dd"
+
+  execute "normal! mqA;\<esc>`q"
+  ```

@@ -1,0 +1,51 @@
+
+network
+===
+
+기본
+---
+
+# network를 고려해야한다
+: docker
+
+
+# host network
+: With the host driver, Docker does not manage any portion of the container
+  networking stack such as port mapping or routing rules. This means that common
+  networking flags like -p and --icc have no meaning for the host driver. They
+  are ignored. This does make the host networking the simplest and lowest
+  latency of the networking drivers. The traffic path goes directly from the
+  container process to the host interface, offering bare-metal performance that
+  is equivalent to a non-containerized process.
+
+
+확인
+---
+# 컨테이너의 네트워크 정보
+: HostConfig, NetworkSettings키의 값을 확인하면 
+  사용하는 네트워크, binding된 port, 컨테이너에 배정된 ip등을 확인가능
+
+  - 확인
+    ```
+    # container id찾아서 inspect
+    docker inspect `docker ps | fzf | awk '{print $1}'`
+    ```
+
+# 컨테이너에 접근하기
+
+  - host주소로 접근
+  : Ports키에서 container port: host ip, port 확인가능
+    ```
+    curl 0.0.0.0:80
+    curl localhost:80
+    ```
+
+  - 컨테이너의 네트워크의 ip로접근
+  : Networks에서 사용되는 네트워크와 ip주소를 확인
+    ```
+    curl 172.0.0.2:80
+    ```
+
+
+실행설정
+---

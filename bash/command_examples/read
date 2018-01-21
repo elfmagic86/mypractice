@@ -1,0 +1,11 @@
+
+# read
+: 사용자입력을받아서 var변수에 값할당
+: IFS 변수로 단어 구분자 결정할수있음
+: help read
+```
+read var
+
+IFS=':|@' read -r col1 col2 col3 col4 <<< "red:green|blue@white"
+```
+  - 다양한 사용례: https://mug896.gitbooks.io/shell-script/content/read.html

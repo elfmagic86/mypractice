@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+<div class="container col-sm-7 col-sm-offset-2">
+
+	<div class="row">
+       	<form ng-submit="userCtrl.update($event)">
+		<table class="table">
+
+        <tbody>
+            <tr>
+                <input name="_id" ng-model="currentUser._id"  style='display:none'>
+                <td>Id</td>
+                <td>{{currentUser._id}}</td>
+            </tr>
+            <tr>
+                <td>Name(Or Alias)</td>
+                <td><input name="name" ng-model="currentUser.name" ></td>
+            </tr>
+            <tr>
+                <td>Photo<img src = "{{ currentUser.photo }}" style='width:30px'></td>
+                <td >
+                	<input name="photo" ng-model="currentUser.photo"  class='col-sm-12'>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input name="email" ng-model="currentUser.email"  ></td>
+            </tr>
+        </tbody>
+    </table>
+    <input type ='submit' class='btn btn-default pull-right' value="submit"></input>
+    </form>
+	</div>
+</div>

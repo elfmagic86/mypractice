@@ -1,0 +1,80 @@
+editing_move_or_search
+===
+
+
+move
+---
+# 기본이동
+  - 이동(hjkl)사용시에: 화살표사용이 익숙하니, 그것과 비슷하게 손가락을 놓는다.
+  - 라인이동
+    - 0/$: 라인의 첫/마지막으로 이동
+    - f문자   | 오른쪽으로 문자를 찾아 이동. ,(왼쪽) ;(오른쪽) 를 이용해 계속 찾음.
+      F문자   | 왼쪽으로 문자를 찾아 이동.
+      tT 유사.
+  - 라인넘버: {number}<S-g>
+  - 탭이동
+  : gt, gT,  [number]gt
+  - 커서위치로 스크롤 중앙: zz
+  - 특정줄, 로이동: { 줄번호 }G
+
+# 기본이동(insertmode)
+  - <C-h/j/k/l>: 이동(mapping함)
+  - <C-w>: 단어 지우기.
+
+# 문장,문맥단위 이동
+  ```
+  "Jump forward|backward one sentence.
+  (
+  )
+
+  " Jump forward|backward one paragraph.:
+  {
+  }
+  ```
+
+# 이동, 현재 윈도우 기준 커서위치
+- changelist 확인
+```
+:chanages
+```
+
+- older,newer 커서위치로 이동
+```
+g;  
+g,
+```
+
+- 마지막 수정위치(insert mode에서 벗어난곳)로 이동
+```
+`^
+'^
+
+" 아래는 insertmode로 진입한다.
+gi
+```
+
+## brace 이동
+: if else등..도되고. 언어별로 조금씩다른듯.
+```
+%
+```
+
+search
+---
+# history window 사용
+```
+q/
+/<C-f>
+```
+# 현재커서의 단어 기준 검색
+```
+" 정순, 역순
+*
+#
+```
+
+# 기타
+```
+" 탐색 highlight 끄기
+:noh
+```

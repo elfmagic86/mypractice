@@ -1,0 +1,42 @@
+
+스택을 이용해서 입력한 문자열을 원하는 문자열로 얻기 위한 연산 과정을 출력하는 것입니다.
+첫번째 입력한 것은 스택에 들어갈 문자열이고, 두번째 입력한 것은 스택에서 나온 문자로 구성하 고자 하는 문자열이 되겠습니다.
+
+-----------------------------------------------
+입력 			
+
+madam		
+adamm
+
+bahama
+bahama
+
+long		
+short		
+
+eric		
+rice		
+
+-----------------------------------------------
+출력
+
+[
+i i i i o o o i o o
+i i i i o o o o i o
+i i o i o i o i o o
+i i o i o i o o i o
+]
+[
+i o i i i o o i i o o o 
+i o i i i o o o i o i o
+i o i o i o i i i o o o 
+i o i o i o i o i o i o
+]
+[ 
+] 
+[
+i i o i o i o o
+]		
+
+
+

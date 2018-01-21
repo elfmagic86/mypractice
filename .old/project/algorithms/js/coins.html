@@ -1,0 +1,84 @@
+<html>
+  <head>
+  <script type="text/javascript">
+  /**
+    # 문제 coin change
+      - 중복되지 않은 동전이 있다. 그 것을 조합(갯수 제한없음)해서 목표 금액을 만든다. 
+        모든 경우의 수는? 제한 3초.
+    # ex
+    입력
+    4 //case 4
+    110 4   //목표 금액, 동전 종류의 수.
+    10 50 100 500 //종류 금액
+    850 4
+    10 50 100 500
+    3600 5
+    100 300 500 900 2000
+    1278 8
+    1 2 4 8 16 32 64 128
+
+    예제 출력
+    4
+    110
+    130
+    873794561
+  */
+   (function main () {
+      var CoinCase  = defineCoinCase();
+
+      var coins      = [10,50,100,500]
+        , goalMoney  = 110;
+
+      var coinCase = new CoinCase(coins, goalMoney);
+      console.log(coinCase.solve())
+
+      ///////////////////////////////////////////
+      function defineCoinCase() {
+        function CoinCase(coins, goalMoney) {
+          this._coins          = coins;
+          this._goalMoney      = goalMoney;
+
+          this._visited        = {};
+        }
+
+        CoinCase.prototype.solve = function () {
+          var coins  = []
+            , length = this._coins.length;
+          while(length > 0) {
+            coins.push(0);
+            --length;
+          };
+          //조합.
+          var result = this._existOrNot(0, 0, coins);
+          return result;
+        }
+        CoinCase.prototype._existOrNot = function (curIndex, curTotal, usedCoins) {
+          if(this._visited[usedCoins]) return this._visited[usedCoins];
+          if(curTotal > this._goalMoney)   return 0;
+          if(curTotal === this._goalMoney) return 1;
+
+          
+
+          var curCoin   = this._coins[curIndex];
+          var nextIndex = (curIndex + 1) % this._coins.length;
+
+          usedCoins[curIndex] = usedCoins[curIndex] ? usedCoins[curIndex] + 1 : 1;
+          var existCount    = this._existOrNot(nextIndex, curTotal + curCoin, usedCoins);
+          usedCoins[curIndex] = usedCoins[curIndex] - 1;
+
+          var notExistCount = this._existOrNot(nextIndex, curTotal, usedCoins);
+
+          return this._visited[usedCoins] =  existCount + notExistCount;
+        }
+
+        ///
+        return CoinCase;
+      }
+   })()
+  </script>
+
+  </head>
+  
+  <body>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+xsession
+===
+
+
+# ~/.xsession-errors 
+
+  - error
+  openConnection: connect: No such file or directory
+  cannot connect to brltty at :0
+
+  - result
+  : https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=728947
+  > That's no error, they're just debugging messages. They come from xbrlapi which
+  is trying to connect to a braille display but you have none so it can't. Nothing
+  to worry about.

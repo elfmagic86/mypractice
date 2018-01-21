@@ -1,0 +1,69 @@
+editing_cmd
+===
+
+editting_commandline_specific
+---
+
+# 적용되는곳
+  - Command-line mode is used to enter Ex commands (":"), search patterns
+    ("/" and "?"), and filter commands ("!").
+
+  - insert모드에서도 <c-r> 관련은 동작함
+
+# 편집명령
+  - movement
+  <S-Left> or <C-Left>					*c_<C-Left>*
+      cursor one WORD left
+                *c_<S-Right>*
+  <S-Right> or <C-Right>					*c_<C-Right>*
+      cursor one WORD right
+
+  - 모두지우기: <c-u> 
+  - <C-w>: 단어 지우기.
+
+  - 현재커서의 단어가져오기
+  ```
+  :<C-r><C-w>
+  ```
+
+  - history
+  ```
+  " 이전|이후
+  :<C-{p|n}>
+  ```
+
+  - 붙여넣기 
+    - system? clipboard
+    : <c-s-v>
+    : <c-r>+
+
+    - unnamed clipbaord
+    : <c-r>"
+   
+  - (안해봄)expr 실행
+  : <c-r>\
+
+  - start entered command
+  : <CR> or <NL>	
+
+
+shortcut
+---
+
+  - verbose(장황한)설명
+  : 설정값 + 설정자 (스크립트)위치
+    ```
+    :verbose set ft
+    ```
+
+  - 치환하기
+  ```
+  " remove trailing whitespace
+  :%s/\s\+$//e
+  ```
+
+  - 현재파일의 탭,space변환
+  : set ts?, set et? 상태에 의존함.
+  ```
+  :ret[ab]
+  :ret!(강제로변환)

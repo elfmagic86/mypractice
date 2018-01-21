@@ -1,0 +1,46 @@
+editing_cmdline
+===
+
+현재편집창제어
+---
+
+# 치환하기
+- remove trailing whitespace
+%s/\s\+$//e
+
+# reindent
+- 현재파일의 탭,space변환
+: retab,  ret!(강제로변환)
+  : set ts?, set et? 상태에 의존함.
+
+editting_commandline_specific
+---
+
+- NOTE: search mode, insert mode 등도 같은부분도 있고, 유사함.
+
+- 현재커서의 단어가져오기
+```
+:<C-r><C-w>
+```
+
+- visual selection word가져오기
+: block후 yank해야함. 그리고 아래명령으로 마지막 yank가져오기.
+```
+:<C-r>0
+```
+
+- history
+```
+" 이전|이후
+:<C-{p|n}>
+```
+
+etc
+---
+- verbose(장황한)설명
+: 설정값 + 설정자 (스크립트)위치
+  ```
+  :verbose set ft
+  ```
+
+

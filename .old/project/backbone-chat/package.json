@@ -1,0 +1,40 @@
+{
+  "name": "kki",
+  "version": "0.0.1",
+  "description": "Chat",
+  "main": "main.js",
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "connect-redis": "^2.1.0",
+    "cookie-parser": "^1.3.3",
+    "cookie-session": "^1.1.0",
+    "ejs": "^2.1.4",
+    "express": "^4.11.0",
+    "express-session": "^1.10.1",
+    "mongoose": "^3.8.21",
+    "multer": "^0.1.7",
+    "q": "^1.1.2",
+    "redis": "^0.12.1",
+    "sockjs": "^0.3.12",
+    "sticky-session": "^0.1.0",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elfmagic86/Chat.git"
+  },
+  "keywords": [
+    "sockjs",
+    "backbone.js"
+  ],
+  "author": "kki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elfmagic86/Chat/issues"
+  },
+  "homepage": "https://github.com/elfmagic86/Chat"
+}

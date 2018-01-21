@@ -1,0 +1,12 @@
+﻿
+# What
+: blog
+: Angular v1 + Mongodb + Nodejs + Express
+
+# Demo 
+: http://ec2-52-72-75-152.compute-1.amazonaws.com
+
+# local
+  ```
+  docker-compose build && docker-compose up
+  ```

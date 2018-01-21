@@ -1,0 +1,90 @@
+variable
+===
+
+
+basic
+---
+
+# 타입
+: 동적타입결정
+
+  - string
+  - integer
+  - boolean
+  : 근본적으로 integer이고 0은 false 1은 true를 의미함
+
+# 옵션과 일반변수의 구분
+: 옵션은 set으로 setlocal 로 할당하며 vimscript작성에 대해서는 global값과 비슷
+
+  - 사용에 대한 구분
+  : 일반 변수는 평범하고, option에대해서.
+    echo &ft등과 같이 사용함
+    echo &wrap과 같이 사용할경우는 boolean option 이기에 1, 0 으로 표현됨
+
+# scope
+
+  - 예시
+    ```
+    # buffer
+    let b:hello = "world"
+    ```
+
+# 잘은 모르겠지만 사용례
+
+  - global optinos
+    ```
+    " NOTE: 할당, boolean option은 let 사용시 1, 0 값을 할당하면 됨
+    " 1
+    :let &textwidth = 100
+    :set textwidth?
+
+    " 2
+    :let &textwidth = &textwidth + 10
+    :set textwidth?
+    ```
+
+  - local option 
+    ```
+    let &l:number = 1
+    ```
+
+  - register as variable
+    ```
+    let @a = "hello!"
+
+    " Vim will echo the word you just yanked. The " register is the "unnamed" register,
+    " which is where text you yank without specifying a destination will go.
+    echo @" " register에 copy된 값이 출력됨
+    ```
+
+# 숫자계산은 평범함
+: 정수, float, 16진수등
+: 참고: http://learnvimscriptthehardway.stevelosh.com/chapters/25.html
+
+
+# 연산자 주의
+  - "+"은 number만을 위한 연산자(피연산자를 number로 변환)
+    string일경우는 연산시 0값이됨
+  ```
+  " +사용했기에 Number로 변환되고, 처음이 숫자이기에 5가 결과로나옴
+  :echom "3 mice" + "2 cats"  ```
+  ```
+
+  - string 조합하기, dot이 string만을 위한 연산자임(피연산자를 string로 변환)
+    ```
+    :echom "Hello, " . "world"
+    :echom 10 . "foo" " integer는 허용
+    :echom 10.1 . "foo" " float는 error
+
+    :echom 'That''s enough.' "  That's enough.  가 출력됨
+    ```
+
+# leteral
+: escape가 되는 형태 구분
+
+  - 일반적인 string은 ""을 사용, newline등은 "\\n"으로 표현
+  - leteral은 '',  '\n' 
+  - echo, echom은 non-character처리가 다름 
+    echo은 echo -e '\n'처럼 newline으로 치환됨. echom은 vim이 newline으로 인식하는 ^@로
+    치환됨
+

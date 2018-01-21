@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Answer">
+
+	<!--////////////////// select  -->
+ 	<select id="selectAll" resultType="Answer">
+		select * from answer order by a_id desc
+	</select>
+	 <select id="select" parameterType="int" resultType="Answer">
+		select * from answer where b_num = #{num}
+		order by a_id desc
+	</select>
+	  
+	<select id="countsByBoards" parameterType="Board" resultType="int">
+		select count(right.b_num)
+		from (select num from board where num in
+				<foreach item="board" index="index" collection="list"
+			      	open="(" separator="," close=")">
+			        #{board.num}
+		  		</foreach> 
+			 ) left,  answer right  
+		where left.num = right.b_num(+) 
+		group by left.num, right.b_num
+		order by left.num desc  <!--순서를 맞춰주자.  -->
+	</select>
+
+	  
+	<!--//////////////// delete  -->
+	<delete id="delete" parameterType="int">
+		delete from answer where a_id = #{id}
+	</delete> 
+	
+	<!--/////////////// insert  -->
+	<insert id="add" parameterType="Answer">
+		insert into answer values(
+									answer_seq.nextval,
+									#{writer},
+									#{content},
+									TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+									#{b_num}
+								  )
+	
+	</insert>
+	<!--/////////////////// update  -->
+	<update id="update" parameterType="Answer">
+		update answer
+		set content = #{content}, reg_date = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
+		where a_id = #{a_id}
+	</update>
+</mapper>

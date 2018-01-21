@@ -1,0 +1,29 @@
+
+# dash제어
+:!! 현재사용잘안함. 대체제가 필요하다
+
+1. 온라인해제
+참조: http://ubuntuhandbook.org/index.php/2014/11/speed-up-unity-dash-response-ubuntu/
+
+2. 불필요한 스코프?해제.
+http://askubuntu.com/questions/299426/completely-removing-smart-scopes
+
+3. 비슷한.. 카테고리 해제하기.
+http://www.webupd8.org/2013/10/how-to-disable-amazon-shopping.html
+: 하단 카테고리. 앱. 부분에서. all로 필터링되어있는것 local이랑 필요한 영역으로 다 변경해줘.
+
+4. 숏컷.
+: unity-tweak-tools -> additions . shwo the launcher 키를 바꾸고...
+launcher탭에서 auto hide를키면. 숏컷눌렀을때, 바로뜸.
+
+5. 열려있는 프로그램으로 이동하는... 그기능을 추가할수는없음????????? 맥에서 뭐였더라. 모자같은거.
+ 
+// workspace구성 참조.
+
+# dash 키변경
+3. super키 눌러서 나오는 내부검색창.... super+space로 변경.
+Install Unity Tweak Tool
+sudo apt-get install unity-tweak-tool
+Launch Unity Tewak Tool.
+In the Unity section, select Additional.
+Click on <Super> next to Show the launcher. (여기서 바꿔)

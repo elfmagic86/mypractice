@@ -1,0 +1,16 @@
+useful_builtin
+===
+
+# expand()
+  - <cword>, % 같은것 치환
+  - :p 등의 수정자로 파일이름등을 제어함
+
+# 구분없이
+  ```
+  echom expand('%')
+  echom expand('%:p')
+  echom fnamemodify('foo.txt', ':p')
+
+  echo globpath('.', '*')
+  echo split(globpath('.', '*.txt'), '\n')
+  ```

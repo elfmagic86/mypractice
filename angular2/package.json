@@ -1,0 +1,48 @@
+{
+  "name": "practice-angular",
+  "version": "0.1.0",
+  "description": "practice",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "webpack --progress",
+    "build:watch": "npm run build -- --watch",
+    "dev:server": "webpack-dev-server --inline --progress --port 3000 --content-base src",
+    "predev": "npm run clean",
+    "dev": "npm run dev:server",
+    "start": "npm run dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "~2.4.0",
+    "@angular/compiler": "^2.4.10",
+    "@angular/core": "~2.4.0",
+    "@angular/forms": "~2.4.0",
+    "@angular/http": "~2.4.0",
+    "@angular/platform-browser": "~2.4.0",
+    "@angular/platform-browser-dynamic": "~2.4.0",
+    "@angular/router": "~3.4.0",
+    "angular-in-memory-web-api": "^0.3.1",
+    "core-js": "^2.4.1",
+    "ie-shim": "^0.1.0",
+    "rxjs": "5.0.1",
+    "zone.js": "^0.7.4"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.8",
+    "angular2-router-loader": "^0.3.5",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.1.2",
+    "css-loader": "^0.27.3",
+    "node-sass": "^4.5.1",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.3",
+    "to-string-loader": "^1.1.5",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2",
+    "webpack-merge": "^4.1.0"
+  }
+}

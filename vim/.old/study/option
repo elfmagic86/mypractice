@@ -1,0 +1,29 @@
+option
+===
+
+
+기초
+---
+ 
+# 무엇인지.
+: buffer와 window는 각자를 위한 옵션을 가짐. local 값이 없으면 global값을 사용함.
+
+# For buffer-local and window-local options:
+	Command		 global value	    local value ~
+      :set option=value	     set		set
+ :setlocal option=value	      -			set
+:setglobal option=value	     set		 -
+      :set option?	      -		       display
+ :setlocal option?	      -		       display
+:setglobal option?	    display		 -
+
+# < 기호에대해
+: boolean과 string값옵션에 따라 <의 용도가 다름, 햇갈리는부분이라 나중에 다시..
+
+  - :setl[ocal] {option}<	Set the local value of {option} to its global value by
+  copying the value.
+
+  - :se[t] {option}<	For |global-local| options: Remove the local value of
+  {option}, so that the global value will be used.
+
+  hi &mdash; 

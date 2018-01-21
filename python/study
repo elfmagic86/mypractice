@@ -1,0 +1,89 @@
+syntax
+======
+
+
+## 공통
+
+- doc 보기.
+  print(requests.__doc__)
+  print(BeautifulSoup.__doc__)
+  help(requests.get)
+
+- 전위/후위 연산자의 의미가 다름.
+  - 파이썬에서의미: ++a === +(+a) === a
+  - 원하는 동작을 위한코드: a += 1
+
+- Closure
+  - 자유변수가 읽기는 가능함, 그러나 쓰기는 평범하게는 안됨. 
+  - 쓰기방법
+  http://stackoverflow.com/questions/21959985/why-cant-python-increment-variable-in-closure
+    1. 객체의 참조자체를 변경하는것은 nonlocal같은 방법을사용해야하고.
+    2. 리스트같은 것의 참조값을 변경하는것은 그냥가능함.
+
+- list
+  - !! out of index 에러가있으니 범위주의.
+
+- 꼬리재귀
+http://stackoverflow.com/questions/13591970/does-python-optimize-tail-recursion
+: TODO 최적화 제공이 되는건지. 정확히는모르겠음.
+
+- 기본값에대해서 True, False판단기준은?
+  - 뭔가 js랑 비슷한것같기도하고.
+
+## 코드조각
+
+- if element not in result:
+
+- print(number," is ", descriptor, "prime.", sep = "", end = "\n\n")
+: 인자순으로 문자열만듬. sep가 인자 사이의 구분문자열(기본공백), end는 마지막문자열
+
+- 파일에 쓰기
+with open("test.txt", "w") as textfile:
+    textfile.write("어떤값")
+
+
+## 기타
+
+- 타입확인
+: type(instance), is
+```
+type(b) is Test1
+isinstance([], list)
+isinstance({}, dict)
+isinstance([], (tuple, list, set)) // 이건이해잘안감.
+```
+
+- 외부모듈설치는 pip3(버전주의)로하면됨.
+
+
+## syntax
+
+- with의미
+https://cjh5414.github.io/python-with/
+: try~finally가 내부적으로 숨어있다고생각하면될듯.
+
+
+TODO 잘모르는것들
+===============
+
+## 코드
+- 무엇인고. 이 문법은. listcomprehention?
+''.join(random.choice(chars) for _ in range(size))
+
+- 반환값표현의 차이는?
+retrun value? return(value)?
+
+- 문자리터럴 표현식의 차이는?
+	- 'value',"value"
+  -  """value""", '''value'''
+
+- def와 lambda로 생성된것의 차이는?
+  - lambda는 멀티라인이 안되나?
+
+- is 사용방법? 함수와다른가?
+
+
+## 기타
+  - 이름.에 대한 보통의 규칙은? camelcase? new_list? 
+
+

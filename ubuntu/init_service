@@ -1,0 +1,60 @@
+
+manage init service
+===
+
+ubuntu14기준, 사용법만
+---
+
+# 서비스 상태 확인하기
+  ```
+  # 전체
+  initctl list 
+  service --status-all
+
+  # 개별
+  status {servicename}
+  service {servicename} status
+  ```
+# 서비스 제어하기
+  ```
+  # service가 제공하는 start|stop 등의 기능이 나옴
+  # 실제로는 /etc/init.d/{servicename} script의 명령을 실행시키는것
+  service {servicename} 
+  ```
+
+# autostart 막기
+  ```
+  sudo bash -c 'echo "manual" > /etc/init/{servicename}.override'
+  ```
+  - menual 역할
+  : http://upstart.ubuntu.com/cookbook/#manual 
+  > This stanza will tell Upstart to ignore the start on / stop on stanzas. 
+  > It is useful for keeping the logic and capability of a job on the system while not having it automatically start at boot-up.
+
+  - TODO stanza가 뭐지?
+
+
+# 간단한 서비스 추가하고싶다?
+: cron을 사용하자. cron도 init service임
+
+
+# 연관링크
+  - system V, upstart, systemd 각 기준 서비스 제어 예시
+  : https://askubuntu.com/questions/19320/how-to-enable-or-disable-services
+  : https://www.digitalocean.com/community/tutorials/how-to-configure-a-linux-service-to-start-automatically-after-a-crash-or-reboot-part-1-practical-examples
+
+
+
+TODO 아래는 정리안된 내용
+---
+
+# upstart와 system V의 관계가 정리가안된다
+: autostart막기에서
+  upstart의 config를 overriding해서 autostart를 막으면
+  system V의 autostart도.. 호환되서 막아진다고 하고, 실제 정상동작하는것 같은데..
+  파고들면 /etc/rc 관련 내용도 나오고...햇갈린다.
+
+
+# systemd
+: systemctrl 명령으로 제어함, ubuntu14 이후 버전에서 사용된다고함
+

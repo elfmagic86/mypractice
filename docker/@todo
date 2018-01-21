@@ -1,0 +1,16 @@
+https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#env
+
+https://docs.docker.com/engine/examples/mongodb/
+
+https://docs.docker.com/compose/environment-variables/#the-env_file-configuration-option
+
+
+
+--amazonec2-subnet-id subnet-a77e76d1 \
+
+docker-machine create --driver amazonec2 \
+--amazonec2-vpc-id vpc-d08ef5b4 \
+--amazonec2-region 'ap-northeast-1' \
+--amazonec2-zone 'a' \
+myaws
+

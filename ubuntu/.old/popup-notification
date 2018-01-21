@@ -1,0 +1,14 @@
+# 창크기제어하는프로그램 1~9크기로.
+
+# popup notification 없에고싶어. // tishadow에서 에러알림이 자동설정되서..그랬는데
+; notify-osd 이 데몬??을 사용하는건데. 이 프로세스종료하고 지움될듯.
+
+# notification이 허용된 프로그램해제//pc, ubuntu
+: notify-osd .. usually based it
+: https://viewsby.wordpress.com/2012/12/04/ubuntu-disable-popup-notifications/
+
+-) solve 1 // instance, fast
+: killall notify-osd
+
+-) solve 2 // setting.
+: change sevice name -> disable // ref url.

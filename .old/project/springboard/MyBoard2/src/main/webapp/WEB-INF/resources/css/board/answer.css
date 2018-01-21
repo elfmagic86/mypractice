@@ -1,0 +1,20 @@
+@CHARSET "EUC-KR";
+
+.answer_container {
+	display:block; float:left;
+	border: thin solid red;
+	width : 99%;
+}
+
+
+.user_info {
+	display:inline-block; float: left;
+	border: thin solid black;
+	width:10%;
+}
+.answer_content {
+	display:inline-block; float: left;
+	border: thin solid blues;
+	width:89%;
+	height:200px;
+}

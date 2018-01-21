@@ -1,0 +1,11 @@
+! caps lock to escape
+remove Lock = Caps_Lock
+! keysym Escape = Caps_Lock
+keysym Caps_Lock = Escape
+! add Lock = Caps_Lock
+
+! Hangul_Hanja, Hangul key
+remove control = Hangul_Hanja
+remove mod1 = Hangul
+keycode 105 = Hangul_Hanja
+keycode 108 = Hangul

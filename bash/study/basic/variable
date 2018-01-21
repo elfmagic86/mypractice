@@ -1,0 +1,109 @@
+
+쉘변수
+===
+
+일반 규칙
+: https://mug896.gitbooks.io/shell-script/content/variables.html
+---
+# 이름규칙: 숫자시작X
+
+
+# 변수가 빈값인 상태
+```
+# 변수자체가 없는(선언되어있지 않은) 상태
+declare AA or local AA or unset AA
+
+# null 값인 상태
+AA="" or AA='' or AA=
+
+# 빈상태가아닌것,
+AA=" "  # 공백은 빈상태아님.
+
+
+# NOTE: 값이있는/빈상태 판별방법 
+[ -z "$AA" ] # 문자열길이 0인지
+[ -n "$AA" ] # 문자열길이 0아닌지
+```
+
+일반변수사용관련
+---
+# 종류
+  - 매개변수 확장
+  ```
+  $AA, ${AA}
+  ```
+
+  - 명령 치환
+  ```
+  $( echo "1.3 + 2.5" | bc ) ...
+  ```
+  - 산술확장 $((1+2))
+
+# 확장, 사용예시들.
+## quote, 명령치환, 문자열
+: 변수to값, 명령어실행여부 구분 주의
+
+  - echo $100 : 쉘이 $1변수를 찾았음. 변수를값으로변환. 00을 echo에전달.
+  - echo "$100" : 위와같음.
+  - echo $($100): 위와같음+ 00이란결과를 실행후 echo에 전달한다.
+  - echo `$100`: 위와같되, ` `는 라인에서 실행우선순위가 가장높음.
+  - echo '$100' : 순수문자열. 쉘이 내부요소 해석안함.
+  - echo ${1}00 : 첫번째와 같음. ${}안에는 변수명만가능한듯?? ${}안에 quote, $등사용못함.
+
+  - ``와 $()의 차이는?: 전통적인 문법이 ``라고함. $()는 POSIX표준이라고함.
+
+
+특별변수
+---
+# 함수 or 스크립트에서 사용할수있는 인수
+  - $@ : 모든인수, 공백으로 구분된형태
+  - $\* : https://mug896.gitbooks.io/shell-script/content/functions.html
+
+  - $# : 인자갯수... 값이 0이면 $1이 빈값임.
+  - $0 : 스크립트명
+  - $$ : 프로세스ID
+  - $? : 종료코드 :: 이전명령 성공했을경우 0값을가짐.
+      !! 일부프로그램은 성공시 0이아닌 다른값을가지니 주의. 메뉴얼페이지의 EXIT VALUE or DIAGNOSTICS참조
+  - $$ : 현재쉘의 pid
+
+## 기타
+  - shift: $2 -> $1로 땡겨짐
+
+## 용도
+```
+# @에비교해서.. *는 공백구분이 없어지므로 아래처럼사용할수있음.
+[ "${AA[*]}" = "${BB[*]}" ]; echo $?
+```
+
+매게변수확장 ${}
+---
+# usage
+: http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_02
+
+## parameter가 null, unset일경우
+${parameter:-[word]}
+Use Default Values. If parameter is unset or null, the expansion of word (or an empty string if word is omitted) shall be substituted; otherwise, the value of parameter shall be substituted.
+
+${parameter:=[word]}
+Assign Default Values. If parameter is unset or null, the expansion of word (or an empty string if word is omitted) shall be assigned to parameter. In all cases, the final value of parameter shall be substituted. Only variables, not positional parameters or special parameters, can be assigned in this way.
+
+
+${parameter:?[word]}
+Indicate Error if Null or Unset. If parameter is unset or null, the expansion of word (or a message indicating it is unset if word is omitted) shall be written to standard error and the shell exits with a non-zero exit status. Otherwise, the value of parameter shall be substituted. An interactive shell need not exit.
+${parameter:+[word]}
+Use Alternative Value. If parameter is unset or null, null shall be substituted; otherwise, the expansion of word (or an empty string if word is omitted) shall be substituted.
+
+## length 
+${#parameter}
+String Length. The length in characters of the value of parameter shall be substituted. If parameter is '\*' or '@', the result of the expansion is unspecified. If parameter is unset and set -u is in effect, the expansion shall fail.
+
+## 
+${parameter%[word]}
+Remove Smallest Suffix Pattern. The word shall be expanded to produce a pattern. The parameter expansion shall then result in parameter, with the smallest portion of the suffix matched by the pattern deleted. If present, word shall not begin with an unquoted '%'.
+${parameter%%[word]}
+Remove Largest Suffix Pattern. The word shall be expanded to produce a pattern. The parameter expansion shall then result in parameter, with the largest portion of the suffix matched by the pattern deleted.
+${parameter#[word]}
+Remove Smallest Prefix Pattern. The word shall be expanded to produce a pattern. The parameter expansion shall then result in parameter, with the smallest portion of the prefix matched by the pattern deleted. If present, word shall not begin with an unquoted '#'.
+${parameter##[word]}
+Remove Largest Prefix Pattern. The word shall be expanded to produce a pattern. The parameter expansion shall then result in parameter, with the largest portion of the prefix matched by the pattern deleted.
+

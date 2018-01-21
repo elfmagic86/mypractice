@@ -1,0 +1,33 @@
+abbreviations
+===
+
+
+basic
+---
+
+# 용도
+: insert mode에서만 사용하는것같음.
+  - 단어 교정
+  - snippet
+
+# abbreviation(약어)
+: insertmode에서 아래와 같이 약어(ssig)를 내용(-- Steve....)으로 치환해줌
+
+  - 사용예:
+    ```
+    # map키워드와 유사 구조및 동작
+    iabbrev ssig -- <cr>Steve Losh<cr>steve@stevelosh.com 
+    ```
+
+  - 치환트리거
+  : 약어의 이전, 이후가 non-keyword character. 타이핑 시점에 치환됨
+  : CTRL-]		Trigger abbreviation, without inserting a character.  {not in
+		Vi}
+
+  - non-keyword character
+  : :set iskeyword? 가 아닌것.
+
+# local을 위해 <buffer>을 사용한다.
+:autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+
+# 스니펫용도로 사용한다면, 커서위치는?

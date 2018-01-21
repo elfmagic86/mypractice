@@ -1,0 +1,46 @@
+
+pattern matching
+=========
+
+# 파일이름확장
+: filename_expansion(globbing)
+: 매칭되는 파일이름으로 확장되는것, quote('', "")하지 않는 경우만 발생함.
+
+  - 정규식이 아님
+    - glob는 regex보다 제한적이고 **dot(.)**도 없다.
+    - glob문자종류
+    \*, ? []
+
+  - usage
+  ```
+  # 확장시에는 공백으로 구분된 문자열로 치환됨
+  # 확장될수없을경우 *문자가 그대로사용됨.
+  grep r.*t /etc/passwd
+  # 결과: grep r.output r.output /etc/passwd
+
+  # 치환된 변수의 값도 대상이다. 그래서 값에 *등이 있을경우 주의해야함.
+  echo $Foo
+  ```
+
+  - bracket 표현식
+  : https://mug896.gitbooks.io/shell-script/content/pattern_matching.html
+  > [XYZ]	X, Y or Z 문자에 대해 매치됩니다.
+  > [X-Z]	위 표현식을 - 문자를 이용해 range 로 나타낼수 있습니다.
+  > [[:class:]]	POSIX character class 와 매치됩니다. ( alnum, alpha, ascii, blank, cntrl, digit, graph, lower, print, punct, space, upper, word, xdigit )
+  > [^ ... ] or [! ... ]	^ , ! 문자는 Not 을 의미합니다. 가령 [^XYZ] 이라면 XYZ 이외의 문자와 매치됩니다.
+  > sh 에서는 ! 문자를 사용해야 합니다.
+
+# 확장패턴
+: 정규식과도 일부유사한 위의 패턴이상의 것들을 사용할수있음.
+: https://mug896.gitbooks.io/shell-script/content/pattern_matching.html
+```
+# ?+@!*와 ()를 조합한형태가 확장패턴임
+# 아래같은 표현이가능..!
+
+ls !(*.jpg)
+[[ $AA = +(ba*(na)|a+(p)le) ]]; echo $?
+```
+
+  - 어떻게 사용할수있는지?
+  : shopt -s extglob옵션이 설정되어야 사용가능
+

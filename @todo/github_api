@@ -1,0 +1,15 @@
+
+github_api
+===
+
+NOTE: search api중 commits를 사용하기위한 목적이기에, 현재는 그에 필요한 내용만다룸
+
+# api 사용준비
+
+  1. 사용할수있는것?
+  : v3(rest), v4(graphQL)
+  => 간단히 v3사용
+
+  2. api횟수제한?
+  : 응답의 header에서 X-RateLimit-Remainin로 남은 요청수확인가능
+  => 10번만 허용해줘서 auth로

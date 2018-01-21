@@ -1,0 +1,65 @@
+jump_and_marks
+===
+
+jump
+---
+
+# 대상
+:A "jump" is one of the following commands: "'", backtick, "G", "/", "?", "n",
+"N", "%", "(", ")", "[[", "]]", "{", "}", ":s", ":tag", "L", "M", "H" and
+the commands that start editing a new file.
+
+
+# 확인, 제거
+: 제거는 viminfo파일의 기록이 유지되기에 영구적아님
+
+```
+" 확인하기
+:ju[mps]
+  
+" clear
+:cle[arjumps]
+```
+
+# shortcut
+```
+" 직전, 점프된 곳 이동
+''
+double backtick(`)
+
+" 점프된곳 히스토리따라서 이전/이후 이동.
+[count]<C-i>
+[count]<C-o>
+```
+
+mark
+---
+
+# 확인, 제거
+```
+" 확인하기
+:marks
+
+  
+" 제거
+:delmarks a	      deletes mark a
+:delmarks a b 1    deletes marks a, b and 1
+:delmarks Aa       deletes marks A and a
+:delmarks p-z      deletes marks in the range p to z
+:delmarks ^.[]     deletes marks ^ . [ ]
+:delmarks \"	      deletes mark "
+
+" 제거 all
+:delm[arks]!
+```
+
+# shortcut
+- 직전이동
+```
+``
+''
+```
+
+- TODO 이동
+```
+```

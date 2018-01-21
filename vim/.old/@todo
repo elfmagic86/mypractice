@@ -1,0 +1,52 @@
+no_categorized
+===
+
+
+basic
+---
+
+# comment
+  - 동작하지 않는 위치
+    - mapping
+    ex) map <space> viw " Select word
+
+# '<,'>의 의미는 무엇일까?
+: visualmode에서 : 입력하면 저 문자가나옴. mark 모션기능의 문자임.
+  현재 버퍼에서 마지막 선택된 visual area의 첫/마지막 위치를 의미함
+
+  - , 의 의미는?
+  - 위치상 커맨드같기도하고, mark의 키워드 같기도하여 햇갈린다.
+
+# exc command(vim default)
+  ```
+  <esc>
+  <c-c>
+  <c-[>
+  ```
+
+# register값. 그중에서 search register값 확인하기
+: 변수규칙중, register 변수는 prefix로 @가 붙음
+  ```
+  echo @@ " unnamed register의 값을 echo
+  ```
+
+# g@ 의미?
+: h g@
+: g@{motion}		Call the function set by the 'operatorfunc' option.
+
+  ```
+  nnoremap <leader>g :set operatorfunc=GrepOperator<cr>g@
+  ```
+
+
+해야할까?
+---
+
+# esc를 jk로 바꾼다?
+  - visualmode와의 차이는 어떻하지?
+  - 한글입력할때는?
+  ```
+  :inoremap jk <esc>
+  :inoremap ㅓㅏ <esc>
+  :inoremap <esc> <nop>
+  ```

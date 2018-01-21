@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NodeBlog</title>
+
+    <!-- 3rd-party css-->
+    <link href="/resource/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resource/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link href="/resource/bower_components/angular-loading-bar/build/loading-bar.css" rel="stylesheet">
+    <!-- custom css -->
+    <link href="/resource/static/css/layout.css" rel="stylesheet">
+    <link href="/resource/static/css/signin.css" rel="stylesheet">
+    
+    <!-- 3rd-party javascript (no dependencies)-->
+	<script src = "/resource/bower_components/spinjs/spin.js"></script>
+	<script src = "/resource/bower_components/underscore/underscore-min.js"></script>
+	<script src = "/resource/bower_components/jquery/dist/jquery.min.js"></script>
+	
+	
+	<!--      3rd-party need ordering-->
+	<script src = "/resource/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	
+	<script src = "/resource/bower_components/angular/angular.min.js"></script>
+	<!--      angular modules-->
+	<script src = "/resource/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src = "/resource/bower_components/ngstorage/ngStorage.min.js"></script>
+	<script src = "/resource/bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+	<script src = "/resource/bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+	
+	
+    
+	<!-- run-->
+	<script data-main="/resource/src/main.js" src="/resource/bower_components/requirejs/require.js"></script>
+  </head>
+  
+  <body>
+    <!-- ui-view로 만들면 엘리먼트가 달려저서 stop을사용할수가없음. -->
+    <div id ='spinner' />
+    <div ui-view />
+  </body>
+</html>

@@ -1,0 +1,32 @@
+upgrade_14_to_16
+===
+
+NOTE: 과정기록용, 별내용없음
+
+1. create live usb
+: http://radiation.tistory.com/entry/USB%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9A%B0%EB%B6%84%ED%88%ACUbuntu-14044-LTS-%EB%8D%B0%EC%8A%A4%ED%81%AC%ED%83%91-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+
+2. upgrade
+
+  - usb로 부팅하여 try ubuntu 시작
+
+  - grub 복구(필요한단계였을까?)
+  ```
+  sudo add-apt-repository ppa:yannubuntu/boot-repair
+  sudo apt-get update
+  sudo apt-get install -y boot-repair && boot-repair
+  ```
+
+  - 기존 파티션 확인
+  ```
+  # grub> 진입: 첫화면에서 <shift>키를 누르고있는다.
+
+  # 확인
+  ls
+  ls (hd0, sda1)
+  ```
+
+  - 바탕화면의 설치하기 아이콘 실행
+  : 잘기억이안나는데.. 파티션부분 기억하고, 설치 내용 주의해서 진행하면됨
+
+

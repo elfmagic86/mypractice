@@ -1,0 +1,13 @@
+
+https://github.com/poutsma/web-function-sample
+
+실행
+  1. 의존성
+    mvn install
+
+  2. 컴파일 
+    mvn clean compile
+
+  3. 실행
+  아래 명령으로 실행하면 pom의존성을 classpath로 사용할수있음
+  mvn exec:java -Dexec.mainClass="org.springframework.samples.web.reactive.function.Server"

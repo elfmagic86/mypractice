@@ -1,0 +1,54 @@
+
+필요할때, 자세히 알아보거나, 정리할 예정인것들
+===
+
+# 최적화관련
+: https://wiki.kldp.org/HOWTO/html/Adv-Bash-Scr-HOWTO/optimizations.html
+: http://www.linuxtopia.org/online_books/advanced_bash_scripting_guide/optimizations.html
+  - 주의할것: file, pipe, new child process
+
+
+# : 명령
+: true가 이 명령의 alias이었다고함
+
+
+# return/continue/break [n]
+: n의역할?
+
+# eval, exec
+
+  - exec: 현재쉘프로세스를 exec 뒤의 프로그램으로 교체한다. 시스템리소스 절약용도
+
+# trap 
+
+# caller 사용예?
+
+# 자동완성기능?
+: complete, compgen
+
+# let
+: 산술연산 표현식관련?
+
+# eval
+  - eval에 대한 상세동작설명과 예제들
+  : https://mug896.gitbooks.io/shell-script/content/eval.html
+  > eval 명령을 사용하다 보면 복잡해 보일 때가 있는데 이때는 읽기 부분은 eval 을 echo 로 바꾸어 실행해 봅니다. echo 명령을 실행해서 나온 결과가 eval 명령이 실행단계에서 실행하게될 명령입니다. 그리고 그 명령이 실행돼서 나온 종료 상태 값이 eval 명령의 종료 상태 값이 됩니다.
+
+# read deep exam
+
+# printf
+  - echo이상의 온갖출력작업: https://mug896.gitbooks.io/shell-script/content/printf.html
+
+
+
+
+# 함수를 subshell에서 실행하기위해 {} 대신 () 사용하는것도있음.
+```
+
+# expr
+: 외부명령, 산술, regex매칭, substr, index, length, 
+
+# 프로세스간 통신
+: https://mug896.gitbooks.io/shell-script/content/keyword_commands.htm
+> coproc, mkfifo 사용법볼것
+> !! 와, 웹소켓서버도 만듬. 멋짐

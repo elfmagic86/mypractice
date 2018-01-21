@@ -1,0 +1,49 @@
+
+git push 동작의 id,pw 생략하기(ssh 사용)
+---
+
+# github
+  1. local, 키생성
+    ```
+    # -f..위치로 public(ssh_key_filename.pub), private파일 생성해줌
+    ssh-keygen -t rsa -b 4096 -C "username@gmail.com" -f ~/.ssh/ssh_key_filename
+
+    # passpharse 입력(확인 비번)
+    ```
+
+  2. remote 키등록
+  : https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+  : ~/.ssh/ssh_key_filename.pub의 키를 위 링크참조하여 등록
+
+
+  3. local, ssh config추가
+  : https://stackoverflow.com/questions/7927750/specify-an-ssh-key-for-git-push-for-a-given-domain
+    - ~/.ssh/config 아래내용 추가
+      ```
+	  # config 파일 권한은 chmod 740
+      # github
+      Host ssh_host_alias
+        HostName github.com
+        User git
+        IdentityFile ~/.ssh/ssh_key_filename
+        IdentitiesOnly yes
+      ```
+
+    - IdentitiesOnly 참고
+    : https://serverfault.com/questions/450796/how-could-i-stop-ssh-offering-a-wrong-key/450807#450807
+
+  4. local, git 저장소에 ssh를 위한 remote 추가 or .git/config 직접수정
+    ```
+    # git remote add {remote_alias} git@{ssh_host_alias}:{reset_url}
+    git remote add remote_alias git@ssh_host_alias:username/repository_name.git
+    ```
+
+  5. 사용하기..
+    ```
+	# test
+	ssh -T git@{ssh_host_alias}
+
+
+    # remote 이름주의
+    git push {remote_alias} master
+    ```

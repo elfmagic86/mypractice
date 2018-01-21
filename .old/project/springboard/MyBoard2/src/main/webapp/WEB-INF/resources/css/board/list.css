@@ -1,0 +1,118 @@
+@CHARSET "EUC-KR";
+/*default  */
+ul {list-style: none;}
+a {text-decoration: none ; color:black;}
+a:HOVER {font-weight: bold;}
+/* test  */
+
+
+span {display:inline-block;}
+
+/*////////////////////board-container  */
+/* board size는 의미없지 않을까? => 최소크기를 위해 지정. => 내부 요소를 %로 하기위해 지정.*/
+.board_container { width: 1000px; }
+/* //////////////////////검색창, 카테고리 */
+.search-container {
+	display: block; float: right;
+}
+/* //////////////////////검색창, 카테고리 end*/
+
+/* //////////////////////글목록 */
+/*---------default setting-board */
+.board {
+	display: block; 
+	margin: 0 auto; padding : 0; width: 99%;
+}
+.board .row_container {
+	display: block; float:left;
+	margin: 0; padding:5px; width: 99%; height:120px;
+	border-bottom: thin solid gray; border-top: thin solid gray;	
+}
+/*  prefix, content container  */
+.row_container .prefix_container {
+	display: inline-block; float:left;
+	margin: 0; padding : 0; width: 7%; height: 99%;
+}
+.row_container .writting_container {
+	display: inline-block; float:left;
+	margin: 0 0 0 1%; padding : 0; width: 92%; height: 99%;
+	border-color: blue;	
+}
+
+/* 1. -prefix-container 의   요소 votes answers views .. 중복제거할 수 없을까*/
+/* votes는 나중에 구현. */
+ .prefix_container .votes {
+	display: block;
+	margin: auto 0; padding : 0; height: 32%;
+	text-align: center; font-weight:bold;	font-size: medium;  background-color:gray; color: white;
+} 
+ .prefix_container .votes:HOVER {background-color:#fc9a24;}
+.prefix_container .views {
+	display: block;
+	margin: auto 0; padding : 0;  height: 32%;
+	text-align: center; font-weight:bold;	font-size: medium;  background-color:gray; color: white;
+}
+.prefix_container .views:HOVER {background-color:#fc9a24;}
+.prefix_container .answers {
+	display: block;
+	margin: auto; padding : 0; height: 32%;
+	text-align: center; font-weight:bold;	font-size: medium;  background-color:gray; color: white;
+}
+.prefix_container .answers:HOVER {background-color:#fc9a24;}
+
+/*2. writting_container 의 요소 ... 또 컨테이너 둘.*/
+.writting_container .content_container {
+	display:block;
+	margin: auto 0; padding : 0; width: 99%; height: 78%;
+}
+.writting_container .content_container:HOVER {background-color: aqua; }
+.writting_container .bottom_container {
+	display:block;
+	margin: auto 0; padding : 0; width: 99%; height: 20%;
+}
+
+/* --------content_container의요소들... */
+.content_container .title {
+	display:block;
+	height : 27%;
+	font-size:large; font-family:sans-serif; font:bold; color:#07c; font-weight:bold;
+}
+.content_container .content {
+	display:inline-block;
+	width:99%; height:68%; margin: 0; padding : 0;
+	font-size:1em; color:black;  
+	text-overflow:ellipsis; overflow:hidden; white-space:pre; 
+}
+
+/* -----bottom_container의 요소들. */
+/*  right: 작성자, 댓글, 날짜 */
+/*  left: 태그 목록 */
+.bottom_container .right{
+	display:inline-block;float: right;
+	margin: 0 4px; padding : 0;
+}
+.bottom_container .left{      
+	display:inline-block;float: left;
+	margin: 0 7px; padding : 0;
+}
+/* //////////////////////글목록 끝*/
+
+/* //////////////////////넘버링,버튼 */
+.numbering_container {
+	display:block; float:left;
+	margin: 0 7px; padding : 4px; width:70%; 
+	text-align:center;
+}
+.numbering_container .number {
+	display:inline-block;
+	font-size:x-large; font-weight:bold;
+	background-color:black; color:white;	
+}
+.numbering_container .number:HOVER {
+	background-color:white; color:black;	
+}
+.button_container {
+	display:block; float:right;
+	margin: 0 7px; padding : 4px;
+}
+/* //////////////////////넘버링,버튼 끝 */

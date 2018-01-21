@@ -1,0 +1,4 @@
+
+# REF
+- 공통, dev, prod를 체계적으로 분리하고싶을때 참조.
+https://webpack.js.org/concepts/configuration/#using-typescript

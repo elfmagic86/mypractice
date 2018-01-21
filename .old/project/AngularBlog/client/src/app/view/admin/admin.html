@@ -1,0 +1,14 @@
+<meta charset="utf-8">
+<div class="container col-sm-7 col-sm-offset-2">
+
+	<div class="row">
+			<a ui-sref='app.user.detail'>{{currentUser.name }}</a>
+			<img src='{{currentUser.photo }}' alt='img' style="width:70px;padding:10px 0 0 0">
+	</div>
+	<hr>
+	<div ui-view = 'category' class="row">
+	</div>
+	
+	<hr>
+	
+</div>

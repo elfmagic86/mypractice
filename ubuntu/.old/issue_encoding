@@ -1,0 +1,56 @@
+
+# euc-kr로된 문서 utf-8로 convert하기.
+https://medium.com/@jinro4/개발-iconv를-이용한-euc-kr-문서-파싱하기-95caeebb9678
+
+# 파일이름이 우분투에서깨짐
+: 윈도우에서 저장한파일이 cp949로되어있는데, 리눅스는 기본 unicode사용해서 깨진다고함.
+
+  - 파일매니저
+  : nautilus-filename-repairer
+  : 설치 후, 마우스 우클릭 -> 파일이름고치기를 해야함
+
+  - gedit에서 볼때,
+  : UHC추가: http://logon.tistory.com/238
+
+
+
+
+============================
+이전자료........encoding해보려고한것
+----------
+
+
+
+# 옛날 DOC,(googledrive에있는것 정리해야함)
+
+
+## file|foldername 파일(ㅍㅏㅇㅣㄹ)
+: 구글드라이브에서 압축하고. 이렇게 이름이깨지네.
+// 수동으로 zip, unzip했을때는괜찮은데... 크롬으로해볼까?
+// 압축없이 단일파일받으면 또 괜찮음.
+
+
+## rtf..
+- unrtf는 한글 처리가 제대로안됨..
+- rtf -> html -> markdown으로....
+  : rtf를 libreoffice가 제대로 읽음. unoconv가 libreoffice에의존하는듯함. xml로 변환해서 태그를지울까..
+unoconv -f html ttt.rtf
+pandoc ttt.html -o ttt.md
+
+- multi는 이렇게하면되겠네..
+#!/bin/bash
+for FILE in $(ls *.rtf); do
+	unrtf --text $FILE|cat >> ${FILE}.txt;
+	echo $FILE;
+done
+
+
+## hwp
+
+
+
+
+---------------------
+## encoding의 이해에 도움이되는문서.
+:파일문자를 헥사코드수준까지 분석함.
+http://stackoverflow.com/a/36030982

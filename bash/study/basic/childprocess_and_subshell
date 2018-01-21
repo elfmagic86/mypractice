@@ -1,0 +1,82 @@
+
+서브쉘
+---
+
+# 기초
+
+## child process(fork-exec)
+: 쉘에서 명령을 실행하면 새 프로세스가 생성됨
+  호출자는 parent process, 새명령은 child process가됨
+
+  - child process를 생성하는 대상
+  ```
+  bash -c 'cmd ...'
+  bash script
+  명령실행?(sleep, fzf, 같은 실행파일을 실행할때..?)
+  ```
+
+  - 부모와의차이?
+  : PID, PPID비교해보면 child process답게 다름.
+
+  - 참고: 상속되는 부분
+    - 현재 디렉토리
+    - export 된 환경 변수, 함수
+    - 현재 설정되어 있는 file descriptor 들 ( stdin(0), stdout(1), stderr(2) ... )
+    - ignore 된 신호 ( trap '' INT )
+
+## 서브쉘(fork)
+: child process로 bash를 생성한후 해당명령을 수행함. 그래서 그 bash를 subshell이라고함.
+  htop으로 확인해보면 child bash생성되어, 명령수행이됨.
+
+  - 서브쉘을 생성하는 대상
+  ```
+  ( ) $( ) `` | &
+  ```
+
+  - 부모와의 차이?
+  : 부모 실행환경과 동일?함. $$(PID), $PPID를보면 같음. 
+    $BASHPID는 다르다. 부모 동일해보여도 새로운 프로세스이기때문
+
+  - 참고: 상속되는 부분
+    - export 안된 현재 shell 에서 사용중인 변수, 함수들
+    - trap handler 설정 ( trap 'rm -f tmpfile' INT )
+    - 현재 pid 를 나타내는 $$ 변수값
+    - parent pid 를 나타내는 $PPID 변수값
+
+  - ()와 $()의 차이는???
+
+## 주의
+  - childprocess, subshell의 상속받는 환경에대해
+  : 값복사된다고 생각하면됨. (COW)
+    공통의 환경변수를 수정하더라도 이미 실행중인, 서로의 환경에는 영향없음.
+    그래서 cd의 이동이나, 환경변수값 수정하더라도 현재쉘에서는 변함이없었던것임
+
+  - pipe 사용
+  : pipe의 좌우변이 **각각** 서브쉘로 실행이됨
+    서브쉘에서의 값변경이 부모쉘에 영향없음을 주의
+
+  ```
+  # group화하지않으면 pipe의 우변은 var;까지로 인식되어 $var는 빈값이됨
+  echo hello | read var; echo $var
+  
+  # $var값이 정상적으로 hello
+  echo hello | { read var; echo $var ;}
+
+  # https://mug896.gitbooks.io/shell-script/content/subshells.html
+  # 길어질수도있는 while문으로인한, 알지못하면 찾기힘든, 버그
+  ```
+
+  - 현재쉘로 스크립트실행
+  source, .(dot)
+
+  - 종료코드는?
+
+# DEEP
+: https://mug896.gitbooks.io/shell-script/content/process_creation.html
+> fork, exec, wait, exit, pcb, tid, pid
+> 프로세스 생성에 대해 깊이있는 설명, 매우 훌륭함.
+
+  - TODO
+    - subshell은 fork되어 동일한 주소값을 가지는데, 왜 변수값 변경이 부모쉘에 영향주지않을까.
+    : https://drawings.jvns.ca/copyonwrite/
+      fork가 copy-on-write전략을 취하기때문. 쓰기가 필요할때, 실제 복사하여 독립된 메모리 영역사용함

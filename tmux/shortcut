@@ -1,0 +1,61 @@
+
+
+# tmux유용한거
+- 창크기조정
+C-b Ctrl누른상태로 방향키
+
+- 복붙
+	C-b [		copymode
+	vi move....
+		space   : selectStart
+
+# tmux
+
+# 설치
+- mac install
+: brew install tmux
+
+# 기본키워드
+- 헬프: C-b ?
+
+## 전체제어
+- 터미널로 돌아가기(세션유지): C-b d   or C-b D //이건잘모르겟네
+- 세션종료: tmux kill-session [-t session_name]
+
+- 백그라운드에서 남아있는 세션확인.
+: tmux ls
+
+- 존재하는 세션으로 재접속
+: tmux attach -t 0
+
+- 세션이름?윈도우이름?관련 // 모호
+tmux rename-session -t 0 database 
+tmux new -s database
+
+ — 창에서 윈도우이름변경. : C-b ,
+
+
+## 창관련
+### 단일창 관련
+- 창분할: C-b % or C-b “
+- 창이동: C-b 이동키
+- 현재포커스된 창을 전체화면으로: C-b z //토글됨.
+- 창리사이즈: C-b C-<방향키> //왼오만 되는듯.
+
+- 창닫기: C-d or exit
+
+
+### 새창관련
+- 새창만들기: C-b c
+- 윈도우간의 전환: C-b <p|n>    or   C-b <number> // number is window name of bottomstatusbar
+
+
+## 복붙
+	C-b [		copymode
+	vi move....
+		space   : selectStart
+		enter		: selectEnd
+	=> C-b ]  : paste
+	- TODO 클립보드사용하도록.., 현재는 xclip으로 수작업중. 정불편하면..
+
+

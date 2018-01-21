@@ -1,0 +1,10 @@
+# ag
+  - 옵션
+    --hidden
+    : 히든파일(dotfile같은)도 포함(agignore는 정상 동작함)
+    -g {pattern}
+    : 파일명으로만 찾는경우. 일치하는패턴
+
+```
+ag --hidden -g ""
+```

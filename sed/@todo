@@ -1,0 +1,7 @@
+TODO
+===
+
+# sed의 regex 는 hidden?이 출력된다?
+: https://mug896.gitbooks.io/sed-script/content/regexp.html
+
+# greedy (longest) matching

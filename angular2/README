@@ -1,0 +1,44 @@
+## What?
+- pratice angular2
+- Todo APP
+
+## How to run
+- npm install
+- npm start
+
+## TODO..
+- [X] default setting(typescript, webpack)
+- [X] divide vender bundle
+
+- [X] TOUR OF HEROES: https://angular.io/docs/ts/latest/tutorial/
+- [ ] refactoring router for multiple things: https://angular.io/docs/ts/latest/guide/router.html
+- Advanced: https://angular.io/docs/ts/latest/guide/animations.html
+  - [ ] Animation
+
+- [ ] node server
+- [ ] divide config(prod/dev), npm debug scripts
+- [ ] LICENSE, .editorconfig, .travis.yml, tslint
+
+- [ ] simple todo app
+- [ ] api?(express | proxy api server)
+- [ ] persistance?(firebase | mongodb)
+
+- [ ] SSR
+
+## Advanced TODO
+- commons-chunk-plugin to Webpack Dll Bundle plugin
+- `+` folder name?
+- AoT
+- Rxjs
+- docker
+- Test?(Karma | Mocha | Jasmine), e2e?(protractor)
+
+## etc
+- commit prefix
+: chore | feat | refactor | fix | doc | style | .....
+
+## Ref
+- https://github.com/rangle/angular2-redux-example
+- https://github.com/angularclass/angular2-webpack-starter
+- https://github.com/angular/angular2-seed
+- https://github.com/angular/universal-starter

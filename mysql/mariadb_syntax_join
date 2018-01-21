@@ -1,0 +1,94 @@
+
+https://dzone.com/articles/say-no-to-venn-diagrams-when-explaining-joins
+
+
+https://mariadb.com/kb/en/library/join-syntax/
+  
+  # 메모
+    - outer join
+    // 영역은 벤다이어그램을 참고
+    NOTE: 교집합 외에 선택되야 하는 영역은(left|right)
+          ON, USING 의 조건과 상관없이 '모두' 나옴.
+          그렇기에 추가적인 필터링은 where를 이용해야함
+
+    - full outer join
+    mariadb 문법에는 없기에 union distinct로 구현한다.
+
+    - natural
+    https://mariadb.com/kb/en/library/sql-99/natural-join/
+    [맥락만맞음]같은컬럼이름의 id-ref를 암시적으로 연결함.
+
+      - 문법이 의미하는거 natural ~ join
+        - join ~ using
+        - join ~ on 같은 필드명
+
+    - left|right [outer] join
+    outer가 옵션이라 생략된것. left|right가 나오면 outer조인이라 생각하면됨.
+
+
+
+
+  # 링크내용
+    table_references:
+        table_reference [, table_reference] ...
+
+    table_reference:
+        table_factor
+      | join_table
+
+    table_factor:
+        tbl_name [[AS] alias] [index_hint_list]
+      | table_subquery [AS] alias
+      | ( table_references )
+      | { ON table_reference LEFT OUTER JOIN table_reference
+            ON conditional_expr }
+
+    join_table:
+        table_reference [INNER | CROSS] JOIN table_factor [join_condition]
+      | table_reference STRAIGHT_JOIN table_factor
+      | table_reference STRAIGHT_JOIN table_factor ON conditional_expr
+      | table_reference {LEFT|RIGHT} [OUTER] JOIN table_reference join_condition
+      | table_reference NATURAL [{LEFT|RIGHT} [OUTER]] JOIN table_factor
+
+    join_condition:
+        ON conditional_expr
+      | USING (column_list)
+
+    index_hint_list:
+        index_hint [, index_hint] ...
+
+    index_hint:
+        USE {INDEX|KEY}
+          [{FOR {JOIN|ORDER BY|GROUP BY}] ([index_list])
+      | IGNORE {INDEX|KEY}
+          [{FOR {JOIN|ORDER BY|GROUP BY}] (index_list)
+      | FORCE {INDEX|KEY}
+          [{FOR {JOIN|ORDER BY|GROUP BY}] (index_list)
+
+    index_list:
+        index_name [, index_name] ...
+    A table reference is also known as a join expression.
+
+    Each table can also be specified as db_name.tabl_name. This allows to write queries which involve multiple databases. See Identifier Qualifiers for syntax details.
+
+    The syntax of table_factor is extended in comparison with the SQL Standard. The latter accepts only table_reference, not a list of them inside a pair of parentheses.
+
+    This is a conservative extension if we consider each comma in a list of table_reference items as equivalent to an inner join. For example:
+
+    SELECT * FROM t1 LEFT JOIN (t2, t3, t4)
+                     ON (t2.a=t1.a AND t3.b=t1.b AND t4.c=t1.c)
+    is equivalent to:
+
+    SELECT * FROM t1 LEFT JOIN (t2 CROSS JOIN t3 CROSS JOIN t4)
+                     ON (t2.a=t1.a AND t3.b=t1.b AND t4.c=t1.c)
+    In MariaDB, CROSS JOIN is a syntactic equivalent to INNER JOIN (they can replace each other). In standard SQL, they are not equivalent. INNER JOIN is used with an ON clause, CROSS JOIN is used otherwise.
+
+    In general, parentheses can be ignored in join expressions containing only inner join operations. MariaDB also supports nested joins (see http://dev.mysql.com/doc/refman/5.1/en/nested-join-optimization.html).
+
+    Index hints can be specified to affect how the MariaDB optimizer makes use of indexes. For more information, see How to force query plans.
+
+    Examples
+
+    SELECT left_tbl.*
+      FROM left_tbl LEFT JOIN right_tbl ON left_tbl.id = right_tbl.id
+      WHERE right_tbl.id IS NULL;

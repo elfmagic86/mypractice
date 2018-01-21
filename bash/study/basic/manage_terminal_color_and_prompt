@@ -1,0 +1,73 @@
+manage_terminal_color_and_prompt
+: https://mug896.gitbooks.io/shell-script/content/colors_and_prompt.html
+===
+
+일반
+---
+
+# 기초
+: 터미널은 문자열(ascii??)을 전송받고 그것을 표현함. 
+  color, 라인개행 등의 특수한 표현을 위한 명령은 escape sequence, control charaters를 사용함
+
+## escape sequence
+: escape문자 후 연관 문자가 나오는 형태
+
+  - 확인
+    ```
+    # esc가 1b(16진수)임을 확인
+    od -tax1 # c-d 로 종료해야함
+    ```
+  
+  - TODO ^[가 햇갈림, escape sequence로 사용되는 문자는 아닌데, 키입력에 대한 단순출력은
+    이렇게 나온다.
+
+  -. escape문자
+    ```
+    \e  # Backslash notation
+    \x1b  # 16진수
+    \033  # 8진수
+    ```
+
+# color표현 규칙
+  1. escape문자
+  2. 시작문자: [ 
+  3. 칼라값: style;foreground;background
+    - style: 0~8, 0은 reset 4는 underline
+    - foreground: 30~37
+    - background: 40~47
+
+  4. 종료문자: m
+
+  - 사용예
+  NOTE: 아래와 같이 사용하되, 새 칼라값 or reset하지 않는다면 칼라값 적용된상태유지됨
+    ```
+    echo -e "\e[0;31;44m   red foreground, blue background"
+    ```
+
+tput
+---
+
+# tput
+: terminfo를 질의, 터미널에 질의값 설정
+: tput은 매번 terminfo에 질의하고, 위의 \e[0; 같은 문자열을 출력함
+
+  - terminfo
+  : 다양한 터미널이 존재하기에 서로다른 escape sequence, control charaters들의 정보를
+    라이브러리화 한것이 terminfo
+
+
+prompt
+---
+
+# 동작
+: eval echo \""$PS1"\" 와 유사하다고 생각
+
+# Prompt Escape Sequences
+: color escape sequences 같은 non-printing 문자를 prompt 에 사용할 경우는 항상 \[ \] 으로
+  감싸줘야함
+
+
+사용례
+---
+  - tput, prompt escape sequence 필요한것 참조
+  : https://mug896.gitbooks.io/shell-script/content/colors_and_prompt.html
