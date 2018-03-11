@@ -1,0 +1,47 @@
+
+
+# 의존성
+# ===
+	# Configuration Dependencies
+
+	# Execution Dependencies.
+
+
+# message project
+# ---
+	- task order
+		- sub project에 별도의 action task 가 있다면?
+			- 기본은 알파벳순
+			: Gradle executes the task in alphanumeric order.
+
+		- 각 sub project의 task에 관계를 만들고 싶다면?
+			```
+			# consumer/build.gradle
+			# consumer보다 producer가 실행되야한다.
+
+			# - 실행시점 의존성
+			task action(dependsOn: ":producer:action") {
+
+			# or
+
+			# - 설정시점 의존성
+			evaluationDependsOn(':producer')
+
+			```
+
+	- 기본규칙 설명
+	Configuration dependencies are very different from
+	execution dependencies. Configuration dependencies are between projects
+	whereas execution dependencies are always resolved to task dependencies.
+	Also note that all projects are always configured, even when you start the
+	build from a subproject. The default configuration order is top down, which
+	is usually what is needed.  To change the default configuration order to
+	“bottom up”, use the “evaluationDependsOnChildren()” method instead On the
+	same nesting level the configuration order depends on the alphanumeric
+	position. The most common use case is to have multi-project builds that
+	share a common lifecycle (e.g. all projects use the Java plugin). If you
+	declare with dependsOn a execution dependency between different projects,
+	the default behavior of this method is to also create a configuration
+	dependency between the two projects. Therefore it is likely that you don't
+	have to define configuration dependencies explicitly.
+

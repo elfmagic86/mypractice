@@ -1,0 +1,11 @@
+
+hello {
+	doLast { task -> println "[sub]bluewhale: bluuuuuuuuuwhail" }
+}
+
+
+task distanceToIceberg {
+    doLast {
+        println '20 nautical miles'
+    }
+}

@@ -1,0 +1,4 @@
+
+include 'hello', 'date'
+
+rootProject.name = 'webDist'

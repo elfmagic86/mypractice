@@ -1,0 +1,62 @@
+
+# 테스크 제어
+: root에 정의된 task에 대해 각 프로젝트(root, sub)들이 해야할 행동제어
+
+
+	- task 정의 및 콜백
+	: allprojects, subprojects, project(':bluewhale').hello, sub -> build.gradle
+
+		- 비슷하게 정의된 task에 대한 행동을 추가함
+		- allprojects에서는 task가 있어야함.
+
+		- todo: task 정의 시점? 위치?
+
+
+	- 필터링
+	: root -> build.gradle
+
+		```
+		// 대상에 대해 조건부 실행
+		configure(subprojects.findAll {it.name != 'tropicalFish'}) {
+			hello {
+				doLast {
+					println '- I love to spend time in the arctic waters.'
+				}
+			}
+		}
+		```
+
+	- 필터링2
+	: sub -> build.gradle에 정의된 필드값? 이용함
+
+		```
+		# sub -> build.gradle
+		ext.arctic = false
+
+
+		# root -> build.gradle
+		subprojects {
+			hello {
+				doLast {println "- I depend on water"}
+				afterEvaluate { Project project ->
+					if (project.arctic) { doLast {
+						println '- I love to spend time in the arctic waters.' }
+					}
+				}
+			}
+		}
+		```
+
+	- 테스크 프로젝트별 제어
+		```
+		# 전체 hello
+		task hello
+
+		# root의 hello만 실행
+		task :hello
+
+		# krill의 hello와 의존하는 root의 hello를 실행함
+		task :krill:hello
+		```
+
+

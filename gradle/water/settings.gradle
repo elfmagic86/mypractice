@@ -1,0 +1,3 @@
+include 'bluewhale', 'krill'
+
+rootProject.name = 'water'

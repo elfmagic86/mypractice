@@ -1,0 +1,12 @@
+
+
+
+
+# 문자열 문제?
+	- 상황
+	: 테이블과 view를 조인하여 where like ... 시도시 아래 에러남.
+		- Error Code: 1267. Illegal mix of collations (utf8_bin,NONE) and (utf8_general_ci,COERCIBLE) for operation 'like'
+
+	- 해결
+	: https://stackoverflow.com/questions/18629094/illegal-mix-of-collations-for-operation-like-while-searching-with-ignited-data
+	> ....TB.brand_name like '%%' COLLATE utf8_bin

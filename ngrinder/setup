@@ -1,0 +1,23 @@
+
+# setup
+    환경: windows10
+
+    - 설치
+        1. 컨트롤러(war) 다운로드
+        : https://github.com/naver/ngrinder/releases
+        
+        2. 에이전트 다운로드
+        : https://github.com/naver/ngrinder/wiki/Installation-Guide#install-agents
+        > 컨트롤러 실행 후 다운
+    
+        3. 모니터 다운로드: 에이전트와 유사한 방법
+        
+        4. 레코더(기록기) 다운로드
+        : https://github.com/naver/ngrinder/wiki/nGrinder-Recorder-Guide
+        
+            - 크롬 플러그인으로 설치하려면 아래과정이 필요(난 오페라로 그냥 설치함)
+            https://github.com/naver/ngrinder/blob/master/ngrinder-recorder/README.md#ngrinder-recorder-chrome-extension
+    
+    
+    - 현재 ngrider 설치된 위치
+    : D:\kang\programs\ngrinder

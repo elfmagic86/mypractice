@@ -1,0 +1,42 @@
+
+# 기본 실행
+: 컨트롤러, 에이전트는 필수.
+
+    1. 컨트롤러
+    ```powershell
+    java -XX:MaxPermSize=200m -jar  ngrinder-controller-3.4.1.war --port 8000
+    ```
+
+    2. 에이전트
+    ```powershell
+    # 에이전트 압축 푼 폴더에서,
+    run_agent.bat
+    ```
+    3. 모니터
+    ```powershell
+    # 모니터 압축 푼 폴더에서
+    run_monitor.bat
+    ```
+
+
+# 기본 사용방법
+    1. 컨트롤러 로그인
+    : admin/admin이 기본유저
+
+    2. 스크립트 생성
+
+
+        - 레코더 사용.
+        참조: http://junoyoon.tistory.com/entry/nGrinder-Recorder-%EB%B9%A8%EB%A6%AC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+            - 플러그인위치: 브라우저 검색창옆 작은 아이콘, 개발자도구의 ngrinder recorder메뉴
+
+            1. 대상 사이트에 접속, 레코더 플러그인의 녹음시작, 필터링시작을 함.
+
+            2. 대상 사이트에서 필요행동을 실행.
+            3. 녹음된 요청으로 스크립트 생성함
+            :beforeThread, test, afterThread 선택해야함
+
+    3. 컨트롤러에 스크립트 추가.
+    : 스크립트 검증 기능 이용하여 잘 동작하는지 확인
+
+    4. permform? test로 테스트만들어서 실행하면됨.

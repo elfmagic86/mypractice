@@ -1,0 +1,16 @@
+
+# https://docs.gradle.org/4.1/userguide/multi_project_builds.html#sub:real_life_examples
+We have an interesting set of dependencies. Obviously the date and hello
+projects have a configuration dependency on webDist, as all the build logic for
+the webapp projects is injected by webDist.
+The execution dependency is in the other direction, as webDist depends on the build artifacts of date and hello.
+There is even a third dependency. webDist has a configuration dependency on
+date and hello because it needs to know the archivePath. But it asks for this
+information at execution time.
+
+Therefore we have no circular dependency.
+
+Such dependency patterns are daily bread in the problem space of multi-project
+builds. If a build system does not support these patterns, you either can't
+solve your problem or you need to do ugly hacks which are hard to maintain and
+massively impair your productivity as a build master.

@@ -1,0 +1,88 @@
+
+# resource-filtering
+# ===
+
+	- 무엇
+	: `mvn resource:resource` 작업으로 리소스 카피시 필터링된 리소스의 ${prop}를 실제 값으로 변환해주는 작업
+		- ref: https://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html
+
+
+	- 주의
+		- 바이너리 파일은 제외시켜야함.
+
+	- 이슈
+		- 이클립스문제
+		  `mvn res....`(터미널 or 이클립스) 실행시에 명령 + 자동빌드 두번실행됨.
+		  이때, 자동빌드는 이클립스에서 설정된 active profile을 사용하므로 적절한 profile을 적용하기 까다로움.
+
+			- 위문제 처리
+			: active profile 지정하고 사용하는것이 나을듯하다.
+
+				- 자동빌드 사용하지 않기
+
+				- 이클립스에 active profile 지정.
+
+				- 자동빌드에서 resource:resource제외시키기.
+
+					- lifecycle-mapping-metadata.xml 수정하여 resource플러그인 제외시키기
+						- preferences -> maven -> lifecycle....
+						- 내용수정: 내용은 exec-maven-plugin의 ignore 설정 참고
+						- lifecycle....xml 파일 재로딩
+
+					- 특정프로젝트 maven update
+					- 특정프로젝트 -> 우클릭 -> properties -> lifecycle-mapping
+					: resource:resource가 ignore되었는지 확인함.
+
+
+
+	- 사용례
+	: https://www.lesstif.com/pages/viewpage.action?pageId=9437238
+	> 기본 프로퍼티 사용하고, profile이용하여 프로퍼티값을 overriding한다.
+
+		- pom.xml
+		```
+		<properties>
+			<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+			<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+
+
+			<!-- default - dev-qa -->
+			<filter.properties>dev-qa.properties</filter.properties>
+			<frontend.build.skip>true</frontend.build.skip>
+		</properties>
+		...
+		<profiles>
+			<profile>
+				<id>dev</id>
+				<properties>
+					<filter.properties>dev.properties</filter.properties>
+					<frontend.build.skip>true</frontend.build.skip>
+				</properties>
+			</profile>
+		<profiles>
+		...
+		<build>
+			<resources>
+				<resource>
+					<directory>src/main/resources</directory>
+					<filtering>true</filtering>
+					<includes>
+						<include>system.properties</include>
+					</includes>
+				</resource>
+				<resource>
+					<directory>src/main/resources</directory>
+					<filtering>false</filtering>
+					<excludes>
+						<exclude>system.properties</exclude>
+					</excludes>
+				</resource>
+			</resources>
+			<filters>
+				<filter>src/main/resources/filter-properties/${filter.properties}</filter>
+			</filters>
+		...
+		```
+
+		- system.property, filter.property는 url참고.
+

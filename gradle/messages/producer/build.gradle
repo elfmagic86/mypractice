@@ -1,0 +1,7 @@
+
+
+task action {
+	doLast {
+		println "Producing message:"
+	}
+}

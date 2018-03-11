@@ -1,0 +1,22 @@
+plugins {
+	id "base"
+	id 'com.gradle.build-scan' version '1.12.1'
+}
+
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
+
+    publishAlways()
+}
+
+
+task copy(type: Copy, group: "Custom", description: "Copy src -> dest") {
+	from "src"
+	into "dest"
+}
+
+// The base plugin works with the settings to create an archive file called basic-demo-1.0.zip in the build/distributions folder.
+task zip(type: Zip, group: "Archive", description: "Archive sources in a zip file") {
+	from "src"
+}

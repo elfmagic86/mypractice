@@ -1,0 +1,35 @@
+
+# 참고
+	- basic-demo
+	: https://guides.gradle.org/creating-new-gradle-builds/?_ga=2.245090821.1005929378.1519964830-1874037921.1519964830
+
+
+# 명령
+	- 정보
+		```
+		# 개별 task 실행
+		./gradlew copy
+
+		# 전체 task 목록
+		./gradlew tasks
+
+		# 빌드에서 사용할수있는 프로퍼티목록
+		./gradlew properties
+
+		```
+
+	- 기본실행
+		```
+		# java app run
+		# build.gradle - mainClassName
+		./gradlew run
+		```
+
+
+	- 기타 명령
+		```
+		# 빌드 분석정보 제공, (scan plugin필요, 별도 url에서 확인함)
+		./gradlew zip --scan
+		```
+
+

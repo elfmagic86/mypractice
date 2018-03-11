@@ -1,0 +1,37 @@
+
+# gradle java 프로젝트 생성
+	- tutorials
+	: https://gradle.org/guides/
+
+	- Building Java Applications
+	```
+	# java-demo 폴더 생성 후 이동하여 아래 명령 실행
+	gradle init --type java-application
+	```
+
+
+# multiple project
+: A multi-project build in gradle consists of one root project, and one or more subprojects that may also have subprojects.
+
+	- 참고:
+		http://yookeun.github.io/java/2017/10/07/gradle-multi/
+		https://guides.gradle.org/creating-multi-project-builds/
+		https://docs.gradle.org/4.1/userguide/multi_project_builds.html
+
+	1. 따라하기(water project)
+	: https://docs.gradle.org/4.1/userguide/multi_project_builds.html
+
+	2 프로젝트생성..
+	: https://guides.gradle.org/creating-multi-project-builds/
+
+		1. 루트 프로젝트에 필요한 기본 gradlew등 생성
+		```
+		gradle init --info
+
+		```
+
+		2. settings.gradle
+		```
+		rootProject.name = 'multi-project'
+		```
+

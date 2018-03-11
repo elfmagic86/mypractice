@@ -1,0 +1,18 @@
+
+# https://docs.gradle.org/4.1/userguide/multi_project_builds.html#sec:project_jar_dependencies
+
+	- 의존관계
+	:We have the projects “shared”, “api” and “personService”. The “personService”
+	project has a lib dependency on the other two projects. The “api” project has
+	a lib dependency on the “shared” project
+
+
+	- 빌드 설명(build.gradle)
+	:All the build logic is in the “build.gradle” file of the root project.
+	 A “lib” dependency is a special form of an execution dependency. It
+	causes the other project to be built first and adds the jar with the
+	classes of the other project to the classpath. It also adds the
+	dependencies of the other project to the classpath. So you can enter the
+	“api” directory and trigger a “gradle compile”. First the “shared” project
+	is built and then the “api” project is built. Project dependencies enable
+	partial multi-project builds.

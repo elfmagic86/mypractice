@@ -1,0 +1,13 @@
+
+ext.arctic = true
+hello {
+	doLast { task -> println "[sub]krill: krrrrrrrrrrill" }
+}
+
+task distanceToIceberg {
+    doLast {
+        println '5 nautical miles'
+    }
+}
+
+
