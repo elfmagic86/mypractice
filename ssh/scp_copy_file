@@ -1,0 +1,14 @@
+# copy
+: https://unix.stackexchange.com/questions/106480/how-to-copy-files-from-one-machine-to-another-using-ssh
+
+
+	- copy file from src to dest
+	: a는 ip
+		```
+		scp /path/to/file username@a:/path/to/destination
+		```
+
+	- copy file from dest to src
+		```
+		scp username@b:/path/to/file /path/to/destination
+		```

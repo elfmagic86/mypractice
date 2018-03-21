@@ -26,3 +26,8 @@ gradlew*
 .settings/
 .project
 .classpath
+
+
+##############
+# etc
+.meghanada/

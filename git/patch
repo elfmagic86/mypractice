@@ -1,0 +1,47 @@
+# patch
+# ===
+
+
+# 명령어이용
+	- 커밋하나 patch
+		```
+		# 현브랜치의 새 커밋으로 적용됨
+		git cherry-pick {commit-id}
+		```
+
+
+	- 커밋여러개 순차적으로 patch
+		```
+		# chrry-pick를 여러번 실행하는것과같음, 연결될 커밋을 순서대로 cherry-pick
+		git rebase
+		```
+
+	- 커밋 되돌리기
+		```
+		# git cherry-pick 명령의 반대
+		# 해당 커밋을 되돌리는 커밋을 새로 생성함
+		git revert
+		```
+
+
+# patch파일이용
+: patch 파일 생성 후 적용한다
+
+	- patch파일생성
+		- commit id
+			```
+			git format-patch {commit-id}
+			```
+
+		- HEAD기준으로 N개
+			```
+			git format-patch -2
+			```
+
+	- patch파일 적용
+	: https://git-scm.com/book/ko/v1/%EB%B6%84%EC%82%B0-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-Git-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9A%B4%EC%98%81%ED%95%98%EA%B8%B0
+		```
+		TODO
+		```
+
+

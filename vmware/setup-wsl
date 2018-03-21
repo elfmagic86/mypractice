@@ -1,0 +1,38 @@
+
+# setup
+# : https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
+# ===
+
+
+# 환경
+  - Windows10 home edition
+
+# 설치
+  - vmware(free)
+  : https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0
+
+  	-  ubuntu16 vm 추가
+	: http://theholmesoffice.com/installing-ubuntu-in-vmware-player-on-windows/
+	  - down:
+	  	- desktop: https://www.ubuntu.com/download/desktop/contribute?version=16.04.4&architecture=amd64
+		- server https://www.ubuntu.com/download/server/thank-you?country=KR&version=16.04.4&architecture=amd64
+
+# vm 설정
+	-  ssh로 연결하기위해 준비
+	```
+	set -o vi
+	apt -y install openssh-server
+	```
+
+
+	- 이슈
+	: apt install 하는데 cdrom 어쩌구 하면 아래참고하여 수정
+		- /etc/apt/sources.list 의 cdrom 부분을 없에면됨
+		: https://www.velocihost.net/clients/knowledgebase/29/Fix-the-apt-get-install-error-Media-change-please-insert-the-disc-labeled--on-your-Linux-VPS.html
+
+# 사용
+	- 여러 vm 실행??
+		- vmware player는 여럿 띄워서 vm을 실행하면됨
+		- todo
+		: 하나의 vmware로 여럿 관리하는것은
+		  player가 아니라 workstation 중 다른 어떤것??을 사용하면 되는듯하다

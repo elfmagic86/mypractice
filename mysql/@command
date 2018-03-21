@@ -1,0 +1,24 @@
+
+
+- 유저확인
+	```
+	select *from mysql.user;
+	```
+
+- mysql 접속
+	```
+	# enter 후 패스워드 입력
+	PS C:\Program Files\MariaDB 10.2\bin> .\mysql.exe -u user -p
+	```
+
+
+- 컬럼정보 보기
+	```
+	# https://stackoverflow.com/questions/1526688/get-table-column-names-in-mysql
+
+	describe my_table;
+
+	show columns from my_table;
+
+	select column_name from information_schema.columns where table_schema = 'my_database' and table_name = 'my_table';
+	```
