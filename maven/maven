@@ -12,9 +12,9 @@
 
     - 설명참고
     https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
-  
+
   - phase or plugin
-  : 실 동작하는 task 
+  : 실 동작하는 task
 
   - <build> 태그
   : 빌드환경에 대한 온갖 설정이므로 주의.
@@ -43,7 +43,7 @@ Maven is - at its heart - a plugin execution framework; all work is done by plug
 
     - 빌트인goal에 대한 플러그인 목록
     http://maven.apache.org/plugins/
-      
+
     - install plugin
     http://maven.apache.org/plugins/maven-install-plugin/plugin-info.html
 

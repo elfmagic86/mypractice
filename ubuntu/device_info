@@ -11,3 +11,11 @@
 		lshw -numeric -C display
 
 		```
+
+- info
+	```
+	lscpu
+
+	#disk
+	sudo lshw -short
+	```

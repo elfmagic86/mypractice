@@ -2,3 +2,13 @@
 
 
 
+# 이슈
+	- 이클립스 maven 의존성 깨졌다는 에러나올경우.
+	: 내경우는 eclipse, eclim양쪽에서 작업할때 의존성깨졌음)
+
+	```
+	1. 이클립스에서 메이븐 빌드함. 아래 명령...
+	mvn eclipse:clean eclipse:eclipse
+
+	2. 프로젝트 우클릭 -> maven update
+	```

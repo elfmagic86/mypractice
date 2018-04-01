@@ -1,26 +1,5 @@
+#
+# ---
 
----
-  - js 프로젝트들
-  :https://github.com/sindresorhus/awesome-nodejs#mad-science
-
-  - 사람. js 전문가+@.. 엄청남.
-  : https://github.com/sindresorhus
-
-  - https://github.com/alebcay/awesome-shell#command-line-productivity
-
----
-
-  - 터미널 스피너
-  : https://github.com/sindresorhus/ora
-
-  - Simplified HTTP requests
-  : https://github.com/sindresorhus/got
-
-  - commander
-  : https://github.com/tj/commander.js
-  > The complete solution for node.js command-line interfaces, inspired by Ruby's commander.
-  API documentation
-
-  - webtorrent
-  : https://github.com/webtorrent/webtorrent
-  : server, cli, 데스크탑 다 있는데 모두 자바스크립트프로젝트야...대단
+	- https://www.slideshare.net
+	: 요약본으로 간접 경험하기 좋음

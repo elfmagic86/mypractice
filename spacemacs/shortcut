@@ -1,0 +1,101 @@
+# shortcut
+# ===
+
+
+# help
+
+	-
+
+	SPC h d f	Prompts for a function and shows its documentation.
+	SPC h d k	Prompts for a keybinding and shows what it is bound to.
+	SPC h d v	Prompts for a variable and shows its documentation and current value.
+	SPC <f1>	Searches for a command, function, variable, or face and shows its documentation.
+
+	SPC h SPC	Lists all layers and allows you to view files from the layer.
+	SPC ?	Lists all keybindings.
+
+
+	- 한/영키
+	: 한/영키가 먹통?이될때가, S-SPC로 토글
+
+# navigate
+
+	- SPC f r :최근파일 리스트
+
+
+	- SPC s l: 마지막 탐색창
+
+# 마크
+  - SPC r m: helm makr all rings
+  - :marks
+  : view all makrs
+
+  - ``: 직전마크로 이동
+  - `a: a마크로 이동
+  - ma: 현재라인 a마크 set
+
+
+# J
+  :라인 합치기, visual block으로 지정가능
+
+# ? 뭔가 유용해보이는것
+  - ;
+  : repeat that command again
+
+
+
+# info
+# ===
+	- structure
+	There are four top-level functions in the file: dotspacemacs/layers,
+	dotspacemacs/init, dotspacemacs/user-init and dotspacemacs/user-config. The
+	dotspacemacs/layers function exist only to enable and disable layers and
+	packages. The dotspacemacs/init function is run before anything else during
+	startup and contains Spacemacs settings. You will never need to touch this
+	function except to change default Spacemacs settings. The
+	dotspacemacs/user-init function is also run before anything else and contains
+	user specific configuration. The dotspacemacs/user-config function is the one
+	you will use the most. This is where you define any user configuration.
+
+
+# TODO
+# ===
+
+(define-key evil-normal-state-map (kbd "H") 'previous-buffer)
+;; Mapping keybinding to another keybinding
+(define-key evil-normal-state-map (kbd "H") (kbd "^")) ;
+
+
+
+(defun dotspacemacs/user-config ()
+  ;; ...
+  ;; Set escape keybinding to "jk"
+  (setq-default evil-escape-key-sequence "jk"))
+
+
+
+
+Spacemacs does not automatically restore your windows and buffers when you
+reopen it. If you use vim sessions regularly you may want to set
+dotspacemacs-auto-resume-layouts to t in your .spacemacs.
+
+
+
+
+;; Other things in `dotspacemacs/layers` ...
+dotspacemacs-additional-packages '(multiple-cursors)
+;; Rest of `dotspacemacs/layers`
+
+(defun dotspacemacs/user-config ()
+  "Configuration function for user code.
+This function is called at the very end of Spacemacs initialization after
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place your code here."
+
+  (require 'multiple-cursors)
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+)

@@ -11,7 +11,7 @@ setting_eclim
 
     - 압축해제 및 위치
     tar -xzf ~/Downloads/eclipse-java-neon-3-linux-gtk-x86_64.tar.gz -C ~/
-    
+
   - eclim
   java -jar eclim_2.6.0.jar
 
@@ -25,7 +25,7 @@ setting_eclim
 
     - eclim설치했지만, ~/eclipse/eclimd script가 없다.
     : 아래 경우가 원인일 가능성이 있음
-      - 이클립스를 인스톨러로 설치했을경우 
+      - 이클립스를 인스톨러로 설치했을경우
       - /opt/eclipse 위치에 설치했을경우
       - sudo로 eclim 설치했을경우: 에러남. 빌드시 root면 실패하게해놓음.
 
@@ -33,6 +33,13 @@ setting_eclim
     ~/eclipse/eclimd
     :PingEclim
     :EclimValidate
+
+	# wsl에서는 한참 후에 실행됨
+	```
+	# Xvfb 안하고 그냥실행하면 에러남
+	$ Xvfb :1 -screen 0 1024x768x24 &
+	$ DISPLAY=:1 ./eclipse/eclimd -b
+	```
 
 
 사용
@@ -47,7 +54,7 @@ setting_eclim
     3. :JavaSearchContext의 탐색 범위에 maven 의존성 포함하기위해
       1. $ mvn dependency:sources
       2. M2_REPO를 워크스페이스에 추가, 후 classpath 업데이트?
-        :MvnRepo 
+        :MvnRepo
         :Mvn eclipse:eclipse
 
       이슈: 안되다가 모두 재시작해봄니 됨...

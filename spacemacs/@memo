@@ -1,0 +1,62 @@
+
+
+
+
+
+
+# 어떤 spacemac를사용할것인지
+# ===
+
+
+!!!!: 잘동작하지않아. 답답,
+
+
+
+# 선택지중..
+
+환경: Windows10
+결론: 현재(20180325)는 4번
+
+  1. 윈도우용 emacs
+  2. bash + emacs(wsl)
+  3. xming + emacs(wsl)
+  4. bash + tmux + emacs(wsl)
+
+
+TODO: 2를 하고 싶은데 화면이 한줄씩 밀리는 현상이있음, 나중에 찾아보고 변경을..
+	  4는 화면은 단순하지만 가장 문제없이 동작함
+	  1은..잘동작하는데....
+
+
+# 인스톨 후 설정
+# ===
+
+# 폰트 설정
+: http://spacemacs.org/doc/DOCUMENTATION.html#font
+
+  1.폰트설치
+  : https://askubuntu.com/questions/18357/how-to-install-otf-fonts
+  ttf, opt를 설치해주면됨
+
+  2. dotfile 설정
+
+  TODO: 잘된건지?? 모르겠다, 중요하지않으니 미룸
+
+
+# ag
+	```
+	;; user-config
+	(setq helm-ag-base-command "ag --vimgrep")
+	```
+
+# AUTOCOMPLETE
+  - 기본 DISABLEkkkk
+  jjjjjlkqqkk
+
+ffw
+emmmmmwefknkllluuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuukkkk
+jkk
+k								w::q
+
+
+  1. 어느정도 자리잡히면 dotfile정리
