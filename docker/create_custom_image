@@ -1,0 +1,35 @@
+# 커스텀 이미지 생성
+
+	1. DockerFile로 생성
+	http://crosbymichael.com/dockerfile-best-practices.html
+
+
+	2. docker commit으로 생성
+		- 요약
+		이미지로 컨테이너 실행
+		컨테이너 접속하여 어떤 변경줌.
+		docker commit하여 이미지 생성
+
+		- 단계
+		```
+		docker run -it -d centos
+
+		docker ps
+		docker attach {CONTAINER_ID}
+
+		# 컨테이너 접속 후..
+		useradd kang
+		passwd kang
+		su - kang
+		echo 'test commit' > test
+
+		# 컨테이너에서 빠져나옴, 그리고 커밋
+		docker commit -m 'create user for centos' -a 'kang' {COTNAINER_ID} local/kang-centos
+
+		# 확인: 해당이미지로 컨테이너 여럿 생성 및 실행 후 접속하여 확인
+		docker run -it -d  local/kang-centos
+		docker run -it -d  local/kang-centos
+
+		docker exec -it --user kang d5036dfa8d4a bash
+		```
+

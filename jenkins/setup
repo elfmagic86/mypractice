@@ -1,0 +1,24 @@
+
+
+# 설치(docker image)
+	- docker 설치
+	- create and run container
+		```
+		docker run \
+		  -u root \
+		  --rm \
+		  -d \
+		  -p 8080:8080 \
+		  -p 50000:50000 \
+		  -v jenkins-data:/var/jenkins_home \
+		  -v /var/run/docker.sock:/var/run/docker.sock \
+		  jenkinsci/blueocean
+		```
+
+	- http://192.168.239.138:8080
+		- unlock
+
+		- 플러그인설치
+		: 제안하는것 설치함
+
+		- 계정생성

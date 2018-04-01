@@ -1,6 +1,101 @@
+
+# ==============================================================================
+#
+# ==============================================================================
+
 # docker 서비스 실행/종료
-sudo service docker start
-sudo service docker stop
+	```
+	sudo service docker start
+	sudo service docker stop
+	```
+
+# 이미지 찾고 받기
+	```
+	docker search centos
+	docker pull centos
+	```
+
+# ==============================================================================
+# 정보
+# ==============================================================================
+
+# 컨테이너 상태확인
+	```
+	# 현재 실행중인 컨테이너
+	docker ps
+	docker ps -a # 모든 컨테이너
+	```
+
+# 로그
+	```
+	docker logs {CONTAINER_ID}
+	```
+
+# 차이확인
+	```
+	docker diff {CONTAINER_ID}
+	```
+
+# ==============================================================================
+# 컨테이너
+# ==============================================================================
+
+# TODO
+	- 컨테이너 이름 사용?
+
+# 컨테이너 생성 및 실행(이미지 기준)
+	주의: 아래명령은 항상 해당 이미지에대한 새 컨테이너가 생성된다.
+
+	- 명령
+
+		```
+		# 컨테이너는 실행 후 종료됨
+		docker run centos
+
+		# 실행 후 터미널접속(root), 터미널종료하면 컨테이너 종료됨
+		docker run -it centos
+
+		# 컨테이너는 실행상태, attach로 접근가능, -it가 있어야함
+		docker run -it -d centos
+		```
+
+	- 옵션(자주사용되는것만
+		```
+		-i, --interactive                    Keep STDIN open even if not attached
+		-t, --tty                            Allocate a pseudo-TTY
+		-p, --publish list                   Publish a container's port(s) to the host
+		--rm                             Automatically remove the container when it exits
+		```
+# 컨테이너 접속
+	```
+	# 1. 접속 후 exit시 컨테이너 종료됨
+	docker attach CONTAINER_ID
+
+	# 2. 컨테이너 실행 후 접속(컨테이너 종료하지않음)
+	docker start {CONTAINER_ID}
+	docker exec -it [--user kang] {CONTAINER_ID} bash
+	```
+
+# 컨테이너 종료 및 제거
+	```
+	# 종료
+	# kill과의 차이는?
+	docker stop CONTAINER_ID
+
+	# 제거
+	docker rm CONTAINER_ID
+	```
+
+	- 추가(전체 종료/제거)
+	```
+	docker stop $(docker ps -a -q)
+	docker rm $(docker ps -a -q)
+	```
+
+# ==============================================================================
+# old
+# ==============================================================================
+
 
 # 자주 사용한느것
 docker images
