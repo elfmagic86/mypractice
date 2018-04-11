@@ -1,0 +1,23 @@
+
+
+
+- 공백기준 네번째 필드부터 화면에 출력하기
+
+```
+cut -d ' ' -f 4- /var/log/message
+```
+
+
+- 로그에서 시템시간 제거
+```
+grep -v gettimeofday
+```
+
+
+- 서로 다른 부분만 출력하기
+```
+TODO ??
+# t1에만 존재하는 줄을찾아 화면에 표시
+comm -23 <(awk '/open\(/{print $2}' t1 | sort) \
+	<(awk '/open\(/{print $2}' t2 | sort)
+```

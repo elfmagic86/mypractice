@@ -21,6 +21,8 @@ class Philosopher extends Thread {
     }
 // END_HIGHLIGHT
     random = new Random();
+
+	System.out.println("철학자, first:"+first.getId()+"second:"+second.getId());
   }
 
   public void run() {

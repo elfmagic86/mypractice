@@ -1,0 +1,23 @@
+
+# 일단, 간단히 보려면 htop 설치해서 메모리 보는것이 편함
+
+# memory
+# ---
+
+
+# cpu
+# ---
+# 코어 수 정도만 궁금함
+cat /proc/cpuinfo
+
+
+# gpu
+# ---
+
+	- check info
+	: http://www.binarytides.com/linux-get-gpu-information/
+
+		```
+		lshw -numeric -C display
+
+		```

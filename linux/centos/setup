@@ -1,0 +1,27 @@
+centos7
+
+
+# setup
+TODO
+
+
+# 주의
+	- centos7 한글깨짐
+		- 문제
+			- 파일저장(touch), 읽기시 ??로 표시됨
+			- 톰캣으로 파일저장시 문제
+
+		- 처리
+		: LANG이 설정되어있어야, touch, 프로그램등이 바르게 동작
+
+			```
+			# 체크
+			locale
+			echo $LANG
+
+			# 설정(둘중
+			localectl set-locale LANG=en_US.UTF-8
+
+			# or .bash_profile, .bashrc
+			export LANG="en_US.UTF-8"
+			```

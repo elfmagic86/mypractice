@@ -1,4 +1,46 @@
 
+# setup
+# ===
+	- 설치
+	```
+	apt-get install nginx
+	```
+
+	- 기본설정
+		- /etc/nginx/nginx.conf 를 수정
+
+		- /etc/nginx/site-enabled/default 를 제거(site-availble/default 의 링크임)
+
+# usage
+# ===
+
+	```
+	# nginx configuration에 이상이 없는지 확인
+	sudo nginx -t
+
+	# 서비스 정보 리로드
+	sudo nginx -s reload
+
+	# 서버 리스타트
+	$sudo service nginx restart
+
+	# 서버 종료
+	nginx -s quit # 현재작업 종료 후
+	nginx -s stop # 현재작업있어도
+	```
+
+
+# log확인
+# ===
+	설정된 nginx.conf 확인해서 위치보면됨
+	기본적으로 /var/log/nginx/... 에위치
+
+
+
+
+
+
+
 # basic
 # ===
 
@@ -10,39 +52,8 @@
 
 # doc
 # ===
-
 https://nginx.org/en/docs/
 
-
-	- 설치
-	:
-
-
-
-
-
-
-
-
-
-# settings
-# ===
 	- reverse proxy
 
 	- load balancing
-
-
-
-
-
-# usage
-# ===
-
-nginx configuration에 이상이 없는지 확인
-$sudo nginx -t
-
-서비스 정보 리로드
-$sudo nginx -s reload
-혹은 서버 리스타트
-$sudo service nginx restart
-

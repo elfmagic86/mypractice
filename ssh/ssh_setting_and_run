@@ -17,7 +17,7 @@ ssh설정(ubuntu14)
 : 기본으로 설치되어있음(ssh — OpenSSH SSH client (remote login program)
 
 ## ssh server(sshd - OpenSSH SSH daemon)
-  
+
   - 설치
     ```
     sudo apt-get install openssh-server
@@ -43,6 +43,11 @@ ssh설정(ubuntu14)
     ```
     sudo sh -c 'exec /usr/sbin/sshd -D'
     ```
+
+  - todo 운영환경?
+	- 커스텀 설정파일 사용
+	- 기본 포트 대신 다른 포트 사용
+	- -d 옵션으로 디버그 메시지를 남기기?
 
 # ssh 실행
   ```

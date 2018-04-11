@@ -13,3 +13,15 @@ sudo netstat -tulpn
 	```
 	curl icanhazip.com
 	```
+
+
+# 네트워크 인터페이스
+	ifconfig
+
+
+# 네트워크 유틸
+
+TODO
+	- tcpdump: dump traffic on a network
+	- nmap: Network exploration tool and security / port scanner
+	- dig: DNS lookup utility

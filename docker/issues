@@ -10,3 +10,10 @@ issues
   결론:
     - 서비스로 등록된 이미지였음. 서비스에서 제거해주면 정상적으로 제거되고, 자동실행안됨.
 
+
+# [미해결] vm + docker + centos7: systemctl 사용시 아래에러
+	- 에러
+	Failed to get D-Bus connection
+	> 여러가지 찾아서 해봤지만 해결안됨
+
+	>> docker 문제로 보여서 ubuntu 이미지 사용하는것으로 변경

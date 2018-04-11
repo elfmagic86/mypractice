@@ -1,0 +1,9 @@
+
+# sudo 없을경우
+	- 설치
+	: https://github.com/tianon/docker-brew-ubuntu-core/issues/48
+	```
+	apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
+	```
+
+

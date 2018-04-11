@@ -22,3 +22,31 @@
 		: 제안하는것 설치함
 
 		- 계정생성
+
+
+# 빌드 등, 툴 설치
+: http://192.168.239.138:8080/configureTools/
+  위의 링크에서 사용할 도구 적절히 설정
+
+# task
+
+	- freestyle
+	:단순.
+
+
+############################################333
+
+# 이슈
+	- nodejs 플러그인으로 설치한 node가 실행이안됨
+	>> 수동으로 설치함```apk add --update nodejs```
+
+		- ..왜안될까??
+			1. jenkins(docker + alpine linux) + nodejs플러그인 + jenkins global tool(add nodejs from nodejs org)
+			2. 이후 ```node --version``` 하면 no search ... 에러,
+
+			3. jenkins 컨테이너 접속하여 tools/...../node.../bin/node --version 해도 같은에러, 실행이왜안될까.
+			4. ubuntu에 jenkins에서 설치하는 tar로 로컬설치해봤는데 실행됨.
+			!! 뭔가 이상함, jdk도 global tool...로 설치했는데 위처럼 직접 실행해보면 안됨
+
+
+

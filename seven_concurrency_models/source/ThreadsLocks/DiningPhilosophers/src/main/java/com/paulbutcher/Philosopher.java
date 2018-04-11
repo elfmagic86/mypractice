@@ -13,6 +13,7 @@ class Philosopher extends Thread {
   public Philosopher(Chopstick left, Chopstick right) {
     this.left = left; this.right = right;
     random = new Random();
+	System.out.println("철학자, left:"+left.getId()+"right:"+right.getId());
   }
 
   public void run() {

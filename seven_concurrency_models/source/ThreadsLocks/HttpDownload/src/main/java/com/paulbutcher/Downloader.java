@@ -22,6 +22,7 @@ class Downloader extends Thread {
     listeners.remove(listener);
   }
   private synchronized void updateProgress(int n) {
+	  System.out.println("n:"+n);
     for (ProgressListener listener: listeners)
       // START_HIGHLIGHT
       listener.onProgress(n);
@@ -39,7 +40,9 @@ class Downloader extends Thread {
         updateProgress(total);
       }
       out.flush();
-    } catch (IOException e) { }
+    } catch (Exception e) {
+	  System.out.println("ex:"+e);
+	}
   }
 }
 // END:downloader

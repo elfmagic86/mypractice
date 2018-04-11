@@ -21,6 +21,8 @@
 		```
 
 	- user 추가
+	: ubuntu16(adduser) # useradd시 유저폴더안생김
+	 centos(useradd)
 		```
 		useradd USER
 		passwd USER
