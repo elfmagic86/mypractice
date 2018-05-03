@@ -1,0 +1,7 @@
+# ag
+
+```
+# fileA 바탕으로 fileB에 무엇이 추가되거나 제거되었는지 보여줌
+# tig는 git diff 스타일로 칼라보기위함
+diff -u fileA fileB | tig
+```

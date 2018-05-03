@@ -10,3 +10,9 @@
 	- 해결
 	: https://stackoverflow.com/questions/18629094/illegal-mix-of-collations-for-operation-like-while-searching-with-ignited-data
 	> ....TB.brand_name like '%%' COLLATE utf8_bin
+
+# mysql 원격접속 안될경우 체크 포인트
+	서버 설정할때 확인해보기
+
+	- http://egloos.zum.com/postback/v/3406296
+	> 체크사항이 단계별로 상세함

@@ -25,3 +25,22 @@ TODO
 	- tcpdump: dump traffic on a network
 	- nmap: Network exploration tool and security / port scanner
 	- dig: DNS lookup utility
+
+# 서버 오픈상태 확인
+	```
+	ping ip
+	telnet ip port
+
+#
+
+# todo
+외부 서비스 사용가능 확인, ping, telnet 차이
+http://blog.naver.com/PostView.nhn?blogId=ssamba&logNo=125695893
+
+
+# firewall(ubuntu)
+# ---
+	- TODO nmap
+
+
+	- TODO nmap이 없다면?

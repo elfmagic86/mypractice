@@ -1,0 +1,63 @@
+
+
+
+# 설치(Windows10)
+: https://www.wireshark.org/download.html
+
+	- wireshark, tshark
+	- winpcap, usbpcap(optional)
+
+# wireshark
+	- 사용법
+		1. 네트워크인터페이스 더블클릭
+		2. 메뉴 -> 캡쳐필터  원하는 설정
+		3. display filter(자동완성됨
+			ip.addr == ip
+		4. packet 화면에서..
+			- 패킷을 utf8로 보고싶으면?(기본ascii)
+			: 패킷info트리?에서 행 선택  -> 우클릭 show packet bytes -> show as -> UTF-8
+
+# tshark
+# ---
+
+윈도우용 tshark.exe를 alias(win_tshark)줘서 wsl에서 사용함.
+
+# 기본
+	- 옵션
+		-D print list of interfaces and exit
+		-i <interface>           name or idx of interface (def: first non-loopback)
+
+		-f <capture filter>
+		-Y <display filter>      packet displaY filter in Wireshark display filter syntax
+
+		-w <outfile|->           write packets to a pcap-format file named "outfile"
+		(or to the standard output for "-")
+
+	- todo: 필터 표현식
+		- 캡쳐 필터
+		https://wiki.wireshark.org/CaptureFilters
+
+			```
+			# 특정 아이피
+			-f "host ip"
+			```
+
+		- display 필터
+		https://wiki.wireshark.org/DisplayFilters
+			```
+			#
+			-Y
+			```
+
+
+# USAGE
+	- 패킷 캡쳐(특정 호스트)
+	: `win_tshark -D`로 사용되는 인터페이스 확인후 아래 명령사용
+		```
+		# stdout
+		win_tshark -i Wi-Fi -f "host some_ip" -w -
+
+		# 특정 파일에 쓰기(wsl이라 winpath로 변환이필요하다)
+		win_tshark -i Wi-Fi -f "host some_ip" -w $(winpath /mnt/d/share_wsl/tmp_dump.pcap)
+		```
+

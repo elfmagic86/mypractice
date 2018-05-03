@@ -7,6 +7,16 @@ java.io.IOException: 현재 연결은 원격 호스트에 의해 강제로 끊�
 
 
 
+	- https://stackoverflow.com/questions/42300463/elasticsearch-5-x-bootstrap-checks-failing
+	http://libqa.com/wiki/807
+	> max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
+	```
+	# check
+	ulimit -Sa
+
+	# limit
+	sudo sh -c "ulimit -n 65536 && exec su $LOGNAME"
+	```
 
 
 

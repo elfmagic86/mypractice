@@ -12,3 +12,15 @@
 
 	2. 프로젝트 우클릭 -> maven update
 	```
+
+
+# 플러그인다운로드
+
+    # jetty
+    mvn dependency:get \
+      -DgroupId=org.eclipse.jetty \
+      -DartifactId=jetty-maven-plugin \
+      -Dversion=9.1.0.RC2
+
+	# 실행
+    mvn org.eclipse.jetty:jetty-maven-plugin:run

@@ -10,3 +10,32 @@
 
 	- todo: mysql은 제로필
 	- oracle은 n이 자릿수
+
+
+- InnoDB vs MyISAM(My Indexed Sequential Access Method)
+http://idchowto.com/?p=20166
+
+
+- auto commit
+	사용하는 툴 auto commit 상태인지 확인할것
+
+
+- visual explain
+	- workbench에서 사용하기
+
+		- 확인 MySQL 5.6.5 or newer
+		menu -> server status
+
+		- 쿼리 사용법
+		menu -> Query -> Explain Current Statement
+
+
+
+- workbench
+	- 메뉴의 서버 상태(통계 그래프가나온다)
+	- 사용하는 버전등
+
+	- 타임아웃 설정
+	Error Code: 2013. Lost connection to MySQL server during query	30.000 sec
+		- https://stackoverflow.com/questions/10563619/error-code-2013-lost-connection-to-mysql-server-during-query
+		> edit -> preference -> sql editor -> read tiemout

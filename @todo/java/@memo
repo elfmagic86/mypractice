@@ -1,0 +1,8 @@
+
+
+
+- jar 압축해제
+	```
+	# Fun fact: A .jar file is actually just a .zip file
+	unzip file.jar -d ${DEST_DIR}
+	```

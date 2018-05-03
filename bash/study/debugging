@@ -1,16 +1,19 @@
 
 # debugging
-	```
-	# log
-	bash -xv script.sh
+	-
+		```
+		# log
+		bash -xv script.sh
 
-	# system call
-	strace echo 1
-	strace bash script.sh
+		# system call
+		strace echo 1
+		strace bash script.sh
 
-	# dynamic library call
-	ltrace echo 1
-	ltrace bash script.sh
-	```
+		# dynamic library call
+		ltrace echo 1
+		ltrace bash script.sh
+		```
+
+	- https://kldp.org/node/900
 
 # debugger?

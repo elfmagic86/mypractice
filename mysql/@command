@@ -9,8 +9,13 @@
 	```
 	# enter 후 패스워드 입력
 	PS C:\Program Files\MariaDB 10.2\bin> .\mysql.exe -u user -p
+
+	# or
+	mysql -h ip -u user -p
 	```
 
+- 테이블정보보기
+	show table status where name = '테이블이름';
 
 - 컬럼정보 보기
 	```
@@ -21,4 +26,11 @@
 	show columns from my_table;
 
 	select column_name from information_schema.columns where table_schema = 'my_database' and table_name = 'my_table';
+	```
+
+- 전역설정값보기
+	```
+	show global variables
+	# or
+	SELECT @@max_heap_table_size;
 	```

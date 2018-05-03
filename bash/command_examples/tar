@@ -8,7 +8,18 @@
 ```
 # 압축하기
 # 타겟폴더로 이동해서 압축하는 이유는, 거치는 경로까지 빈폴더가 만들어지기때문.
-(cd $TARGET_PATH && tar -czf $ARC_PATH .)
+	1.
+		```
+		(cd $TARGET_PATH && tar -czf $ARC_PATH .)
+		```
+
+	2.
+		```
+		# 파일이름은 파일.tar.gz
+		tar -cvzf [압축 파일 이름] [압축할 파일이나 폴더명]
+		```
+
+
 
 # 압축풀기: -x가 extract(추출)
 ET_PATH=/tmp/$(basename ${ARC_PATH%%.*})

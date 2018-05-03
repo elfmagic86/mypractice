@@ -21,3 +21,13 @@ cat /proc/cpuinfo
 		lshw -numeric -C display
 
 		```
+
+# disk
+# ---
+	```
+	# 전체 용량
+	df -h --total
+
+	# 특정한 dir의 용량
+	du -hs path
+	```
