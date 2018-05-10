@@ -1,0 +1,26 @@
+
+https://jwt.io/
+
+#
+http://lazyhoneyant.tistory.com/2
+
+# 절차
+https://velopert.com/2350
+
+# oauth, jwt
+https://swalloow.github.io/implement-jwt
+>  JWT는 토큰 유형이고 OAuth는 토큰을 발급하고 인증하는 방법을 설명하는 일종의 프레임워크입니다
+
+http://throughkim.kr/2017/03/14/Jwt/
+
+# 안전
+https://medium.com/@OutOfBedlam/jwt-%EC%9E%90%EB%B0%94-%EA%B0%80%EC%9D%B4%EB%93%9C-53ccd7b2ba10
+
+# 사용해야할까?
+https://blog.outsider.ne.kr/1160
+
+-----------------
+TODO
+
+
+인증만? 권한은?

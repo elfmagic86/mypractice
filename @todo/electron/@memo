@@ -1,0 +1,64 @@
+# 지원되는 플랫폼
+https://electronjs.org/docs/tutorial/supported-platforms
+	- Windows 7 and later are supported, older operating systems are not supported (and do not work).
+
+# 버전 주의
+https://electronjs.org/docs/tutorial/electron-versioning
+> ^2.0.0 사용
+
+	- node, chromium, electron등 버전
+		process.versions
+
+# Testing on Headless CI System(Travis CI, Jenkins)
+https://electronjs.org/docs/tutorial/testing-on-headless-ci
+Being based on Chromium, Electron requires a display driver to function. If Chromium can't find a display driver, Electron will simply fail to launch
+사용하려면 링크참조하여 X11 구현 설정
+
+
+
+-------------------------------
+
+# 사용
+
+	- 일렉트론 라이프 사이클
+	electron.app으로 이벤트 핸들링
+
+	- 창생성
+	BrowserWindow
+
+
+# 두가지 타입의 프로세스
+
+	- 메인프로세스
+		- 하나의 메인프로세스만 존재
+		- 일렉트론 실행시점의 진입스크립트(ex: main.js)를 실행
+		- 웹페이지를 생성함,
+
+	- 렌더러 프로세스
+		- 크로미움의 아키텍처에 의해 각 웹페이지는 각각의 프로세스(렌더러 프로세스)로 동작
+		- 생명주기는 BrowerWindow의 생성/소멸과 함께함
+
+# 프로세스간 통신
+	- ex) 네이티브 GUI 관련 API 사용
+	: 렌더러 프로세스는 접근 할수 없고, 메인 프로세스에 요청해야함
+
+
+# API 사용시 주의
+
+	- 각 프로세스(메인프로세스, 렌더러 프로세스)에서만 사용가능한 것
+	: 예로, 메인 프로세스상에서 `const { BrowserWindow } = require('electron')`사용시 적절한 객체를 가져오지만
+	  렌더러 프로세스 상에서는  undeinfed가 된다.
+
+	- 두 프로세스 공통
+		- Node.js API
+		The basic rule is: if a module is GUI or low-level system related, then it should be only available in the main process
+
+		- todo:
+		https://electronjs.org/docs/tutorial/using-native-node-modules
+
+
+-------------------------------
+
+참조
+https://github.com/sindresorhus/awesome-electron#boilerplates
+너무많아.

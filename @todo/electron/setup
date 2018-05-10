@@ -1,0 +1,42 @@
+환경: Windows10
+	  using powershell
+
+
+starter:
+	1. https://github.com/SimulatedGREG/electron-vue
+	2. https://github.com/chentsulin/electron-react-boilerplate
+
+
+builder:
+	electron-builder
+
+
+# 준비
+# ---
+	1. 개발환경 구축
+		- (0) watch
+
+	2. 윈10 배포
+		- electron-builder
+			- installer(nsis)
+			- TODO updater
+			https://www.electron.build/auto-update
+
+
+	3. TODO 그외..
+		- 인증수단
+		- 파일저장?
+
+
+# react https://github.com/chentsulin/electron-react-boilerplate
+# ---
+
+# 이슈
+	- yarn
+	https://github.com/chentsulin/electron-react-boilerplate/issues/1498
+
+	- "package-win": "npm run build && build --win --x64",
+	위의 build가 node_modules/bin/electron-builder 와 같은스크립트
+
+# vue https://github.com/SimulatedGREG/electron-vue
+# ---

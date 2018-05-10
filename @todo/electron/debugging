@@ -1,0 +1,18 @@
+
+
+# 디버깅
+	- 렌더러 프로세스
+	: 일반적인 브라우저 개발자도구
+
+	- 메인 프로세스
+	https://electronjs.org/docs/tutorial/debugging-main-process
+		- nodejs 디버깅과 유사
+
+		- VS Code 사용
+		https://electronjs.org/docs/tutorial/debugging-main-process-vscode
+
+
+# 기타
+
+	- 메인프로세스를위한 REPL, 윈도우 안된다함.
+	https://electronjs.org/docs/tutorial/recent-documents

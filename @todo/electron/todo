@@ -1,0 +1,42 @@
+
+----------------
+
+
+
+TODO
+
+4. 다중 컨텍스트
+만약 NW.js를 사용해본 적이 있다면 Node context와 Web context의 개념을 잘 알고 있을 겁니다. 이러한 개념은 NW.js가 구현되기 위해 만들어졌습니다.
+
+------------------------------------------------------------------------------
+# security
+ex) 외부 컨텐츠 로드
+https://electronjs.org/docs/tutorial/security
+
+# 앱 업데이트
+https://electronjs.org/docs/tutorial/updates
+가능한 도구에맞는 release 서버설정필요
+
+
+# 윈도우 스토어 사용(win10만가능)
+https://electronjs.org/docs/tutorial/windows-store-guide
+
+------------------------------------------------------------------------------
+# 프로세스간 통신?
+
+# Node.js multithreading
+https://electronjs.org/docs/tutorial/multithreading
+
+# offscreen-rendering
+https://electronjs.org/docs/tutorial/offscreen-rendering
+bitmap, gpu, 3d..
+
+------------------------------------------------------------------------------
+# e2e(end to end) test
+	- 일렉트론에 셀레니움등사용하기: https://electronjs.org/docs/tutorial/using-selenium-and-webdriver
+	- 참고: https://blog.coderifleman.com/2016/06/17/e2e-test-and-nightwatch/
+
+
+
+-----------------------------------
+? Widevine CDM 플러그인 사용하기

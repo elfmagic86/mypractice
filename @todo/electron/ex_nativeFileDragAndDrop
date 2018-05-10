@@ -1,0 +1,5 @@
+
+
+# native file api를 사용하기위해 렌더러프로세스가
+  메인 프로세스와 어떻게 통신하는지 간단한예시
+https://electronjs.org/docs/tutorial/native-file-drag-drop

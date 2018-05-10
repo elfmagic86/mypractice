@@ -1,0 +1,45 @@
+# 배포하기(도구 사용)
+# --
+
+
+
+# 배포 방법들
+# ---
+https://electronjs.org/docs/tutorial/application-distribution
+
+# 패키징없이 배포(폴더자체)
+	1. prebuilt binaries 다운
+	2. `app`폴더의 내용 변경
+	3. 사용자에게 폴더 배포
+
+	4. 실행
+	Electron.app / electron / electron.exe 를 실행
+
+
+# 패키징 후 배포
+	1. 소스내용감추기(asar 사용)
+	위의 `# 패키징없이 배포(폴더자체)`와 같되, app폴더대신 `app.asar`을 사용함
+
+	todo: asar
+	https://electronjs.org/docs/tutorial/application-packaging
+
+		- asar 사용시 Nodejs의 파일관련 API를 사용할때 주의해야함, 가상디렉토리이기때문.
+
+
+# 도구사용하여 패키징 후 배포
+	- todo:
+		https://github.com/electron-userland/electron-builder
+		https://github.com/electron-userland/electron-packager
+
+
+# 배포 그외
+# ---
+
+	- rebranding //위의 electron-builder의 도구사용시 branding도 가능하다고함
+		- 윈도우: rcedit 사용하여 exe이름변경, 아이콘 등변경
+		https://github.com/electron/rcedit
+
+		- todo: 다른OS
+
+	- todo: 커스텀빌드
+	https://electronjs.org/docs/tutorial/application-distribution

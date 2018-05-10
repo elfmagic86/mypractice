@@ -1,0 +1,6 @@
+
+#
+
+	- HTML5 API로 online 상태확인이 구현되어있기에 렌더러 프로세스에서 사용할수있다.
+	  메인 프로세스에서 사용하기위해 아래 링크처럼 사용
+	https://electronjs.org/docs/tutorial/online-offline-events

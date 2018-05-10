@@ -1,0 +1,27 @@
+
+
+기본 환경: windows10
+
+no usb
+
+
+1. 파티션
+E(target), Z(부팅 인스톨러 설치할공간, 10GB줌)
+
+
+	- 분할
+	http://commmang.tistory.com/entry/%EC%97%84%EC%B2%AD-%EC%89%AC%EC%9A%B4-%EC%9C%88%EB%8F%84%EC%9A%B010-%ED%95%98%EB%93%9C-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%82%98%EB%88%84%EA%B8%B0
+
+	- 복구
+	http://prolite.tistory.com/1030
+
+	- 병합
+	http://commmang.tistory.com/entry/%EC%97%84%EC%B2%AD-%EC%89%AC%EC%9A%B4-%EC%9C%88%EB%8F%84%EC%9A%B010-%ED%95%98%EB%93%9C-%ED%8C%8C%ED%8B%B0%EC%85%98-%ED%95%A9%EC%B9%98%EA%B8%B0
+
+2. 과정
+http://blog.naver.com/PostView.nhn?blogId=hahaj1&logNo=20194237904
+
+	- universial usb installer 로 Z에 설치
+
+	- fast statup, secure boot 끄기
+	http://palpit.tistory.com/765

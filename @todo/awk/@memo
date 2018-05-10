@@ -1,0 +1,80 @@
+# ?
+	- $0...
+		$0은 입력의 레코드값
+		$1...은 레코드의 필드값으로 할당된다
+		a=1; $a 이런 사용이가능함 // sh와 해석시점이다름
+
+	- 레코드의 구분?? 로우..
+	- 필드의 구분??
+
+
+# built-in
+	- 변수
+
+	NR	레코드의 인덱스.. 1부터시작
+	NF	필드의 개수
+
+	- 함수
+
+	- 키워드
+	next	다음 액션
+
+	print
+		print;   <- 레코드를 출력함, print $0;과 같다
+
+
+# examples
+	- for문
+	'NR!=1 {
+		for (i=0; NF-i > 1; i++)
+			if ($(NF-i) < 50) { print; next }
+	}' test
+
+------------------------------------
+
+# 숫자, 문자열 타입
+
+	- string concatenation
+		- awk에서 공백은 무시됨
+		  만약 공백사용하려면 " "로 문자열을 사용해야한다.
+		  awk 'BEGIN{A=1 2 3; print A"String"  "  a"}' ->  123String  a
+
+		- 만약 공백이있다면 concatenation이 일어나서 문자열이됨
+		awk 'BEGIN{A=1 1; if(A > 9) print "none printing"}'
+		awk 'BEGIN{A=11; if(A > 9) print "printed"}'
+
+	- 숫자, 문자열 형변환
+	111""
+	"111"+0
+
+	- 변환 주의
+	https://mug896.github.io/awk-script/data_types.html
+	> 입력 스트림으로부터 레코드를 읽어 들일 때는 숫자 데이터라도 기본적으로
+	> 스트링입니다. 스트링 데이터는 있는 그대로 프린트되기 때문에 포멧 값이
+	> 적용되지 않습니다. 하지만 산술연산을 하게 되면 결과가 숫자가 되고 숫자는
+	> print 문에서 OFMT 적용을 받고 다시 스트링으로 변환시 CONVFMT 값의 적용을
+	> 받습니다.
+
+
+		- string비교는 사전식비교를함
+
+# ?
+
+	- 키워드, 빌트인함수 등은 변수명으로 사용안됨
+
+	- 변수, array변수는 선언시 결정되며 선언이후에 혼용하여 대입할수없음
+
+	- print에서는 array변수사용못함
+
+
+------------------------------
+
+
+TODO
+===
+# ?
+	- todo: 소수 및 정밀도
+	https://mug896.github.io/awk-script/data_types.html
+	> 소수를 print 문으로 출력할 때는 OFMT 포멧 값이 적용되고 숫자에서
+	> 스트링으로 변경될 때는 CONVFMT 포멧 값이 적용됩니다. 기본값은 모두 %.6g
+	> 입니다.

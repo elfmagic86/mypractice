@@ -1,0 +1,15 @@
+# 공통
+https://electronjs.org/docs/tutorial/desktop-environment-integration
+
+	- 알림, 일단 win10에서 동작함
+	https://electronjs.org/docs/tutorial/notifications
+
+	- 작업표시줄 프로그레스바
+	https://electronjs.org/docs/tutorial/progress-bar
+
+	- 최신문서 목록에 추가하기
+	https://electronjs.org/docs/tutorial/recent-documents
+
+
+# 윈도우
+	https://electronjs.org/docs/tutorial/windows-taskbar
