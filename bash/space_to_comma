@@ -1,0 +1,8 @@
+
+- space to commna
+	https://stackoverflow.com/questions/9983566/remove-blank-spaces-with-comma-in-a-string-in-bash-shell
+
+	```
+	STR1="This is a string"
+	echo ${STR1// /,}
+	```

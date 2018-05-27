@@ -16,3 +16,21 @@
 
 	- http://egloos.zum.com/postback/v/3406296
 	> 체크사항이 단계별로 상세함
+
+
+# group by 관련 이슈
+	- 에러
+	Error Code: 1055. Expression #1 of SELECT list is not in GROUP BY clause and
+	contains nonaggregated column 'mcgis.t_shop_weather_status_chg_hist.seq' which
+	is not functionally dependent on columns in GROUP BY clause; this is
+	incompatible with sql_mode=only_full_group_by	0.000 sec
+
+	- 원인
+		1. sql_mode=only_full_group_by로 설정되어있고,
+		2. select * .... group by 형태로 사용했기때문
+
+	- 처리
+	https://stackoverflow.com/questions/34115174/error-related-to-only-full-group-by-when-executing-a-query-in-mysql
+
+		- 내가한것은 `select * ... group by` 형태를 `select key ... group by`로 변경함
+
