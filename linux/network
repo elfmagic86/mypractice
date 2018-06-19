@@ -1,5 +1,18 @@
 
 
+ubuntu port
+		port < 1024(root 권한)
+		1025 < port(일반)
+
+	1024 미만 포트 개방위해서,
+		1. root로 서버실행
+		2. 유저권한으로 서버실행 // 이때 1025 이상의 포트를 사용함
+		   이후 iptable, nginx 등으로 포워딩함
+				detail:	http://blog.net2free.net/223
+
+
+#####################################
+
 # 현재 열려있는 모든 포트확인
 : https://askubuntu.com/questions/9368/how-can-i-see-what-ports-are-open-on-my-machine
 sudo netstat -tulpn
@@ -27,11 +40,12 @@ TODO
 	- dig: DNS lookup utility
 
 # 서버 오픈상태 확인
+!!!! nestat으로 포트 열려있는지 먼저확인해야함 멍청
 	```
 	ping ip
 	telnet ip port
 
-#
+###########################
 
 # todo
 외부 서비스 사용가능 확인, ping, telnet 차이

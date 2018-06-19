@@ -34,3 +34,16 @@
 
 		- 내가한것은 `select * ... group by` 형태를 `select key ... group by`로 변경함
 
+
+# ```select password('1111');``` 문법에러
+
+	- 상황
+	: mysql 8.? web-community edition 설치 후 password 기능 사용시 에러
+
+	- 원인 // todo: 구체원인 모름
+	: ```select @@old_passwords;`` 시도시 변수가 없다고 나옴.
+	  기본설정 or 버전문제롤 판단.
+
+
+	- 처리
+	: mariadb(기존에 사용하던) 사용함

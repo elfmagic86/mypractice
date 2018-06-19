@@ -3,3 +3,15 @@
 
 	- 파일 소유자 변경
 	chown 사용자명:그룹 대상
+
+
+# sudo 권한설정 // 안해봄
+
+	```sh
+	visudo
+	```
+
+	- ex
+	# User privilege specification
+	root    ALL=(ALL:ALL) ALL
+	demo    ALL=(ALL:ALL) ALL

@@ -1,4 +1,6 @@
 
+!! WINDOWS
+
 
 # dns host 변경
 	- 관리자권한 powershell 열기
@@ -9,4 +11,18 @@
 	cd c:\Windows\System32\drivers\etc
 
 	notepade.exe hosts
+	```
+
+# 포트까지 변경.
+!!! 안됨
+	https://stackoverflow.com/questions/8652948/using-port-number-in-windows-host-file
+	```powershell
+	#set
+	netsh interface portproxy add v4tov4 listenport=443 listenaddress=ip connectport=8080 connectaddress=ip
+	netsh interface portproxy add v4tov4 listenport=80 listenaddress=ip connectport=8080 connectaddress=ip
+	# show
+	netsh interface portproxy show v4tov4
+	# remove
+	netsh interface portproxy delete v4tov4 listenport=443 listenaddress=ip
+	netsh interface portproxy delete v4tov4 listenport=80 listenaddress=ip
 	```
