@@ -1,0 +1,72 @@
+
+# 변수
+
+1. 문법
+	- SET 문법
+	https://dev.mysql.com/doc/refman/8.0/en/set-variable.html
+
+		```
+		# 전체 문법
+		SET variable_assignment [, variable_assignment] ...
+
+		variable_assignment:
+			  user_var_name = expr
+			| param_name = expr
+			| local_var_name = expr
+			| [GLOBAL | SESSION | PERSIST | PERSIST_ONLY]
+				system_var_name = expr
+			| [@@global. | @@session. | @@persist. | @@persist_only. | @@]
+				system_var_name = expr
+
+		# @@는 세션변수
+		# this differs from SET @@var_name = expr, which always refers to the session value.
+
+		# 유저정의 변수 문법
+		SET @var_name = expr [, @var_name = expr] ...
+		```
+
+	TODO https://dev.mysql.com/doc/refman/8.0/en/charset-connection.html
+
+	- `=`, `:=` 명령어 차이
+
+		`:=`: 할당 명령어
+		`=`: 문맥에 따라 다르게 해석됨
+			할당 명령어(set 절) or 비교 명령어(select, where 절등의 상황에서)
+
+		ex)
+			-- @t1의 값과 5의 값이 같으면 1, 다르면 0
+			select @t1=5;
+
+			-- @t1에 5를 할당 후 그 값을 사용함
+			select @t1:=5;
+
+
+
+2. 시스템 변수
+	- dynamic system variables(목록)
+	https://dev.mysql.com/doc/refman/8.0/en/dynamic-system-variables.html
+
+
+	- 권한
+	This SET syntax enables you to make configuration changes at runtime that also
+	persist across server restarts. Like SET GLOBAL, SET PERSIST changes the
+	runtime variable value, but also writes the variable setting to an option file
+	named mysqld-auto.cnf in the data directory (replacing any existing variable
+	setting if there is one). At startup, the server processes this file after all
+	other option files. The SYSTEM_VARIABLES_ADMIN or SUPER privilege is required
+	to persist global variables.
+
+	- TODO
+		글로벌, 세션, persist?
+
+
+
+3 프로시저, 함수안의 변수?
+	- BEGIN ... END 안
+	DECLARE is permitted only inside a BEGIN ... END compound statement and must be at its start, before any other statements.
+
+
+
+
+
+

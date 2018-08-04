@@ -1,0 +1,27 @@
+
+* common
+
+  - 저장:: <C-x><C-s>
+  - 종료:: <C-x><C-c>
+
+  - 명령취소 등등:: <C-g>
+
+** file managing
+   - <C-x><C-f>:: find-file(open file)
+   - <C-x><C-s>:: save-buffer(save file)
+
+* editing
+** common
+   - <C-y>:: paste
+   - TODO <C-w>:: kill-region(cut)
+   - TODO <A-w>:: kill-ring-save(copy)
+   - <C-/> or <C-g> and <C-/>:: undo or redo
+** moving
+   - <C-f/b>:: 한문자이동
+   - <M:qa
+-Fuuu/B>:: 단어이동u
+   - 
+
+
+
+	

@@ -1,0 +1,19 @@
+
+
+
+- 포트종류
+https://en.wikipedia.org/wiki/List_of_video_connectors#/media/File:Common_Display_Interfaces.png
+
+	- 일반적인 모니터용 포트는
+		Digital visual interface (DVI)
+		Video graphics array (VGA)
+		High-definition multimedia interface (HDMI)
+
+
+- 이슈
+	- PC, 노트북에 동작하는 모니터 연결시 신호가 안잡힌다고 나옴
+	=> 각 포트 별로 동작할수도 안할수도
+		=> TODO 그래픽카드, 드라이버 문제?
+
+		참고:https://cyberedu.sangju.go.kr/sjedu/sub_community/read.asp?page=52&no=1166&subnum=0&menu_type=data
+

@@ -1,12 +1,19 @@
 
+	- 자료구조 트리등 만들어보기
+	https://www.haruair.com/blog/4546
+
+	- tmux
+
 	- vscode extension
 
 	- sed
 	- awk
-	- tmux
 	- tig
 
 	- MSA
+
+
+	- golang to create cli tool
 
 # ------------------------------------------------------------------
 #
@@ -16,12 +23,13 @@
 
 	- doom-emacs
 
-	- netty
 
 	- maven multi module project
 	- gradle multi module project
-	- (RxJava) full 비동기 서버
 
+	- (RxJava) full 비동기 서버
+		- netty
+		- 게임서버
 
 # ------------------------------------------------------------------
 #
@@ -29,6 +37,9 @@
 
 	- 규모,
 	: ex) 10,000개 이상의 대용량 데이터를 렌더링하는 대규모 Web Front-end Application 개발 및 Performance Tuning 경험
+
+		- ipify 300억요청처리
+		https://www.haruair.com/blog/4108
 
 
 # ------------------------------------------------------------------

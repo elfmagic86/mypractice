@@ -3,7 +3,7 @@ https://dzone.com/articles/say-no-to-venn-diagrams-when-explaining-joins
 
 
 https://mariadb.com/kb/en/library/join-syntax/
-  
+
   # 메모
     - outer join
     // 영역은 벤다이어그램을 참고
@@ -11,21 +11,16 @@ https://mariadb.com/kb/en/library/join-syntax/
           ON, USING 의 조건과 상관없이 '모두' 나옴.
           그렇기에 추가적인 필터링은 where를 이용해야함
 
-    - full outer join
-    mariadb 문법에는 없기에 union distinct로 구현한다.
-
-    - natural
-    https://mariadb.com/kb/en/library/sql-99/natural-join/
-    [맥락만맞음]같은컬럼이름의 id-ref를 암시적으로 연결함.
-
-      - 문법이 의미하는거 natural ~ join
-        - join ~ using
-        - join ~ on 같은 필드명
-
-    - left|right [outer] join
-    outer가 옵션이라 생략된것. left|right가 나오면 outer조인이라 생각하면됨.
+		- full outer join
+		mariadb 문법에는 없기에 union distinct로 구현한다.
 
 
+		- left|right [outer] join
+		outer가 옵션이라 생략된것. left|right가 나오면 outer조인이라 생각하면됨.
+
+    - natural join
+		1. 같은 컬럼명으로 자동매칭 (그래서 join_condition이 없음.)
+		2. 결과 출력시 `위의 매칭대상은` 하나의 컬럼만 출력됨
 
 
   # 링크내용

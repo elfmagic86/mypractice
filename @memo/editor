@@ -1,0 +1,13 @@
+
+
+
+- 전체라인에 커서주기(multiple line)
+	- sublimetext
+		<C-a><C-S-l>
+		split_selection_into_lines
+
+	- TODO vscode, vimmode 에서 적용시키기
+	{ "key": "ctrl+shift+l", "command": "editor.action.insertCursorAtEndOfEachLineSelected", "when": "editorTextFocus "}
+
+- 줄의 끝에 comma 달기
+	:%s/$/,/

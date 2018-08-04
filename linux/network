@@ -58,3 +58,11 @@ http://blog.naver.com/PostView.nhn?blogId=ssamba&logNo=125695893
 
 
 	- TODO nmap이 없다면?
+
+
+=================================
+
+- Check what processes are listening via netstat -lntp or ss -plat
+(for TCP; add -u for UDP) or lsof -iTCP -sTCP:LISTEN -P -n (which also works on macOS).
+
+- also lsof and fuser for open sockets

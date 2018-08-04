@@ -7,11 +7,17 @@
 	: 작업표시줄 -> 윈도우메뉴버튼 우클릭 -> 관리자 권한 파워쉘열기
 
 	- 필요한 정보 수정
-	```powershell
-	cd c:\Windows\System32\drivers\etc
+		```powershell
+		cd c:\Windows\System32\drivers\etc
 
-	notepade.exe hosts
-	```
+		# NOTE: `IP		dns` 쌍으로 입력해야함
+		notepade.exe hosts
+		```
+
+	- 적용이 안될때
+		```powershell
+		 ipconfig /flushdns
+		```
 
 # 포트까지 변경.
 !!! 안됨

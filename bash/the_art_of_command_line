@@ -1,0 +1,104 @@
+https://github.com/jlevy/the-art-of-command-line/blob/master/README-ko.md
+
+# 정리필요
+	- 실행 커맨드 이력 관리
+		history
+		!!
+		!$
+		!n(history에서 배정된 숫자)
+
+	- edit-and-execute-command:
+		긴명령 실행시 사용
+		todo 단축키가 동작안함. fc로 유사하게 대체
+			<escape-v>
+			fc
+
+	- 이전 디렉토리로 이동
+		cd -
+
+
+	- 백그라운드 프로세스
+		nohup or disown
+
+# 유용명령
+
+	- xargs
+		```
+		# 출력을 라인으로 잘라서 arg로 주기
+			# 1. 파일이름에서 검색(path목록에서 grep한번실행)
+		find . -name '*vim*' | grep 'common'
+
+			# 2. 파일내용에서 검색(path목록 수만큼 grep 실행)
+		find . -name '*vim*' | xargs grep 'echo'
+
+		# create dynmic command
+		ls | xargs -I{} echo 'prefix {} sufix'
+		```
+
+	- pstree -p | less
+	: 프로세스 트리보기
+
+
+# TODO
+	- ssh 비밀번호 없는 인증방식?
+	: ssh-agent, ssh-add 사용
+
+	- Consider mosh an alternative to ssh that uses UDP, avoiding dropped connections and adding convenience on the road (requires server-side setup).
+
+	- inode가 무엇인지 배우세요.(ls -i 또는 df -i)
+
+	- netword
+	: dig
+
+	- 정규 표현식(regular expression)을 잘 알아두세요. 그리고 grep/egrep의 다양한
+	플래그도 알아두세요. -i, -o, -v,-A, -B와 -C 옵션은 알아둘 가치가 있습니다.
+
+	- Understand that care is needed when variables and filenames include whitespace.
+	Surround your Bash variables with quotes, e.g. "$FOO". Prefer the -0 or -print0
+	options to enable null characters to delimit filenames, e.g. locate -0 pattern
+	| xargs -0 ls -al or find / -print0 -type d | xargs -0 ls -al. To iterate on
+	filenames containing whitespace in a for loop, set your IFS to be a newline
+	only using IFS=$'\n'.
+
+	- In Bash scripts, use set -x (or the variant set -v, which logs raw input,
+	including unexpanded variables and comments) for debugging output. Use
+	strict modes unless you have a good reason not to: Use set -e to abort on
+	errors (nonzero exit code). Use set -u to detect unset variable usages.
+	Consider set -o pipefail too, to on errors within pipes, too (though read
+	up on it more if you do, as this topic is a bit subtle). For more involved
+	scripts, also use trap on EXIT or ERR. A useful habit is to start a script
+	like this, which will make it detect and abort on common errors and print a
+	message:
+
+      set -euo pipefail
+      trap "echo 'error: Script failed: see failed command above'" ERR
+
+	- Know about the 128K limit on command lines. This "Argument list too long"
+	error is common when wildcard matching large numbers of files. (When this
+	happens alternatives like find and xargs may help.	)
+
+
+
+	-
+		Know about sort and uniq, including uniq's -u and -d options -- see one-liners below. See also comm.
+
+		Know about cut, paste, and join to manipulate text files. Many people use cut but forget about join.
+
+		Know about wc to count newlines (-l), characters (-m), words (-w) and bytes (-c).
+
+		Know about tee to copy from stdin to a file and also to stdout, as in ls -al | tee file.txt.
+
+		For more complex calculations, including grouping, reversing fields, and statistical calculations, consider datamash.
+
+	- Know that locale affects a lot of command line tools in subtle ways,
+	including sorting order (collation) and performance. Most Linux
+	installations will set LANG or other locale variables to a local setting
+	like US English. But be aware sorting will change if you change locale. And
+	know i18n routines can make sort or other commands run many times slower.
+	In some situations (such as the set operations or uniqueness operations
+	below) you can safely ignore slow i18n routines entirely and use
+	traditional byte-based sort order, using export LC_ALL=C.
+
+	- ?
+	You can set a specific command's environment by prefixing its invocation
+	with the environment variable settings, as in TZ=Pacific/Fiji date.

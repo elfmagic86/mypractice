@@ -12,3 +12,10 @@
 		```
 		scp username@b:/path/to/file /path/to/destination
 		```
+
+	- folder
+		```
+		#https://stackoverflow.com/questions/11304895/how-to-scp-a-folder-from-remote-to-local
+		scp -r user@your.server.example.com:/path/to/foo /home/user/Desktop/
+		-r Recursively copy entire directories
+		```

@@ -1,0 +1,16 @@
+
+* common
+
+  - 저장:: <C-x><C-s>
+  - 종료:: <C-x><C-c>
+
+  - 명령취소 등등:: <C-g>
+
+* editing
+** moving
+   - 
+
+
+undo/redo
+	<C-/>/<C-g> and <C-/>
+	

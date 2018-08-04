@@ -1,0 +1,10 @@
+/* https://stackoverflow.com/questions/2664740/extract-file-basename-without-path-and-extension-in-bash */
+
+$ s=/the/path/foo.txt
+$ echo ${s##*/}
+foo.txt
+$ s=${s##*/}
+$ echo ${s%.txt}
+foo
+$ echo ${s%.*}
+foo

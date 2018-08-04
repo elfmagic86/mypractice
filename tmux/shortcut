@@ -4,10 +4,12 @@
 - 창크기조정
 C-b Ctrl누른상태로 방향키
 
-- 복붙
-	C-b [		copymode
-	vi move....
-		space   : selectStart
+- 복붙하기(vi모드)
+	1) enter copy mode using `Control+b [`
+	2) navigate to beginning of text, you want to select and hit `Space`
+	3) move around using arrow keys to select region
+	4) when you reach end of region simply hit `Enter` to copy the region
+	5) now `Control+b ]` will paste the selection
 
 # tmux
 
@@ -47,7 +49,10 @@ tmux new -s database
 
 ### 새창관련
 - 새창만들기: C-b c
-- 윈도우간의 전환: C-b <p|n>    or   C-b <number> // number is window name of bottomstatusbar
+- 윈도우간의 전환:
+	- C-b <p|n>    or   C-b <number> // number is window name of bottomstatusbar
+	- C-b w
+		window 리스트에서 선택함
 
 
 ### 창 레이아웃
