@@ -24,17 +24,22 @@
 # ---
 
 # 유용
-https://jonas.github.io/tig/doc/tig.1.html
+	-
+		- 현재화면 파일에저장
+			# todo: 절대경로만되는건지? ex) /tmp/test
+			:save-dispaly <saved-path>
 
-	- 하나의 파일 변경사항
-	$ tig -- README
+	- https://jonas.github.io/tig/doc/tig.1.html
 
-	- 폴더에 해당하는? 연관 커밋리스트 보기?
-	$ tig -- DIR
+		- 하나의 파일 변경사항
+		$ tig -- README
+
+		- 폴더에 해당하는? 연관 커밋리스트 보기?
+		$ tig -- DIR
 
 
-	Show references (branches, remotes and tags):
-	$ tig refs
+		Show references (branches, remotes and tags):
+		$ tig refs
 
 # 유용해보이는것
 
