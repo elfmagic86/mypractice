@@ -1,0 +1,57 @@
+
+
+
+
+# 문자열 문제?
+	- 상황
+	: 테이블과 view를 조인하여 where like ... 시도시 아래 에러남.
+		- Error Code: 1267. Illegal mix of collations (utf8_bin,NONE) and (utf8_general_ci,COERCIBLE) for operation 'like'
+
+	- 해결
+	: https://stackoverflow.com/questions/18629094/illegal-mix-of-collations-for-operation-like-while-searching-with-ignited-data
+	> ....TB.brand_name like '%%' COLLATE utf8_bin
+
+# mysql 원격접속 안될경우 체크 포인트
+	서버 설정할때 확인해보기
+
+	- http://egloos.zum.com/postback/v/3406296
+	> 체크사항이 단계별로 상세함
+
+
+# group by 관련 이슈
+	- 에러
+	Error Code: 1055. Expression #1 of SELECT list is not in GROUP BY clause and
+	contains nonaggregated column 'mcgis.t_shop_weather_status_chg_hist.seq' which
+	is not functionally dependent on columns in GROUP BY clause; this is
+	incompatible with sql_mode=only_full_group_by	0.000 sec
+
+	- 원인
+		1. sql_mode=only_full_group_by로 설정되어있고,
+		2. select * .... group by 형태로 사용했기때문
+
+	- 처리
+	https://stackoverflow.com/questions/34115174/error-related-to-only-full-group-by-when-executing-a-query-in-mysql
+
+		- 내가한것은 `select * ... group by` 형태를 `select key ... group by`로 변경함
+
+
+# ```select password('1111');``` 문법에러
+
+	- 상황
+	: mysql 8.? web-community edition 설치 후 password 기능 사용시 에러
+
+	- 원인 // todo: 구체원인 모름
+	: ```select @@old_passwords;`` 시도시 변수가 없다고 나옴.
+	  기본설정 or 버전문제롤 판단.
+
+
+	- 처리
+	: mariadb(기존에 사용하던) 사용함
+
+# https://stackoverflow.com/questions/11448068/mysql-error-code-1175-during-update-in-mysql-workbench
+	It looks like your MySql session has the safe-updates option set. This means that you can't update or delete records without specifying a key (ex. primary key) in the where clause.
+
+	Try:
+
+	SET SQL_SAFE_UPDATES = 0;
+	Or you can modify your query to follow the rule (use primary key in where clause).

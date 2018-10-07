@@ -1,8 +1,22 @@
-nodejs
-===
 
-memo
----
+- nodejs 버전별로 지원되는 기능 체크
+	http://node.green
 
-# nodejs 버전별로 지원되는 기능 체크
-: http://node.green
+
+- 직접 받기(압축파일을이용)
+   1) 모듈이름.tar.gz 파일을 받는다.(github등의 릴리즈에서..)
+   아마 전체를받고 내가 압축?을 할수도있겠지??
+
+   2) sudo npm install -g ./모듈이름.tar.gz
+
+
+- registry 등록
+```
+npm set registry https://registry.npmjs.org/
+```
+
+- 상태 자세히보기
+: electron처럼 ```node install.js```이 실행되고, 진행상태를 보고싶은경우 유용
+```
+npm install --verbose
+```

@@ -1,7 +1,0 @@
-
-
-
-* extentions
-https://code.visualstudio.com/docs/extensions/example-hello-world
-
-**

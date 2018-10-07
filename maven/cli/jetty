@@ -1,0 +1,22 @@
+# jetty plugin download
+mvn dependency:get \
+  -DgroupId=org.eclipse.jetty \
+  -DartifactId=jetty-maven-plugin \
+  -Dversion=9.1.0.RC2
+
+# 실행
+
+
+mvn -Djetty.reload=automatic \
+	-Djetty.scanIntervalSeconds=1000 \
+	org.eclipse.jetty:jetty-maven-plugin:run
+
+
+
+mvn org.apache.maven.plugins:maven-compiler-plugin:compile
+
+
+
+
+
+

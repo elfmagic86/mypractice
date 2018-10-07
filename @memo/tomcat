@@ -5,7 +5,11 @@
   (이클립스-톰캣에서 확인할수있는 데몬스레드)
 
 	- ajp-nio-8009...?
-	The AJP Connector element represents a Connector component that communicates with a web connector via the AJP protocol. This is used for cases where you wish to invisibly integrate Tomcat into an existing (or new) Apache installation, and you want Apache to handle the static content contained in the web application, and/or utilize Apache's SSL processing.
+	The AJP Connector element represents a Connector component that
+	communicates with a web connector via the AJP protocol. This is used for
+	cases where you wish to invisibly integrate Tomcat into an existing (or
+	new) Apache installation, and you want Apache to handle the static content
+	contained in the web application, and/or utilize Apache's SSL processing.
 		- ajp?
 		https://plus4070.github.io/nhn%20entertainment%20devdays/AJP.html
 		> AJP(Apache Jserv Protocol)는 웹 서버 뒤에있는 웹 애플리케이션 서버(Web
