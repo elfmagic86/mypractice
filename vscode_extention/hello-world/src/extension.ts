@@ -24,6 +24,7 @@ class WordCounter {
 
     public updateWordCount() {
 
+		console.error('2222222222222222222222222222222')
         // Get the current text editor
         let editor = window.activeTextEditor;
         if (!editor) {
