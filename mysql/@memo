@@ -39,3 +39,7 @@ http://idchowto.com/?p=20166
 	Error Code: 2013. Lost connection to MySQL server during query	30.000 sec
 		- https://stackoverflow.com/questions/10563619/error-code-2013-lost-connection-to-mysql-server-during-query
 		> edit -> preference -> sql editor -> read tiemout
+
+
+- 스키마 생성시 기본값 조건 부여
+`update_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일',

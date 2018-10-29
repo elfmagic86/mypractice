@@ -53,6 +53,7 @@
 # USAGE
 	- 패킷 캡쳐(특정 호스트)
 	: `win_tshark -D`로 사용되는 인터페이스 확인후 아래 명령사용
+	: ifconfig로 나오는 networkinterface 이름 사용
 		```
 		# stdout
 		win_tshark -i Wi-Fi -f "host some_ip" -w -
