@@ -38,3 +38,8 @@
   The expression T(v) converts the value v to the type T.
 
   - todo: 암시적 형변환은 항상 에러인듯?
+
+
+- type
+  type MyFloat float64
+  f := MyFloat(-math.Sqrt2)

@@ -1,2 +1,2 @@
 NEXT:
-  https://tour.golang.org/moretypes/24
+  https://tour.golang.org/methods/1

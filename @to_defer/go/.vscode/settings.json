@@ -1,4 +1,14 @@
 {
+	// - wsl
+	// "go.goroot": "/usr/local/go",
+	// "go.inferGopath": false,
+	// "go.gopath": "~/go:${workspaceFolder}"
+
+	// - windows
+	// 사용자설저에 있을경우 쉘이 변경되지않음...
+	"terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+
+	"go.goroot": "D:\\Win_Go\\tool\\Go",
 	"go.inferGopath": false,
-	"go.gopath": "~/go:${workspaceFolder}"
+	"go.gopath": "D:\\Win_Go\\local;${workspaceFolder}"
 }

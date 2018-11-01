@@ -35,6 +35,7 @@ func TestPic(t *testing.T) {
 	os.Stdout = w
 
 	// run (online에서 확인시 이미지 보여줌)
+	// TODO 왜 윈도우에서 안되지? try catch도 안됨?
 	pic.Show(Pic)
 
 	// copy
