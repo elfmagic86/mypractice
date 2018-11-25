@@ -1,0 +1,13 @@
+
+
+
+# gpu
+# ---
+
+	- check info
+	: http://www.binarytides.com/linux-get-gpu-information/
+
+		```
+		lshw -numeric -C display
+
+		```
