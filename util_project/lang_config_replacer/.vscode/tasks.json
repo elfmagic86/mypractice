@@ -2,7 +2,23 @@
 // for the documentation about the tasks.json format
 {
     "version": "2.0.0",
+    // TODO
     "tasks": [
+        {
+            "type": "shell",
+            "label": "RUN:AVA - Ts File",
+            "command": "npx",
+            "args": [
+                "ava",
+                "-v",
+                "${relativeFile}"
+            ],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
         {
             "type": "npm",
             "script": "watch",

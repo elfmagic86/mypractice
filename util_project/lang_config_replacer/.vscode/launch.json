@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch",
+            "name": "RUN - Ts File",
             "cwd": "${workspaceFolder}/",
             "program": "${workspaceRoot}/src/bin/index.ts",
             "stopOnEntry": false,
@@ -22,11 +22,29 @@
                 "${workspaceFolder}/build/src/**/*.js"
             ],
             // TODO isBackground가 동작하지않음. 별도로 작업.
+            //  task.json -> tasks.json  태스크등록이 잘못되었던것같다.
+            //  이름도 npm task랑 햇갈리니 변경해야
             // "preLaunchTask": "npm: watch"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "RUN:AVA - Ts File",
+            "cwd": "${workspaceFolder}/",
+            "sourceMaps": true,
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "ava",
+                "-v"
+            ],
+            "args": ["${relativeFile}"],
+            "env": {
+                "NODE_ENV": "development"
+            }
         },
         // 현재 ts파일 디버깅
         {
-            "name": "Current TS File",
+            "name": "DEBUG - TS File",
             "type": "node",
             "request": "launch",
             "args": ["${relativeFile}"],
@@ -36,7 +54,7 @@
             "protocol": "inspector",
         },
         {
-            "name": "ava Current TS File",
+            "name": "DEBUG:AVA - TS File",
             "type": "node",
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/ava/profile.js",
