@@ -46,3 +46,13 @@
   - 타언어와 차이
     - Go only runs the selected case, not all the cases that follow. In effect, the break statement that is needed at the end of each case in those languages is provided automatically in Go
     - Another important difference is that Go's switch cases need not be constants, and the values involved need not be integers.
+
+  - 타입 스위치
+    switch v := i.(type) {
+    case T:
+        // here v has type T
+    case S:
+        // here v has type S
+    default:
+        // no match; here v has the same type as i
+    }

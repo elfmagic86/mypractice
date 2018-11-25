@@ -4,14 +4,6 @@
 ''은 다른 해석없이 문자열로만 인식
 
 
-
-- int(n)?
-: http://blackbull.tistory.com/44
-
-	- todo: mysql은 제로필
-	- oracle은 n이 자릿수
-
-
 - InnoDB vs MyISAM(My Indexed Sequential Access Method)
 http://idchowto.com/?p=20166
 

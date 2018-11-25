@@ -44,4 +44,11 @@
   }
   ```
 
+  - settings.json
+  ```
+	"go.goroot": "/usr/local/go",
+	"go.inferGopath": false,
+	"go.gopath": "~/go:${workspaceFolder}"
+  ```
+
   - 디버그모드로 Launch 실행
