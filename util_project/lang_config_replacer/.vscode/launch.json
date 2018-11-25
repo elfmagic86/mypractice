@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch",
+            "cwd": "${workspaceFolder}/",
+            "program": "${workspaceRoot}/src/bin/index.ts",
+            "stopOnEntry": false,
+            "sourceMaps": true,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "outFiles": [
+                "${workspaceFolder}/build/src/**/*.js"
+            ],
+            // TODO isBackground가 동작하지않음. 별도로 작업.
+            // "preLaunchTask": "npm: watch"
+        },
+        // 현재 ts파일 디버깅
+        {
+            "name": "Current TS File",
+            "type": "node",
+            "request": "launch",
+            "args": ["${relativeFile}"],
+            "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+        },
+        {
+            "name": "ava Current TS File",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/ava/profile.js",
+            // NOTE: runtimeArgs의 ts-node 대신 package.json의 ava 설정이 필수
+            // "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+            "args": ["${relativeFile}"],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+        },
+    ]
+}

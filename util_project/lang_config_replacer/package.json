@@ -1,0 +1,43 @@
+{
+  "name": "lang_config_replacer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsc -w -p ./",
+    "prebuild": "rimraf -rf build dist",
+    "build:compile": "tsc -p ./",
+    "build:dist": "cross-env NODE_ENV=production webpack -p --progress",
+    "test": "ava -v ./test"
+  },
+  "engines": {
+    "node": ">=8.9"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.10",
+    "ava": "next",
+    "awesome-typescript-loader": "^5.2.1",
+    "cross-env": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.6",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "ava": {
+		"compileEnhancements": false,
+		"extensions": [
+			"ts"
+		],
+		"require": [
+			"ts-node/register"
+		]
+	},
+  "author": "",
+  "license": "ISC"
+}
