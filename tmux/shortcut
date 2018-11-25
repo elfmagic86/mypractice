@@ -29,7 +29,7 @@ C-b Ctrl누른상태로 방향키
 : tmux attach -t 0
 
 - 세션이름?윈도우이름?관련 // 모호
-tmux rename-session -t 0 database 
+tmux rename-session -t 0 database
 tmux new -s database
 
  — 창에서 윈도우이름변경. : C-b ,
@@ -48,6 +48,10 @@ tmux new -s database
 ### 새창관련
 - 새창만들기: C-b c
 - 윈도우간의 전환: C-b <p|n>    or   C-b <number> // number is window name of bottomstatusbar
+
+
+### 창 레이아웃
+- 레이아웃전환: C-b space
 
 
 ## 복붙
