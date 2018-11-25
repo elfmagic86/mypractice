@@ -1,0 +1,63 @@
+
+powerline
+--------------------------------------------------
+
+## Install.......
+https://powerline.readthedocs.io/en/latest/installation.html#repository-root
+
+### powerline....
+suitable만 설치하면되니 아래키워드만하면됨.
+
+pip install powerline-status
+
+- TODO pip 캐시폴더 권한문제는나중으로..미룸.
+- TODO prerequired. 프로그램들 별로신경안썻는데. 상관없나?
+
+### fonts
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+
+mkdir -p ~/.fonts
+mv PowerlineSymbols.otf ~/.fonts/
+fc-cache -vf ~/.fonts/
+mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+
+## usage
+- 위치
+https://powerline.readthedocs.io/en/latest/usage/shell-prompts.html#bash-prompt
+{repository_root}는 pip로, 설치된..powerline이있는곳
+  pip show powerline-status의 Locate
+
+- powerline-config가없다는 에러가남.
+  https://github.com/powerline/powerline/issues/850
+  powerline-config위치를 제대로잡아줘야함. bashrc참고.
+
+### bash
+: bashrc에 추가해야할설정
+  !! 환경변수노출해줘야하므로 먼저설정해야함.
+
+export POWERLINE_COMMAND=powerline
+export POWERLINE_CONFIG_COMMAND=powerline-config
+if [[ -f /usr/local/lib/python3.4/dist-packages/powerline/bindings/bash/powerline.sh ]]; then
+  source /usr/local/lib/python3.4/dist-packages/powerline/bindings/bash/powerline.sh
+fi
+
+### tmux
+https://powerline.readthedocs.io/en/latest/usage/other.html#tmux-statusline
+: tmux.conf에추가
+
+run-shell "powerline-daemon -q"  # return값으로 데몬 실행여부확인인듯?
+source /usr/local/lib/python3.4/dist-packages/powerline/bindings/tmux/powerline.conf
+
+### vim
+https://powerline.readthedocs.io/en/latest/usage/other.html#vim-statusline
+: pip3로 인스톨한상황, 아래 vimrc에추가.
+설치된 경로에 맞는 python선택해야함
+
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+
+- TODO !! neovim.. 지원안함
+  - issue: https://github.com/powerline/powerline/issues/1689
+  - python2로는 가능할까? 번거롭다. gvim사용하고.. 필요시다시보자.
