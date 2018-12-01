@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "tsc -w -p ./",
+    "watch": "tsc --watch --project  ./",
     "prebuild": "rimraf -rf build dist",
-    "build:compile": "tsc -p ./",
+    "build:compile": "tsc --project ./",
     "build:dist": "cross-env NODE_ENV=production webpack -p --progress",
-    "test": "ava -v ./test"
+    "test": "ava --verbose ./test",
+    "test:watch": "ava --verbose --watch ./test"
   },
   "engines": {
     "node": ">=8.9"
@@ -27,6 +28,8 @@
     "cross-env": "^5.2.0",
     "rimraf": "^2.6.2",
     "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.7.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "typescript": "^3.1.6",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2"
@@ -37,7 +40,8 @@
       "ts"
     ],
     "require": [
-      "ts-node/register"
+      "ts-node/register",
+      "tsconfig-paths/register"
     ]
   },
   "author": "",

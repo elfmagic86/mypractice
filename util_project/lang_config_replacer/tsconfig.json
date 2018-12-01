@@ -1,18 +1,51 @@
 {
+
+  // https://www.typescriptlang.org/docs/handbook/compiler-options.html
   "compilerOptions": {
-    "target": "es2017",
-    "outDir": "build",
+    /** 
+     * 빌드 결과물 
+     */
+    // outDir의 파일 저장 경로가 루트 경로가 기준이됨. rootDir이 .이면 outdir/src/index.js,  src이면 outdir/index.js
     "rootDir": ".",
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "declaration": true,
-    "inlineSourceMap": false,
-    "sourceMap": true,
+    // 빌드 결과물 위치
+    "outDir": "build",
+    // "outFile": // 외부 번들러 없이 단일파일로 컴파일하고 싶을경우 지정
 
-
-	// TODO ????????
-    //"esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
-
+    /**
+     * 모듈시스템
+     * https://www.typescriptlang.org/docs/handbook/module-resolution.html
+     */
+     // 사용될 모듈시스템
+    "module": "CommonJS",
+    "moduleResolution": "Node", // module === "AMD" or "System" or "ES6" ? "Classic" : "Node"
+    
+    // 모듈의 실제 경로 찾는 방법정의
+    // NOTE: 컴파일될 js파일의 경로가 실제 변경되지 않으므로 tsconfig-paths의 도움을 받아야함.
+    //       ava(ts-node): tsconfig-paths, webpack: tsconfig-paths-webpack-plugin
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["./src/*"],
+      // "test/*": ["./test/*"],
+      // "jquery": ["node_modules/jquery/dist/jquery"] // This mapping is relative to "baseUrl"
+    },
+    "noResolve": false,
+    "traceResolution": true, /* Report module resolution log messages. */
+    // todo 
+    //"esModuleInterop": false /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+    //"allowSyntheticDefaultImports":  //module === "system" or --esModuleInterop is set and module is not es2015/esnext
+        
+    
+    /*
+     * 컴파일 코드 변환 관련
+     */
+    // 사용될 자바스크립트 버전, //TODO 폴리필
+    "target": "ES2017", // Specify ECMAScript target version: "ES3" (default), "ES5", "ES6"/"ES2015", "ES2016", "ES2017" or "ESNext". 
+    // ES, DOM, WebWorker등을 포함시킴. 기본값은 target옵션에 의존하여 관련 라이브러리 포함시킴
+    // "lib": [""],
+    
+    // todo 컴파일에 사용될 타입
+    "typeRoots": ["node_modules/@types", "src/types"],
+    // "types": ["node"], // 지정시 node_modules/@types/node만 사용한다는것
 
 
     "strict": false /* disable all strict type-checking options. */,
@@ -25,6 +58,21 @@
     // "alwaysStrict": true /* Parse in strict mode and emit "use strict" for each source file. */,
 
 
+    /*
+     * 디버깅 관련
+     */
+    // 소스맵 생성여부, ts파일 디버깅하려면 컴파일된 js의 매핑정보를 알아야함
+    "sourceMap": true,
+    // "inlineSourceMap": false, // default false
+    // .d.ts 선언파일 생성여부
+    "declaration": true,
+    
+    /*
+     * 그외 출력, 체크등
+     */
+    "listEmittedFiles": false, /* Print names of generated files part of the compilation. */
+    "listFiles": false, /* Print names of files part of the compilation. */
+    "pretty": true, /* Stylize errors and messages using color and context. */
 
     /* Additional Checks */
     "noUnusedLocals": true /* Report errors on unused locals. */,
@@ -32,19 +80,9 @@
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
 
-    /* Debugging Options */
-    "traceResolution": false /* Report module resolution log messages. */,
-    "listEmittedFiles": false /* Print names of generated files part of the compilation. */,
-    "listFiles": false /* Print names of files part of the compilation. */,
-    "pretty": true /* Stylize errors and messages using color and context. */,
-
     /* Experimental Options */
     // "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
     // "emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
-
-    "lib": ["es2017"],
-    "types": ["node"],
-    "typeRoots": ["node_modules/@types", "src/types"]
   },
   "include": [
 	  "src/**/*.ts",
@@ -53,5 +91,5 @@
   "exclude": [
     "node_modules/**"
   ],
-  "compileOnSave": false
+  "compileOnSave": false // IDE를 위한 기능..필요없다.
 }

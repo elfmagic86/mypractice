@@ -2,6 +2,8 @@ import * as commander from 'commander'
 import chalk from 'chalk'
 import * as inquirer from 'inquirer'
 
+import { LangInfo } from '@app/excel';
+
 commander
     .version('1.0.0')
     .description('lang_config_replacer')
@@ -11,6 +13,7 @@ commander
     .alias('l')
     .description('run test')
     .action(() => {
+		console.log(new LangInfo());
         console.log(chalk.yellow('=========*** run ***=========='))
 
 	let testInput: Array<Object> = [
