@@ -45,7 +45,7 @@ function _removeComment(content) {
 }
 
 export function readChunkFile(path: string, option: Option = { encoding: 'utf8'}) {
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
         fs.readFile(path, option.encoding, function (error, data) {
             if (error) {
                 reject(error);

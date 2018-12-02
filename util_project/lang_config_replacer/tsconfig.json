@@ -29,7 +29,7 @@
       // "jquery": ["node_modules/jquery/dist/jquery"] // This mapping is relative to "baseUrl"
     },
     "noResolve": false,
-    "traceResolution": true, /* Report module resolution log messages. */
+    "traceResolution": false, /* Report module resolution log messages. */
     // todo 
     //"esModuleInterop": false /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
     //"allowSyntheticDefaultImports":  //module === "system" or --esModuleInterop is set and module is not es2015/esnext

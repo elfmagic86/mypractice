@@ -4,21 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "tsc --watch --project  ./",
     "prebuild": "rimraf -rf build dist",
+    "build:watch": "tsc --watch --preserveWatchOutput --project ./",
     "build:compile": "tsc --project ./",
     "build:dist": "cross-env NODE_ENV=production webpack -p --progress",
     "test": "ava --verbose ./test",
-    "test:watch": "ava --verbose --watch ./test"
+    "test:watch": "ava --verbose --watch",
+    "watch": "#todo"
   },
   "engines": {
-    "node": ">=8.9"
+    "node": ">=10.12.10"
   },
   "dependencies": {
     "@types/xlsx": "^0.0.36",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "inquirer": "^6.2.0",
+    "rxjs": "^6.3.3",
     "xlsx": "^0.14.1"
   },
   "devDependencies": {

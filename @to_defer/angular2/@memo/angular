@@ -52,5 +52,5 @@
 - switchMap: reserves the original request order while returning only the observable from the most recent http method call. Results from prior calls are canceled and discarded.
 
 # etc
-- ngFor사용시 에러난것
-: const hero of heroes // let 대신 const사용했다가 안됨. 정해진것이있는듯.
+
+TODO AOT

@@ -1,0 +1,19 @@
+# syntax
+
+- `a ?: b`, `a ? a : b`, `a ?. b`
+https://stackoverflow.com/questions/44046927/comparison-of-ternary-operator-elvis-operator-safe-navigation-operator-and-log/44047139#44047139
+
+	- Ternary Operator(statement ? obj : obj)
+	let gender = user.male ? "male" : "female";
+	Simplified if else, available everywhere
+
+	- Elvis Operator (?: )
+	let displayName = user.name ?: "";
+	Not available in typescript/javascript/angular and essentially the same as ||
+
+	- Safe Navigation Operator (?.)
+	let displayName = user.name ?. "";
+	Only available in angular templating, used to prevent null pointers in object parameter navigation
+
+일반적으로는 위와같고.
+타입스크립트 인터페이스 정의시에는 `?:`를 `nullable허용 && 프로퍼티` 정의 용도로 사용함

@@ -18,6 +18,15 @@
     [?]단계3) tsconfig에 파일경로 추가
     [?]단계4) typings.json 추가
 
+
+
+
+
+
+
+
+
+
 # Grammer
 - Type Assertion: https://basarat.gitbooks.io/typescript/docs/types/type-assertion.html
 : 컴파일 시점 결정이기에, casting과는 다름.
@@ -31,4 +40,3 @@
  = {} // 정적타입결정
 :
 
-# For AoT
