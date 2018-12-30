@@ -1,13 +1,45 @@
+# editor
 
 
+## vscode
+https://github.com/Microsoft/vscode-tips-and-tricks#file-and-folder-management
 
+- 퀵오픈 여러파일 열기
+<C-p> - right arrow key
+
+- Side by side editing
+<C-\>
+
+- workspace 기준 심볼검색
+<C-p>#
+
+- 현재라인 선택
+<C-i>
+
+- <S-f12>와 차이는?
+<A-f12>
+
+- TODO <C-p> `?`에 여러 기능
+
+- TODO vscode, vimmode 에서 적용시키기
+{ "key": "ctrl+shift+l", "command": "editor.action.insertCursorAtEndOfEachLineSelected", "when": "editorTextFocus "}
+
+- 실행시점 유용한것
+# open diff editor
+code --diff <file1> <file2>
+
+# disable all extensions
+code --disable-extensions .
+
+
+## sublimetext
 - 전체라인에 커서주기(multiple line)
 	- sublimetext
 		<C-a><C-S-l>
 		split_selection_into_lines
 
-	- TODO vscode, vimmode 에서 적용시키기
-	{ "key": "ctrl+shift+l", "command": "editor.action.insertCursorAtEndOfEachLineSelected", "when": "editorTextFocus "}
 
+
+## vim
 - 줄의 끝에 comma 달기
 	:%s/$/,/

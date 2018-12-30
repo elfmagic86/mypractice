@@ -1,0 +1,14 @@
+
+- deploy용 빌드생성
+
+	- 명령
+
+		the java_binary rule allows you to build a self-contained,deployable binary.
+		To build it, add the _deploy.jar suffix to the file name when building cmdrunner.jar (_deploy.jar):
+		```
+		빌드 명령에 `_deploy.jar`를 붙임
+		bazel build //src/main/java/com/example/cmdline:cmdrunner_deploy.jar
+		```
+	- 단독실행이 가능하도록 의존성 포함된 jar생성하기에 아래처럼 실행가능
+	`java -jar bazel-bin/src/main/java/com/example/cmdline/cmdrunner_deploy.jar`
+

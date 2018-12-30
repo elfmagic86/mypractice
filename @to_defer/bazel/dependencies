@@ -1,0 +1,31 @@
+# dependencies
+
+- external dependencies
+https://docs.bazel.build/versions/0.21.0/external.html
+
+	- download 위치
+	`ls $(bazel info output_base)/external`
+
+		- Note that running bazel clean will not actually delete the external directory. To remove all external artifacts, use bazel clean --expunge.
+
+	- TODO Do not use bind(). See “Consider removing bind” for a long discussion of its issues and alternatives.
+
+
+- dependencies graph
+
+	- url
+	```
+	# 1. 질의
+	bazel query  --nohost_deps --noimplicit_deps "deps(//:ProjectRunner)" --output graph
+
+	# 2. graph로 확인 필요시 내용 복붙
+	# http://www.webgraphviz.com/
+	```
+
+	- ubutnu xdot
+	```
+	sudo apt update && sudo apt install graphviz xdot
+	xdot <(bazel query --nohost_deps --noimplicit_deps 'deps(//main:hello-world)' \
+	  --output graph)
+	```
+

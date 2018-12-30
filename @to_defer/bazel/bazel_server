@@ -1,0 +1,11 @@
+# bazel server
+
+- TODO 사용안하는 서버 모두 종료하기
+	https://github.com/bazelbuild/bazel/issues/1868
+	bazel shutdown
+
+	- Notes about Server Mode
+	By default, Bazel uses a long-running server process as an optimization.
+	When running Bazel in a script, don't forget to call shutdown when you're finished with the server,
+	or, specify --max_idle_secs=5 so that idle servers shut themselves down promptly.
+

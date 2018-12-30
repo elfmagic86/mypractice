@@ -1,0 +1,47 @@
+
+- 기본명령
+
+```
+# ProjectRunner is what we named that target in the BUILD file.
+bazel build //:ProjectRunner
+
+bazel build //src/main/java/com/example/cmdline:runner
+```
+
+
+- 실행파일
+의존성을 포함하여 실행가능한 wrapper script
+디버그 모드로(`bash -x ./ProjectRunner`) 실행하여 아래와 같은 구조 확인
+java -classpath A.jar:B.jar com.example.ProjectRunner
+
+- 문법
+
+	- 도움말: `bazel help target-syntax`
+
+	- //
+	  - the // part is the location of our BUILD file relative to the root of the workspace
+	  - //가 없을시 cwd기준 위치를 기준으로 //를 붙인것과 동등포현 (//cwd/package-name)
+
+	- //path/to/package:target-name
+	  - 패키지가 있는 폴더에는 BUILD파일이 존재함
+	  - target-name는 BUILD파일에 정의된 타겟명
+	  - :target-name 생략시 package이름이 target-name으로 사용됨
+
+	- These two may be combined, as in foo/...:all, and when both wildcards are used, this may be abbreviated to foo/....
+		- foo/... is a wildcard over packages, indicating all packages recursively beneath directory foo (for all roots of the package path).
+		- :all is a wildcard over targets, matching all rules within a package.
+		- :* TODO
+
+
+- deps의 target참조
+	- When referencing targets within the same package, you can skip the package path
+	  and just use //:target-name.
+
+	  - 해당케이스 어떤상황일까. 패키지내의 서브패키지를 의미하는것일까.
+
+	- When referencing targets within the same BUILD file,
+	  you can even skip the // workspace root identifier and just use :target-name.
+
+- 빌드결과물
+	- If the target is a file target, then path/to/package is the path to the root of the package,
+	  and target-name is the name of the target file, including its full path.

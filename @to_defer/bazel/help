@@ -1,0 +1,12 @@
+
+- help
+
+Getting more help:
+  bazel help <command>
+				   Prints help and options for <command>.
+  bazel help startup_options
+				   Options for the JVM hosting bazel.
+  bazel help target-syntax
+				   Explains the syntax for specifying targets.
+  bazel help info-keys
+				   Displays a list of keys used by the info command.

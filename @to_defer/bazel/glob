@@ -1,0 +1,7 @@
+
+- glob(include, exclude=[], exclude_directories=1)
+	- "x/**/*.java" is valid, but "test**/testdata.xml" and "**.java" are both invalid. No other wildcards are supported.
+	- glob() matches files only in your source tree, never generated files
+	- In general, you should try to provide an appropriate extension (e.g. *.html) instead of using a bare '*' for a glob pattern.
+
+	https://docs.bazel.build/versions/master/be/functions.html#glob

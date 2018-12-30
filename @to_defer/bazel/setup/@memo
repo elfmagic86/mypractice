@@ -1,0 +1,17 @@
+
+
+# TODO
+
+- 환경설정
+https://docs.bazel.build/versions/0.21.0/guide.html
+
+	- .bazelrc, .bazelignore
+
+	- 실행옵션
+
+	- bazel 환경정보 등
+	`bazel info <options> [key]`
+
+
+- ide
+https://docs.bazel.build/versions/0.21.0/ide.html

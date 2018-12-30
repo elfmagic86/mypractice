@@ -1,0 +1,33 @@
+
+===
+
+
+# build 옵션
+config_setting rule + select()
+
+	- select() 기본조건
+	//conditions:default
+
+	- TODO
+		- pipe: or, and
+		- select() doesn’t work in macros.
+		This is impossible to change because by
+		definition macros are evaluated
+		before Bazel reads the build’s command line flags.
+		That means there isn’t enough information to evaluate select()s.
+
+# Bazel Query and Cquery
+
+- Bazel query operates over Bazel’s loading phase. This means it doesn’t know what command line flags will be applied to a target since those flags aren’t evaluated until later in the build (during the analysis phase). So the query command can’t accurately determine which path a configurable attribute will follow.
+- Bazel cquery has the advantage of being able to parse build flags and operating post-analysis phase so it correctly resolves configurable attributes. It doesn’t have full feature parity with query but supports most major functionality and is actively being worked on. Querying the following build file…
+
+```
+$ bazel query 'deps(//myproject:my_lib)'
+//myproject:my_lib
+//myproject:foo_dep
+//myproject:bar_dep
+
+$ bazel cquery 'deps(//myproject:my_lib)' --define dog=pug
+//myproject:my_lib
+//myproject:bar_dep
+```
