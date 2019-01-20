@@ -1,0 +1,80 @@
+# java
+
+```sh
+man java
+```
+
+## option 종류 및 형식
+  - Standard options are guaranteed to be supported by all implementations of the Java Virtual Machine (JVM). They are used for common actions,
+  such as checking the version of the JRE, setting the class path, enabling verbose output, and so on.
+
+  - Non-standard options are general purpose options that are specific to the Java HotSpot Virtual Machine, so they are not guaranteed to be
+  supported by all JVM implementations, and are subject to change. These options start with -X.
+
+  - Advanced options are not recommended for casual use. These are developer options used for tuning specific areas of the Java HotSpot Virtual
+  Machine operation that often have specific system requirements and may require privileged access to system configuration parameters. They
+  are also not guaranteed to be supported by all JVM implementations, and are subject to change. Advanced options start with -XX.
+
+  - Boolean options are used to either enable a feature that is disabled by default or disable a feature that is enabled by default. Such
+  options do not require a parameter. Boolean -XX options are enabled using the plus sign (-XX:+OptionName) and disabled using the minus sign
+  (-XX:-OptionName).
+
+  - For options that require an argument, the argument may be separated from the option name by a space, a colon (:), or an equal sign (=), or
+  the argument may directly follow the option (the exact syntax differs for each option). If you are expected to specify the size in bytes,
+  you can use no suffix, or use the suffix k or K for kilobytes (KB), m or M for megabytes (MB), g or G for gigabytes (GB). For example, to
+  set the size to 8 GB, you can specify either 8g, 8192m, 8388608k, or 8589934592 as the argument. If you are expected to specify the
+  percentage, use a number from 0 to 1 (for example, specify 0.25 for 25%).
+
+  - TODO -J options
+
+## options
+
+- TODO: source, classpath, jar
+
+- agent
+  -agentlib:libname[=options]
+  -agentpath:pathname[=options]
+  -javaagent:jarpath[=options]
+
+- info
+  - -verbose
+  - -XX:+LogCompilation
+  - -XshowSettings:all
+  - -XX:+PrintCommandLineFlags
+  - jstack
+
+- ETC
+  
+  - -jar filename
+  When you use the -jar option, 
+  the specified JAR file is the source of all user classes, and other class path settings are ignored.
+    jar사용시 classpath 무시된다.?
+
+  - class
+    -XX:+TraceClassLoading
+    -XX:+TraceClassResolution
+      실행스택 클래스, 파일, line
+        RESOLVE java.lang.Shutdown$Lock java.lang.Object Shutdown.java:60
+        RESOLVE java.lang.Shutdown java.lang.Shutdown$Lock Shutdown.java:64
+    -XX:+TraceLoaderConstraints
+    -XX:+TraceClassUnloading
+    -XX:+TraceClassLoadingPreorder
+
+  - JIT
+   -XX:CompileCommand=command,method[,option]
+   -XX:CompileCommandFile=filename
+   -XX:CompileCommand=print,java/lang/String.toString
+
+  - APPLICATION CLASS DATA SHARING
+
+  - bootclasspath
+  Do not deploy applications that use this option to override a class in rt.jar, because this violates the JRE binary code license.
+   -Xbootclasspath:path
+   -Xbootclasspath/a:path
+   -Xbootclasspath/p:path
+
+## questions
+  - Diff Java Virtual Machine and Java HotSpot Virtual Machine
+  https://stackoverflow.com/questions/16568253/difference-between-jvm-and-hotspot
+  JVM is an abstract machine (specifications). HotSpot, OpenJDK and JRockit and so are implementations of JVM.
+
