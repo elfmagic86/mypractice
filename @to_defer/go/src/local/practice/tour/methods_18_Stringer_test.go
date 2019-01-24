@@ -9,7 +9,7 @@ type IPAddr [4]byte
 
 // TODO: Add a "String() string" method to IPAddr.
 func (ip IPAddr) String() string {
-	return string(ip[:])
+	return fmt.Sprintf("%d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3])
 }
 
 func TestSringer(t *testing.T) {

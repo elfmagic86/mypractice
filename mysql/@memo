@@ -35,3 +35,12 @@ http://idchowto.com/?p=20166
 
 - 스키마 생성시 기본값 조건 부여
 `update_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일',
+
+
+
+
+
+
+
+- 설정정보 deep
+https://d2.naver.com/helloworld/5102792

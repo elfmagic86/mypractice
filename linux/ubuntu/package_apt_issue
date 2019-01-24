@@ -17,3 +17,9 @@
 	Google "[package] site:launchpad.net", click on the first result and
 	scroll down to the end of the page and look for the green text that says "Other versions of '[package]' in untrusted archives",
 	click on it and it will reveal a list of all ppa's containing the package – Rune Jan 19 at 16:45
+
+
+- sources.list내용이없을경우
+	1. /etc/apt/sources.list.save에 있을수있으니 확인하여 복원
+	  혹은 ?(예전에 기본내용을 인터넷에서 찾은기억있음)
+	2. apt-get -f install

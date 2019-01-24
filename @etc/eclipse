@@ -1,0 +1,12 @@
+
+
+- external source attach
+ex) tomcat
+
+	1. Open `.classpath` file
+	2. classpathentry추가
+		ex) <classpathentry kind="lib" path="D:/kang/program/apache-tomcat-8.5.27/lib/annotations-api.jar" sourcepath="D:/kang/program/apache-tomcat-8.5.27-src"/>
+
+		- sourcepath는 소스폴더의 루트를 경로로 추가
+		  톰캣 다운로드페이지에 src 압축파일이 별도로 존재(최신버전 외에는 다운로드 페이지에에서 src위치로 이동해야함)
+

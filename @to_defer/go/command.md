@@ -4,6 +4,12 @@
 - 환경변수 확인
   go env
 
+- help
+  'go help build' 
+
+- verbose
+  '-v' flag
+
 - 빌드
   go build
 
