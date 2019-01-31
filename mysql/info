@@ -1,0 +1,86 @@
+
+# info
+
+## basic
+
+
+- 전역 변수
+	```
+	# 전체
+	show global variables
+
+	# 해당 값 읽기
+	SELECT @@max_heap_table_size;
+	```
+
+- 정보 스키마
+
+	USE INFORMATION_SCHEMA;
+	SHOW TABLES;
+		STATISTICS
+		TABLES
+		TABLESPACES
+		TABLE_CONSTRAINTS
+		TABLE_PRIVILEGES
+		TRIGGERS
+		USER_PRIVILEGES
+		VIEWS
+		...
+## user
+
+- 유저확인
+	```
+	SELECT * FROM MYSQL.USER;
+	```
+
+## DB
+
+- 기본명령
+	SHOW DATABASES;
+
+	# 선택된 db
+	SELECT DATABASE();
+
+## table
+
+- 테이블목록
+  SHOW TABLES;
+
+- 테이블정보보기
+	SHOW TABLE STATUS WHERE NAME = '테이블이름';
+
+- 테이블 스키마
+	SHOW CREATE TABLE `TABLE`;
+
+
+- 컬럼정보 보기
+	```
+	# https://stackoverflow.com/questions/1526688/get-table-column-names-in-mysql
+
+	DESCRIBE `TABLE`;
+
+	SHOW COLUMNS FROM `TABLE`;
+	SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'db_name' AND TABLE_NAME = 'tb_name';
+	```
+
+- 제약조건 확인
+	SELECT *
+    FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+    WHERE TABLE_SCHEMA = 'db_name'
+    ORDER BY `TABLE_NAME`
+    ;
+
+- 테이블의 참조
+
+
+## memo
+
+- mysql 접속
+	```
+	# enter 후 패스워드 입력
+	PS C:\Program Files\MariaDB 10.2\bin> .\mysql.exe -u user -p
+
+	# or
+	mysql -h ip -u user -p
+	```
+

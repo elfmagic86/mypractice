@@ -53,3 +53,11 @@
   # hprof (현재위치에 로그생김)
   java -agentlib:hprof=cpu=samples,interval=20,depth=3 HelloWorld.
   ```
+
+- info2
+jps, jstack
+
+  ```
+  # 
+  jps -l
+  ```

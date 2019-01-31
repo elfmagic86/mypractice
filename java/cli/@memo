@@ -44,9 +44,9 @@ man java
   - jstack
 
 - ETC
-  
+
   - -jar filename
-  When you use the -jar option, 
+  When you use the -jar option,
   the specified JAR file is the source of all user classes, and other class path settings are ignored.
     jar사용시 classpath 무시된다.?
 
@@ -78,3 +78,7 @@ man java
   https://stackoverflow.com/questions/16568253/difference-between-jvm-and-hotspot
   JVM is an abstract machine (specifications). HotSpot, OpenJDK and JRockit and so are implementations of JVM.
 
+
+===============================================
+# jps
+jps - Lists the instrumented Java Virtual Machines (JVMs) on the target system. This command is experimental and unsupported.

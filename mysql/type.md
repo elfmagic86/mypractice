@@ -22,3 +22,5 @@ https://dev.mysql.com/doc/refman/8.0/en/integer-types.html
       - 오라클이 Number(n)으로 자리수 표현한다고 하는데, 오라클과 공통적으로 사용하기 위해서 관행적으로 사용하는걸까??
         - https://docs.oracle.com/cd/E15817_01/server.111/b31055/adabas_datatype_conv.htm
           가상의 숫자형(Number(n))과 실제 타입의 매칭이 n으로 구분되어 있는 것을 확인가능.
+
+- string

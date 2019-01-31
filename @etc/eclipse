@@ -1,4 +1,6 @@
+# memo
 
+## 설정
 
 - external source attach
 ex) tomcat
@@ -10,3 +12,9 @@ ex) tomcat
 		- sourcepath는 소스폴더의 루트를 경로로 추가
 		  톰캣 다운로드페이지에 src 압축파일이 별도로 존재(최신버전 외에는 다운로드 페이지에에서 src위치로 이동해야함)
 
+
+
+## 이슈
+
+- Cannot change version of project facet Dynamic Web Module to 3.0
+https://crunchify.com/how-to-fix-cannot-change-version-of-project-facet-dynamic-web-module-to-3-0-error-in-eclipse/
