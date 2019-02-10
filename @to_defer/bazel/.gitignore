@@ -1,1 +1,10 @@
+
+bazel-bin/
+bazel-genfiles/
+bazel-macro/
+bazel-out/
+bazel-testlogs/
+bazel-tuto/
+
 tutorial/
+tuto/rules/

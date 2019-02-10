@@ -1,0 +1,40 @@
+
+# "Make" variables
+are a special class of expandable string variables available
+to attributes marked as "Subject to 'Make variable' substitution"
+
+
+	- If FOO doesn't correspond to a variable known to the consuming rule, Bazel fails with an error.
+	- To write $ as a a string literal (i.e. to prevent variable expansion), write $$.
+
+##
+	my_attr = "prefix $(FOO) suffix"
+
+	=> my_attr = "prefix bar suffix
+
+## Predefined variables
+	# 대문자로 된 변수
+	bazel info --show_make_env
+
+## "$(location)" substitution
+
+In attributes that support it, all occurrences(발생) of $(location label) are
+replaced by the path to the file denoted(표시된) by label.
+-Use location if the label outputs exactly one filename.
+
+- $(location label) 사용예
+	- sh_binary를 tools로 사용함
+		sh_binary(
+			name = "test-generator",
+			srcs = ["test_generator.sh"],
+		)
+
+		native.genrule(
+			cmd = "$(location test-generator) %s > $@" % arg,
+			tools = ["//macro/02:test-generator"],
+
+	- 위와 동등한 cmd
+		# cmd = "$(location //macro/02:test-generator) %s > $@" % arg,
+		# cmd = "$(location :test-generator) %s > $@" % arg,
+		# cmd = "$(location test-generator) %s > $@" % arg,
+		# cmd = "절대경로/test_generator.sh %s > $@" % arg,

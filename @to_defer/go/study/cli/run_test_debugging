@@ -1,0 +1,24 @@
+# memo
+
+- run
+```
+go run main.go
+```
+
+- test
+공통적으로 `-v`옵션으로 상세 출력확인 가능
+
+```
+# - A:  go test package -run 'testcase'
+go test practice/helloworld/stringutil
+go test practice/helloworld/stringutil -run 'Reverse'
+
+# - B: 테스트 파일과 대상 파일(필요시)로 실행
+go test stringutil/*
+go test stringutil/Reverse.go  stringutil/Reverse_test.go
+```
+
+- todo: get all testcases
+
+- debugging
+Todo

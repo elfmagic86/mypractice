@@ -1,0 +1,67 @@
+# macro_and_rules
+
+
+## macro
+
+- A macro is a function called from the BUILD file that can instantiate rules
+  매크로는 룰을 인스턴스화 할 수 있는 빌드파일에서 호출되는 function
+- A macro is a function that instantiates rules.
+  매크로는 룰을 인스턴스화하는 function
+
+It is useful when a BUILD file is getting too repetitive or too complex, as it allows you to reuse some code.
+
+- The function is evaluated as soon as the BUILD file is read.
+After the evaluation of the BUILD file, Bazel has little information about macros
+	: if your macro generates a genrule, Bazel will behave as if you wrote the genrule.
+	매크로가 genrule을 생성한다면, 바젤은 네가 genrule을 쓴것처럼 행동함
+	As a result, bazel query will only list the generated genrule.
+	- By the end of the loading phase, macros don’t exist anymore
+
+
+### native module
+https://docs.bazel.build/versions/master/skylark/lib/native.html
+A built-in module to support native rules and other package helper functions.
+All native rules appear as functions in this module, e.g. native.cc_library.
+ - Note that the native module is only available in the `loading phase`
+  (i.e. for macros, not for rule implementations). 즉 매크로인경우만, 룰구현이 아니라
+ Attributes will ignore None values, and treat them as if the attribute was unset.
+
+ - functions
+ native.function
+	existing_rule
+	existing_rules
+	exports_files
+	glob
+	package_group
+	package_name
+	repository_name
+
+
+## rule
+A rule defines a series of actions that Bazel should perform on inputs to get a
+set of outputs.
+For example, a C++ binary rule might
+- take a set of .cpp files (the inputs),
+- run g++ on them (the action),
+- and return an executable file (the output).
+
+- The exact behavior of a rule during the analysis phase is governed by its implementation function. (..정해진다)
+- This function does not run any external commands.
+- Rather, it registers actions that will be used later during the execution
+  phase to build the rule’s outputs, if they are needed
+
+## usage
+
+- If you want to reuse simple logic, start with a macro.
+  If a macro becomes complex, it is often a good idea to make it a rule.
+
+- Support for a new language is typically done with a rule.
+- Rules are for advanced users
+  : we expect that most people will *never* have to write one,
+    they will only load and call existing rules.
+
+
+### native rule(genaral)
+https://docs.bazel.build/versions/master/be/overview.html#native-rules-that-do-not-apply-to-a-specific-programming-languag
+
+	- genrule

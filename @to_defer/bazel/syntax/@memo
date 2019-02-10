@@ -1,0 +1,19 @@
+
+
+python
+
+
+
+
+- %
+progress_message = "Merging into %s" % ctx.outputs.out.short_path,
+https://pyformat.info/
+
+
+- print()
+DEBUG msg
+
+- print(dir(var))
+attr list
+
+- provider

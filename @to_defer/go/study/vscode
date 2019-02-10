@@ -1,0 +1,53 @@
+# vscode
+
+## setup
+
+- go플러그인(Go for Visual Studio Code) 설치
+
+- workspace설정
+  - launch.json(기본설정)
+  ```
+  {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch",
+        "type": "go",
+        "request": "launch",
+        "mode": "auto",
+        "program": "${fileDirname}",
+        "env": {},
+        "args": []
+      }
+    ]
+  }
+  ```
+
+  - settings.json
+  ```
+	"go.goroot": "/usr/local/go",
+    // NOTE: if go.inferGopath && exists workspace/src then
+    //		    gopath is workspace
+    "go.inferGopath": false,
+    // 1. global 2. current workspace
+	"go.gopath": "~/go:${workspaceFolder}"
+  ```
+
+- GO: Current GOPATH
+  현재 gopath확인
+
+- Go: Install/Update Tools
+  전체 설치
+  그중, delve(1.8 >= Go Version)은 디버깅 도구로 vscode 디버깅시 사용함
+
+  - 직접 설치
+  ```
+  go get -u github.com/derekparker/delve/cmd/dlv
+  ```
+
+## 실행
+  - 디버그모드로 Launch 실행
+
+## memo
+
+  - Go: run on playground는 go tutorial에서 볼 수 있는 온라인 편집기 연결하는 동작.

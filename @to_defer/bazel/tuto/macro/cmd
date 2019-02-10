@@ -1,0 +1,6 @@
+
+
+- will show you how the BUILD file looks after evaluation. All macros, globs,
+  loops are expanded. Known limitation: select expressions are currently not
+  shown in the output.
+bazel query --output=build //my/path:all

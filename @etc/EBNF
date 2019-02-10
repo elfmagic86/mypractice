@@ -1,0 +1,23 @@
+# EBNF
+https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form
+> Table of symbols
+	Usage	Notation
+	definition	=
+	concatenation	,
+	termination	;
+	alternation	|
+	optional	[ ... ]
+	repetition	{ ... }
+	grouping	( ... )
+	terminal string	" ... "
+	terminal string	' ... '
+	comment	(* ... *)
+	special sequence	? ... ?
+	exception	-
+
+|   alternation(교대, 교체)
+()  grouping
+[]  option (0 or 1 times)
+{}  repetition (0 to n times)
+
+TODO

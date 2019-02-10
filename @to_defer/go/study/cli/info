@@ -1,0 +1,33 @@
+# 정보확인
+
+## 기본명령
+
+- 환경변수 확인
+  go env
+
+- help
+  go help
+
+- verbose
+  '-v' flag
+
+## godoc
+
+패키지를 GOROOT, GOPATH에서 찾아서 설명 보여줌
+
+godoc fmt
+godoc fmt Stringer
+godoc github.com/google/skylark/cmd/skylark
+godoc -ex reflect Append
+
+- 질의도 가능
+godoc -q Stringer
+
+
+- go doc
+	- 현재 위치 기준??
+	- 차이?
+	go doc reflect
+	godoc reflect
+
+TODO 상세

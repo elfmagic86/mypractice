@@ -1,0 +1,38 @@
+# 로컬환경 실행
+
+GOPATH를 '.../mypractice/@to_defer/go/local_workspace'로 설정하고 명령실행함
+
+- vim-go
+```
+# GOPATH설정
+./.env nvim
+:GoPath
+
+# run
+:GoRun
+
+# test
+:GoTest
+```
+
+- cli
+
+```
+# GOPATH설정
+source ./.env
+go env
+
+cd src/practice/helloworld/
+
+# run
+go run main.go
+
+# test
+# - A: 노출된 패키지명과 테스트이름으로 실행
+go test practice/helloworld/stringutil
+go test practice/helloworld/stringutil -run 'Reverse'
+
+# - B: 테스트 파일과 대상 파일로 실행
+go test stringutil/*
+go test stringutil/Reverse.go  stringutil/Reverse_test.go
+```

@@ -1,0 +1,22 @@
+# build
+
+## 명령
+
+현재위치에 main.go가 있는경우
+
+```
+cd local_workspace/src/practice/helloworld
+
+# 1. {현재위치}/helloworld 생성
+go build
+```
+
+## memo
+
+- 빌드
+  - main 존재할경우
+    기본은 cwd의 위치에 cwd의 폴더명으로 실행파일 생성됨
+
+  - 라이브러리일경우
+    컴파일 실패유무만 확인됨
+

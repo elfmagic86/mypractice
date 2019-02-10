@@ -1,24 +1,28 @@
 
 # 기본
 
-## 키 기본
+## 기본 키
 
-  m
+- m
   main view로 이동
 
-  q
+- q
   현재 view 닫기
 
-  h
+- h
   키 도움말
 
-## 키 이동
+## 이동 키
 
-  C-d/C-u
+- C-d/C-u
   스크롤
 
-  @
-  diff 창에서 @@찾기
+- @  or :/^@@
+  diff view에서 @@찾기(find word)
+
+- %
+  commit view or diff view에서 설정된 파일 필터를 토글함
+  파일필터는 `tig foo.md`특정 파일 대상으로 시작시 설정됨
 
 # command
 
