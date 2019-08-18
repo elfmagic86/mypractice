@@ -1,0 +1,3 @@
+- requirements.txt 설치
+https://kwonnam.pe.kr/wiki/python/pip
+> pip install --user -r requirements.txt

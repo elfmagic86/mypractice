@@ -13,3 +13,10 @@ http://blog.naver.com/PostView.nhn?blogId=eulnyung&logNo=150035189611
 - java memory model
 http://aroundck.tistory.com/3422
 
+
+- jmx(Java Management eXtensions)
+https://ko.wikipedia.org/wiki/JMX
+> 응용 프로그램(소프트웨어)/객체/장치 (프린터 등) 및 서비스 지향 네트워크 등을 감시 관리를 위한 도구를 제공하는 자바 API
+	- 적절한 jmx 설정 후 java app 실행시 로컬/원격 모니터링 할 수 있음.
+	- 도구 jconsole 등
+

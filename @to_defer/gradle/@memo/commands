@@ -1,0 +1,77 @@
+
+# memo
+
+## 참고
+	- basic-demo
+	: https://guides.gradle.org/creating-new-gradle-builds/?_ga=2.245090821.1005929378.1519964830-1874037921.1519964830
+
+
+## 명령
+- 정보
+	```
+	# 실행정보(info or debug)
+	./gradlew --info
+
+	# 개별 task 실행
+	./gradlew copy
+
+	# 전체 task 목록
+	./gradlew tasks
+	# 커스텀 태스크 포함
+	./gradlew tasks --all
+
+	# 빌드에서 사용할수있는 프로퍼티목록
+	./gradlew properties
+
+	```
+
+- 기본실행
+	```
+	# java app run
+	# build.gradle - mainClassName
+	./gradlew run
+	```
+
+- 의존성해결
+   아래 의존성트리 확인으로 포함lib확인하여 어떤 의존성이 원하지 않는 lib버전을 포함할 수 있으므로 적절히 exclude해주면서 해결해야함
+	```
+	# 의존성트리 확인
+	./gradlew dependencies
+
+	# The --refresh-dependencies option tells Gradle to ignore all cached entries for resolved modules and artifacts. A fresh resolve will be performed against all configured repositories, with dynamic versions recalculated, modules refreshed, and artifacts downloaded.
+	./gradlew build --refresh-dependencies
+	```
+
+
+
+- 기타 명령
+	```
+	# 빌드 분석정보 제공, (scan plugin필요, 별도 url에서 확인함)
+	./gradlew zip --scan
+	```
+
+# debugging with attach
+
+- attach
+하기의 jdwp로 노출한 포트로 attach함
+
+- gradle 옵션
+TODO 공통사용인지 확인
+	- tomcatRunWar
+		1. "-Dorg.gradle.debug=true", // 5005 default
+		2. -Dorg.gradle.jvmargs='-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005'
+
+	- bootRun
+		1. --debug-jvm // 5005 default
+		2. build.gradle 에..직접추가
+			bootRun {
+				// if ( project.hasProperty('debug') ) { // todo
+				//    - 안됨: -D가 붙음
+						// systemProperties["agentlib:jdwp"] = "transport=dt_socket,server=y,suspend=y,address=7001"
+				//    - 안됨: 자바 프로그램의 args가 됨
+						// args = ["-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=7001"]
+
+				//    - 정상동작 케이스..jvmArgs
+				// jvmArgs = ["-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=7001"]
+				jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=7001"]
+			}
