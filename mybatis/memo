@@ -2,3 +2,9 @@
 - where 1=1
 : http://jdm.kr/blog/7
   기본적으로 성공이 전제되기에 두번째 조건등의 실패로 UPDATE, DELETE 등이 적용될 가능성이있다.
+
+- <if test="..."   <if test='.....'
+""와 ''의 차이로 NumberFormatException이 날수있음.
+표현식 내부에서 'Y'를 사용하면 char형으로 인식되어 (절약위해?)int값으로 캐스팅하려고 시도하면서 에러남.
+"Y"로 사용하면 문자열로 인식
+	- https://papababo.tistory.com/190

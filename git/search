@@ -1,3 +1,11 @@
 
-# TODO
+
+- 커밋 제목, 내용으로 찾기
+https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message
+```
+git log --all --grep='Build 0051'
+```
+
+
+- TODO
 	- git-bisect: Use binary search to find the commit that introduced a bug

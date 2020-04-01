@@ -14,3 +14,14 @@
 	```
 
 
+# mvnDebug port변경
+- TODO mvnDebug 스크립트의 MAVEN_DEBUG_OPTS 값변경 방법??
+- 아래와 같은 형태
+```
+MAVEN_DEBUG_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=30001" \
+mvn -P qa \
+    org.apache.tomcat.maven:tomcat7-maven-plugin:run \
+    -Dmaven.tomcat.port=8081 \
+    -Dmaven.tomcat.contextReloadable=false \
+    -Dmaven.tomcat.path='/'
+```

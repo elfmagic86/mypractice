@@ -81,6 +81,7 @@
 	PS C:\Program Files\MariaDB 10.2\bin> .\mysql.exe -u user -p
 
 	# or
+	# 패스워드 자동 입력은 -p 대신 --password="password" 전달
 	mysql -h ip -u user -p
 	```
 

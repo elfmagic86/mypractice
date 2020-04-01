@@ -1,7 +1,10 @@
+how
 
 - backtick, singlequote 차이는?
 : sql 해석시, ``안의 것은 예약어X로 인식, + function이 사용되었다면 실행되도록 형태도 변경해줌?
 ''은 다른 해석없이 문자열로만 인식
+
+TODO https://stackoverflow.com/questions/11321491/when-to-use-single-quotes-double-quotes-and-backticks-in-mysql
 
 
 - InnoDB vs MyISAM(My Indexed Sequential Access Method)
@@ -44,3 +47,27 @@ http://idchowto.com/?p=20166
 
 - 설정정보 deep
 https://d2.naver.com/helloworld/5102792
+
+
+
+- transaction(commons-dbcp 사용)
+  - 커넥션 격리수준
+	- https://commons.apache.org/proper/commons-dbcp/api-1.4/org/apache/commons/dbcp/BasicDataSource.html#defaultTransactionIsolation
+	- https://docs.oracle.com/javase/1.5.0/docs/api/constant-values.html#java.sql.Connection.TRANSACTION_NONE
+
+    격리수준에 따라 여러 트랜잭션에서 공유정도 제어
+	  ex) TRANSACTION_READ_UNCOMMITTED: 서로 다른 트랜잭션에서 읽기 가능, 단 롤백 상황이된다면 invalid row를 읽은 트랜잭션이 존재할수있음
+
+  - 설정
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+
+		...
+
+        <property name="defaultTransactionIsolation" value="1" /> <!--Connection.TRANSACTION_READ_UNCOMMITTED:1-->
+    </bean>
+
+
+- mysql 대소문자 구분
+	- case: where, order by
+	https://zetawiki.com/wiki/MySQL_%EB%8C%80%EC%86%8C%EB%AC%B8%EC%9E%90_%EA%B5%AC%EB%B3%84
+	> MySQL은 default 설정이 대소문자 구별 안함

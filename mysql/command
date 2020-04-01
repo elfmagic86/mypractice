@@ -7,6 +7,12 @@
 	```
 	select *from mysql.user;
 	```
+- 유저생성
+```
+# password맞던가?
+# %는 all ip
+GRANT ALL PRIVILEGES ON dbname.* To 'username'@'%' IDENTIFIED BY 'password';
+```
 
 - mysql 접속
 	```

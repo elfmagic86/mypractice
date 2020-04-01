@@ -1,0 +1,5 @@
+
+
+- 현재 열려있는 모든 포트확인
+https://sysnetdevops.com/2017/04/24/exploring-the-powershell-alternative-to-netstat/
+Get-NetTCPConnection | ? {$_.State -eq "Listen"}

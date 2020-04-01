@@ -50,10 +50,10 @@ detail
 
 
 	# 문자열 대체(String Substitution)
-		#{} 문법은 마이바티스로 하여금 PreparedStatement프로퍼티를 만들어서 PreparedStatement파라미터(예를들면 ?)에 값을 셋팅하도록 할 것이다.
-		${} SQL 구문에 변하지 않는 값으로 삽입하길 원하기도 한다.
-
-		> 이부분은 quote로 감싼다(or 안한다)의 차이로 보임
+		#{} using the #{} syntax will cause MyBatis to generate PreparedStatement properties and set the values safely against the PreparedStatement parameters (e.g. ?). While this is safer, faster and almost always preferred
+		${} you just want to directly inject an unmodified string into the SQL Statement. For example, for ORDER BY, you might use something like this:
+			ORDER BY ${columnName}
+		Here MyBatis won't modify or escape the string.
 
 	# resultType
 		- TypeAliases

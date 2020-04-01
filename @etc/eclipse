@@ -18,3 +18,45 @@ ex) tomcat
 
 - Cannot change version of project facet Dynamic Web Module to 3.0
 https://crunchify.com/how-to-fix-cannot-change-version-of-project-facet-dynamic-web-module-to-3-0-error-in-eclipse/
+
+
+- 이클립스 제티
+	- System.getProperty()
+	 org.eclipse.jdt.launching.VM_ARGUMENTS로 줘야함
+	 -Dserver.type=local -DargumentName=dev
+
+	- 최신버전
+		https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/
+		버전선택후 다운로드
+		- https://stackoverflow.com/questions/50956562/bytecode-scanning-error-on-meta-inf-versions-9-and-elasticsearch-6-2-2-with-j/50970415#50970415
+		해당이슈 때문에 9.4.9.v20180320 필요함
+
+## speed up
+
+- http://www.nicolasbize.com/blog/7-tips-to-speed-up-eclipse/
+  TODO 램디스크
+
+	General > Appearance > Uncheck Enable Animations
+
+
+	- 이슈
+	대략 1~3주 한번정도 오랫동안 버벅거림
+	Windows10 환경,이클립스에 auto붙은것들 끔. 메모리 충분 그런데 cpu30%정도로 계속 점유중
+		현상1: 모든 동작(키, 마우스 입력, 빌드등 동작)이 계속 버벅거림.
+		현상2: 빌드 등의 동작 실행시 Progress에서 Wati로 대기만함
+
+		원인: 이클립스 백그라운드 작업 중 권한없는 어떤것이 무한루프로 실행되어 새로운 task가 BLOCK 것으로 추정
+		해결?: 관리자 모드로 실행
+			-> 재발생 vscode 1.31.1 켜놨을경우만 발생
+			   자동빌드 다 꺼놨는데?
+			   -> 소스트리가 문제
+			      1. 전면(foreground)에 있는 상황
+				  2. auto refresh가 동작하는 상황
+
+				  ==> 후면에 두고, auto refresh끔
+
+	https://stackoverflow.com/questions/1359704/eclipse-refreshing-workspace-takes-forever
+	file sync가 문제인듯함
+
+
+##
