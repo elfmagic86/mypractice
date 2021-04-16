@@ -1,0 +1,14 @@
+
+- Get a List of all Tables In Oracle SQL
+SELECT owner, table_name FROM all_tables;
+
+
+
+
+======================
+
+
+- describe 키워드 안됨
+https://stackoverflow.com/questions/37133666/what-is-the-reason-for-not-working-of-describe-command-on-oracle
+> sqlplus에서만 됨
+

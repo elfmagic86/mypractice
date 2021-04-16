@@ -17,3 +17,25 @@ https://stackoverflow.com/questions/44046927/comparison-of-ternary-operator-elvi
 
 일반적으로는 위와같고.
 타입스크립트 인터페이스 정의시에는 `?:`를 `nullable허용 && 프로퍼티` 정의 용도로 사용함
+
+
+
+- Loose Equality Comparisons With ==
+https://www.sitepoint.com/javascript-truthy-falsy/
+
+	- Abstract Equality Comparison Algorithm
+	https://262.ecma-international.org/5.1/#sec-11.9.3
+
+		- 동작간략설명: https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Equality
+
+		- 타입변환 중 Object 설명 ( 1 == [1] 과 같을 경우 동작)
+		11.9.3
+			9. If Type(x) is Object and Type(y) is either String or Number,
+			return the result of the comparison ToPrimitive(x) == y.
+
+
+	- 예시:all true ;;;
+	1 == '1'; // 문자열 -> 숫자로 변환 후 비교
+	1 == [1]; // 위 설명에 의해, Number([1])으로 타입변환 시도하고, Number([1])이 1이므로 true
+	'1' == [1];
+	0 == ''

@@ -74,6 +74,13 @@ https://ko.wikipedia.org/wiki/타임스탬프
     https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime
     시스템시간, 유닉스시간을 반환(1970 년 1 월 1 일 00:00:00 UTC와 주어진 날짜 사이의 경과 시간 (밀리 초)을 나타내는 숫자)
 
+    - utc time
+    Date.toISOString()
+    https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+    > toISOString() 메서드는 단순화한 확장 ISO 형식(ISO 8601)의 문자열을 반환합니다. 
+    > 반환값은 언제나 24글자 또는 27글자(각각 YYYY-MM-DDTHH:mm:ss.sssZ 또는 ±YYYYYY-MM-DDTHH:mm:ss.sssZ)입니다. 
+    > 시간대는 언제나 UTC이며 접미어 "Z"로 표현합니다.
+
 ## MEMO
 
 - 흐름

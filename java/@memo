@@ -20,3 +20,16 @@ https://ko.wikipedia.org/wiki/JMX
 	- 적절한 jmx 설정 후 java app 실행시 로컬/원격 모니터링 할 수 있음.
 	- 도구 jconsole 등
 
+
+
+
+- why-parallel-stream-get-collected-sequentially-in-java-8
+	encounter order(만남순서, 발생순서), time order(시간완료 순서)
+	아래상황이 순서(발생순서)가 유지되는 이유.
+				List<Res> resList = chunk.parallelStream().map(n -> {
+						return apiCall(new Req(n));
+					}).collect(Collectors.toList());
+
+	https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#Ordering
+	https://stackoverflow.com/questions/29709140/why-parallel-stream-get-collected-sequentially-in-java-8/29713386#29713386
+
